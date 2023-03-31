@@ -1,301 +1,501 @@
-﻿Name,CL / SL Delta,Variant
-"_           ,msgid       @0x0:0x3fe",0.2,"Clang 12, O1"
-"cmd_main    ,argc        @0x0:0x2bc",-0.30556,"Clang 12, O1"
-"cmd_main    ,argv        @0x0:0x2cb",-0.19444,"Clang 12, O1"
-"cmd_main    ,cmd         @0x0:0x2da",-0.11111,"Clang 12, O1"
-"cmd_main    ,done_help   @0x0:0x2e9",-0.00397,"Clang 12, O1"
-"cmd_main    ,slash       @0x0:0x306",0,"Clang 12, O1"
-"cmd_main    ,was_alias   @0x0:0x324",-0.28409,"Clang 12, O1"
-"copy_array  ,dst         @0x0:0x7e3",0,"Clang 12, O1"
-"copy_array  ,n           @0x0:0x803",0,"Clang 12, O1"
-"copy_array  ,size        @0x0:0x813",0.25,"Clang 12, O1"
-"copy_array  ,src         @0x0:0x7f3",0,"Clang 12, O1"
-"exclude_help,i           @0x0:0x9bc",-0.16666,"Clang 12, O1"
-"exclude_help,list        @0x0:0x9ad",0,"Clang 12, O1"
-"execv_dashed,argv        @0x0:0x5ef",0.04762,"Clang 12, O1"
-"execv_dashed,cmd         @0x0:0x5ff",0,"Clang 12, O1"
-"execv_dashed,status      @0x0:0x60f",-0.08021,"Clang 12, O1"
-"get_builtin ,i           @0x0:0x1d3",-0.875,"Clang 12, O1"
-"get_builtin ,p           @0x0:0x1f0",-0.75,"Clang 12, O1"
-"get_builtin ,s           @0x0:0x1c3",0.125,"Clang 12, O1"
-"git_find_las,path        @0x0:0x350",0,"Clang 12, O1"
-"gitstrchrnul,c           @0x0:0x932",0.25,"Clang 12, O1"
-"gitstrchrnul,s           @0x0:0x922",0.25,"Clang 12, O1"
-"handle_alias,alias_comman@0x0:0x6dc",-0.24313,"Clang 12, O1"
-"handle_alias,alias_string@0x0:0x6ec",-0.61402,"Clang 12, O1"
-"handle_alias,argcp       @0x0:0x66f",-0.13443,"Clang 12, O1"
-"handle_alias,argv        @0x0:0x67f",-0.15217,"Clang 12, O1"
-"handle_alias,child       @0x0:0x719",0,"Clang 12, O1"
-"handle_alias,count       @0x0:0x69e",-0.80435,"Clang 12, O1"
-"handle_alias,envchanged  @0x0:0x68f",-0.41304,"Clang 12, O1"
-"handle_alias,new_argv    @0x0:0x6ad",-0.63043,"Clang 12, O1"
-"handle_alias,nongit_ok   @0x0:0x729",-0.06667,"Clang 12, O1"
-"handle_alias,option_count@0x0:0x6fc",-0.26131,"Clang 12, O1"
-"handle_alias,ret         @0x0:0x6bc",-0.00133,"Clang 12, O1"
-"handle_alias,saved_errno @0x0:0x6cc",-0.13443,"Clang 12, O1"
-"handle_built,argc        @0x0:0x377",-0.00326,"Clang 12, O1"
-"handle_built,args        @0x0:0x397",0,"Clang 12, O1"
-"handle_built,argv        @0x0:0x387",0.05556,"Clang 12, O1"
-"handle_built,builtin     @0x0:0x3b6",-0.04575,"Clang 12, O1"
-"handle_built,cmd         @0x0:0x3a6",0.21242,"Clang 12, O1"
-"handle_built,i           @0x0:0x3d3",-0.27778,"Clang 12, O1"
-"handle_optio,argc        @0x0:0x436",-0.02167,"Clang 12, O1"
-"handle_optio,argv        @0x0:0x427",0.00585,"Clang 12, O1"
-"handle_optio,cmd         @0x0:0x470",-0.08571,"Clang 12, O1"
-"handle_optio,cwd         @0x0:0x48b",-0.075,"Clang 12, O1"
-"handle_optio,envchanged  @0x0:0x445",0.00585,"Clang 12, O1"
-"handle_optio,i           @0x0:0x4b7",-0.33334,"Clang 12, O1"
-"handle_optio,list        @0x0:0x4a8",0,"Clang 12, O1"
-"handle_optio,orig_argv   @0x0:0x454",-0.00665,"Clang 12, O1"
-"is_builtin  ,s           @0x0:0x198",0,"Clang 12, O1"
-"list_builtin,exclude_opti@0x0:0x84a",0.14286,"Clang 12, O1"
-"list_builtin,i           @0x0:0x85a",-0.85714,"Clang 12, O1"
-"list_builtin,out         @0x0:0x83a",0.14286,"Clang 12, O1"
-"list_cmds   ,i           @0x0:0x8af",-0.05833,"Clang 12, O1"
-"list_cmds   ,len         @0x0:0x8da",-0.00758,"Clang 12, O1"
-"list_cmds   ,list        @0x0:0x893",0,"Clang 12, O1"
-"list_cmds   ,nongit      @0x0:0x8a1",-0.06667,"Clang 12, O1"
-"list_cmds   ,sb          @0x0:0x8f6",0,"Clang 12, O1"
-"list_cmds   ,sep         @0x0:0x8cb",0.00378,"Clang 12, O1"
-"list_cmds   ,spec        @0x0:0x884",-0.06875,"Clang 12, O1"
-"load_builtin,cmds        @0x0:0x227",0.14286,"Clang 12, O1"
-"load_builtin,i           @0x0:0x246",-0.57143,"Clang 12, O1"
-"load_builtin,name        @0x0:0x237",-0.71429,"Clang 12, O1"
-"load_builtin,prefix      @0x0:0x218",0,"Clang 12, O1"
-"match_token ,len         @0x0:0x96b",0,"Clang 12, O1"
-"match_token ,spec        @0x0:0x95c",0.33333,"Clang 12, O1"
-"match_token ,token       @0x0:0x979",0.33333,"Clang 12, O1"
-"match_token ,token_len   @0x0:0x988",0,"Clang 12, O1"
-"move_array  ,dst         @0x0:0x751",0,"Clang 12, O1"
-"move_array  ,n           @0x0:0x771",0,"Clang 12, O1"
-"move_array  ,size        @0x0:0x781",0.25,"Clang 12, O1"
-"move_array  ,src         @0x0:0x761",0,"Clang 12, O1"
-"run_argv    ,argcp       @0x0:0x4e4",-0.14762,"Clang 12, O1"
-"run_argv    ,argv        @0x0:0x4f4",-0.14762,"Clang 12, O1"
-"run_argv    ,cmd         @0x0:0x540",0,"Clang 12, O1"
-"run_argv    ,cmd_list    @0x0:0x504",0,"Clang 12, O1"
-"run_argv    ,done_alias  @0x0:0x513",-0.40476,"Clang 12, O1"
-"run_argv    ,i           @0x0:0x550",-0.31373,"Clang 12, O1"
-"run_argv    ,i           @0x0:0x57e",-0.28409,"Clang 12, O1"
-"run_argv    ,item        @0x0:0x59b",-0.85714,"Clang 12, O1"
-"run_argv    ,sb          @0x0:0x56e",0,"Clang 12, O1"
-"run_argv    ,seen        @0x0:0x523",-0.14286,"Clang 12, O1"
-"run_builtin ,argc        @0x0:0x9f6",0.02128,"Clang 12, O1"
-"run_builtin ,argv        @0x0:0xa06",-0.90372,"Clang 12, O1"
-"run_builtin ,help        @0x0:0xa36",-0.41117,"Clang 12, O1"
-"run_builtin ,nongit_ok   @0x0:0xa73",0,"Clang 12, O1"
-"run_builtin ,p           @0x0:0x9e6",0.02128,"Clang 12, O1"
-"run_builtin ,prefix      @0x0:0xa46",-0.02979,"Clang 12, O1"
-"run_builtin ,run_setup   @0x0:0xa26",-0.28245,"Clang 12, O1"
-"run_builtin ,st          @0x0:0xa16",0,"Clang 12, O1"
-"run_builtin ,status      @0x0:0xa56",-0.24415,"Clang 12, O1"
-"setup_auto_p,cmd         @0x0:0x14a",-0.04167,"Clang 12, O1"
-"setup_auto_p,def         @0x0:0x159",-0.04167,"Clang 12, O1"
-"skip_prefix ,out         @0x0:0x291",0.125,"Clang 12, O1"
-"skip_prefix ,prefix      @0x0:0x281",0.25,"Clang 12, O1"
-"skip_prefix ,str         @0x0:0x271",0.25,"Clang 12, O1"
-"st_mult     ,a           @0x0:0x7ac",0.25,"Clang 12, O1"
-"st_mult     ,b           @0x0:0x7bc",0.25,"Clang 12, O1"
-"strbuf_addst,s           @0x0:0x645",0,"Clang 12, O1"
-"strbuf_addst,sb          @0x0:0x636",-0.33333,"Clang 12, O1"
-"trace_pass_f,key         @0x0:0x5c8",0,"Clang 12, O1"
-"_           ,msgid       @0x0:0x3fe",0.2,"Clang 13, O1"
-"cmd_main    ,argc        @0x0:0x2bc",-0.30556,"Clang 13, O1"
-"cmd_main    ,argv        @0x0:0x2cb",-0.19444,"Clang 13, O1"
-"cmd_main    ,cmd         @0x0:0x2da",-0.11111,"Clang 13, O1"
-"cmd_main    ,done_help   @0x0:0x2e9",-0.00397,"Clang 13, O1"
-"cmd_main    ,slash       @0x0:0x306",0,"Clang 13, O1"
-"cmd_main    ,was_alias   @0x0:0x324",-0.28409,"Clang 13, O1"
-"copy_array  ,dst         @0x0:0x7e3",0,"Clang 13, O1"
-"copy_array  ,n           @0x0:0x803",0,"Clang 13, O1"
-"copy_array  ,size        @0x0:0x813",0.25,"Clang 13, O1"
-"copy_array  ,src         @0x0:0x7f3",0,"Clang 13, O1"
-"exclude_help,i           @0x0:0x9bc",-0.16666,"Clang 13, O1"
-"exclude_help,list        @0x0:0x9ad",0,"Clang 13, O1"
-"execv_dashed,argv        @0x0:0x5ef",0.04762,"Clang 13, O1"
-"execv_dashed,cmd         @0x0:0x5ff",0,"Clang 13, O1"
-"execv_dashed,status      @0x0:0x60f",-0.08021,"Clang 13, O1"
-"get_builtin ,i           @0x0:0x1d3",-0.375,"Clang 13, O1"
-"get_builtin ,p           @0x0:0x1f0",-0.75,"Clang 13, O1"
-"get_builtin ,s           @0x0:0x1c3",0.125,"Clang 13, O1"
-"git_find_las,path        @0x0:0x350",0,"Clang 13, O1"
-"gitstrchrnul,c           @0x0:0x932",0.25,"Clang 13, O1"
-"gitstrchrnul,s           @0x0:0x922",0.25,"Clang 13, O1"
-"handle_alias,alias_comman@0x0:0x6dc",-0.24313,"Clang 13, O1"
-"handle_alias,alias_string@0x0:0x6ec",-0.61402,"Clang 13, O1"
-"handle_alias,argcp       @0x0:0x66f",-0.13443,"Clang 13, O1"
-"handle_alias,argv        @0x0:0x67f",0,"Clang 13, O1"
-"handle_alias,child       @0x0:0x719",0,"Clang 13, O1"
-"handle_alias,count       @0x0:0x69e",-0.80435,"Clang 13, O1"
-"handle_alias,envchanged  @0x0:0x68f",-0.41304,"Clang 13, O1"
-"handle_alias,new_argv    @0x0:0x6ad",-0.63043,"Clang 13, O1"
-"handle_alias,nongit_ok   @0x0:0x729",-0.06667,"Clang 13, O1"
-"handle_alias,option_count@0x0:0x6fc",-0.26131,"Clang 13, O1"
-"handle_alias,ret         @0x0:0x6bc",-0.00133,"Clang 13, O1"
-"handle_alias,saved_errno @0x0:0x6cc",-0.13443,"Clang 13, O1"
-"handle_built,argc        @0x0:0x377",-0.00326,"Clang 13, O1"
-"handle_built,args        @0x0:0x397",0,"Clang 13, O1"
-"handle_built,argv        @0x0:0x387",0.05556,"Clang 13, O1"
-"handle_built,builtin     @0x0:0x3b6",-0.04575,"Clang 13, O1"
-"handle_built,cmd         @0x0:0x3a6",0.21242,"Clang 13, O1"
-"handle_built,i           @0x0:0x3d3",-0.27778,"Clang 13, O1"
-"handle_optio,argc        @0x0:0x436",-0.02167,"Clang 13, O1"
-"handle_optio,argv        @0x0:0x427",0.00585,"Clang 13, O1"
-"handle_optio,cmd         @0x0:0x470",-0.08571,"Clang 13, O1"
-"handle_optio,cwd         @0x0:0x48b",-0.075,"Clang 13, O1"
-"handle_optio,envchanged  @0x0:0x445",0.00585,"Clang 13, O1"
-"handle_optio,i           @0x0:0x4b7",-0.33334,"Clang 13, O1"
-"handle_optio,list        @0x0:0x4a8",0,"Clang 13, O1"
-"handle_optio,orig_argv   @0x0:0x454",-0.00665,"Clang 13, O1"
-"is_builtin  ,s           @0x0:0x198",0,"Clang 13, O1"
-"list_builtin,exclude_opti@0x0:0x84a",0.14286,"Clang 13, O1"
-"list_builtin,i           @0x0:0x85a",-0.19047,"Clang 13, O1"
-"list_builtin,out         @0x0:0x83a",0.14286,"Clang 13, O1"
-"list_cmds   ,i           @0x0:0x8af",-0.05833,"Clang 13, O1"
-"list_cmds   ,len         @0x0:0x8da",-0.00758,"Clang 13, O1"
-"list_cmds   ,list        @0x0:0x893",0,"Clang 13, O1"
-"list_cmds   ,nongit      @0x0:0x8a1",-0.06667,"Clang 13, O1"
-"list_cmds   ,sb          @0x0:0x8f6",0,"Clang 13, O1"
-"list_cmds   ,sep         @0x0:0x8cb",0.00378,"Clang 13, O1"
-"list_cmds   ,spec        @0x0:0x884",-0.06875,"Clang 13, O1"
-"load_builtin,cmds        @0x0:0x227",0.14286,"Clang 13, O1"
-"load_builtin,i           @0x0:0x246",-0.14286,"Clang 13, O1"
-"load_builtin,name        @0x0:0x237",-0.71429,"Clang 13, O1"
-"load_builtin,prefix      @0x0:0x218",0,"Clang 13, O1"
-"match_token ,len         @0x0:0x96b",0,"Clang 13, O1"
-"match_token ,spec        @0x0:0x95c",0.33333,"Clang 13, O1"
-"match_token ,token       @0x0:0x979",0.33333,"Clang 13, O1"
-"match_token ,token_len   @0x0:0x988",0,"Clang 13, O1"
-"move_array  ,dst         @0x0:0x751",0,"Clang 13, O1"
-"move_array  ,n           @0x0:0x771",0,"Clang 13, O1"
-"move_array  ,size        @0x0:0x781",0.25,"Clang 13, O1"
-"move_array  ,src         @0x0:0x761",0,"Clang 13, O1"
-"run_argv    ,argcp       @0x0:0x4e4",-0.14762,"Clang 13, O1"
-"run_argv    ,argv        @0x0:0x4f4",-0.03333,"Clang 13, O1"
-"run_argv    ,cmd         @0x0:0x540",0,"Clang 13, O1"
-"run_argv    ,cmd_list    @0x0:0x504",0,"Clang 13, O1"
-"run_argv    ,done_alias  @0x0:0x513",-0.40476,"Clang 13, O1"
-"run_argv    ,i           @0x0:0x550",-0.31373,"Clang 13, O1"
-"run_argv    ,i           @0x0:0x57e",-0.28409,"Clang 13, O1"
-"run_argv    ,item        @0x0:0x59b",-0.85714,"Clang 13, O1"
-"run_argv    ,sb          @0x0:0x56e",0,"Clang 13, O1"
-"run_argv    ,seen        @0x0:0x523",-0.14286,"Clang 13, O1"
-"run_builtin ,argc        @0x0:0x9f6",0.02128,"Clang 13, O1"
-"run_builtin ,argv        @0x0:0xa06",-0.90372,"Clang 13, O1"
-"run_builtin ,help        @0x0:0xa36",-0.41117,"Clang 13, O1"
-"run_builtin ,nongit_ok   @0x0:0xa73",0,"Clang 13, O1"
-"run_builtin ,p           @0x0:0x9e6",0.02128,"Clang 13, O1"
-"run_builtin ,prefix      @0x0:0xa46",-0.02979,"Clang 13, O1"
-"run_builtin ,run_setup   @0x0:0xa26",-0.28245,"Clang 13, O1"
-"run_builtin ,st          @0x0:0xa16",0,"Clang 13, O1"
-"run_builtin ,status      @0x0:0xa56",-0.24415,"Clang 13, O1"
-"setup_auto_p,cmd         @0x0:0x14a",-0.04167,"Clang 13, O1"
-"setup_auto_p,def         @0x0:0x159",-0.04167,"Clang 13, O1"
-"skip_prefix ,out         @0x0:0x291",0.125,"Clang 13, O1"
-"skip_prefix ,prefix      @0x0:0x281",0.25,"Clang 13, O1"
-"skip_prefix ,str         @0x0:0x271",0.25,"Clang 13, O1"
-"st_mult     ,a           @0x0:0x7ac",0.25,"Clang 13, O1"
-"st_mult     ,b           @0x0:0x7bc",0.25,"Clang 13, O1"
-"strbuf_addst,s           @0x0:0x645",0,"Clang 13, O1"
-"strbuf_addst,sb          @0x0:0x636",0,"Clang 13, O1"
-"trace_pass_f,key         @0x0:0x5c8",0,"Clang 13, O1"
-"_           ,msgid       @0x0:0x3fe",0.2,"Clang 14, O1"
-"cmd_main    ,argc        @0x0:0x2bc",-0.33333,"Clang 14, O1"
-"cmd_main    ,argv        @0x0:0x2cb",-0.19444,"Clang 14, O1"
-"cmd_main    ,cmd         @0x0:0x2da",-0.22222,"Clang 14, O1"
-"cmd_main    ,done_help   @0x0:0x2e9",-0.00397,"Clang 14, O1"
-"cmd_main    ,slash       @0x0:0x306",0,"Clang 14, O1"
-"cmd_main    ,was_alias   @0x0:0x324",-0.28409,"Clang 14, O1"
-"copy_array  ,dst         @0x0:0x7e3",0.25,"Clang 14, O1"
-"copy_array  ,n           @0x0:0x803",0.25,"Clang 14, O1"
-"copy_array  ,size        @0x0:0x813",0.25,"Clang 14, O1"
-"copy_array  ,src         @0x0:0x7f3",0.25,"Clang 14, O1"
-"exclude_help,i           @0x0:0x9bc",-0.16666,"Clang 14, O1"
-"exclude_help,list        @0x0:0x9ad",0.16667,"Clang 14, O1"
-"execv_dashed,argv        @0x0:0x5ef",0.04762,"Clang 14, O1"
-"execv_dashed,cmd         @0x0:0x5ff",0,"Clang 14, O1"
-"execv_dashed,status      @0x0:0x60f",-0.08021,"Clang 14, O1"
-"get_builtin ,i           @0x0:0x1d3",-0.375,"Clang 14, O1"
-"get_builtin ,p           @0x0:0x1f0",-0.75,"Clang 14, O1"
-"get_builtin ,s           @0x0:0x1c3",0.125,"Clang 14, O1"
-"git_find_las,path        @0x0:0x350",0,"Clang 14, O1"
-"gitstrchrnul,c           @0x0:0x932",0.25,"Clang 14, O1"
-"gitstrchrnul,s           @0x0:0x922",0.25,"Clang 14, O1"
-"handle_alias,alias_comman@0x0:0x6dc",-0.04748,"Clang 14, O1"
-"handle_alias,alias_string@0x0:0x6ec",-0.61402,"Clang 14, O1"
-"handle_alias,argcp       @0x0:0x66f",0.06122,"Clang 14, O1"
-"handle_alias,argv        @0x0:0x67f",0,"Clang 14, O1"
-"handle_alias,child       @0x0:0x719",0,"Clang 14, O1"
-"handle_alias,count       @0x0:0x69e",-0.80435,"Clang 14, O1"
-"handle_alias,envchanged  @0x0:0x68f",-0.41304,"Clang 14, O1"
-"handle_alias,new_argv    @0x0:0x6ad",-0.63043,"Clang 14, O1"
-"handle_alias,nongit_ok   @0x0:0x729",-0.06667,"Clang 14, O1"
-"handle_alias,option_count@0x0:0x6fc",-0.26131,"Clang 14, O1"
-"handle_alias,ret         @0x0:0x6bc",-0.00133,"Clang 14, O1"
-"handle_alias,saved_errno @0x0:0x6cc",-0.13443,"Clang 14, O1"
-"handle_built,argc        @0x0:0x377",0.05556,"Clang 14, O1"
-"handle_built,args        @0x0:0x397",0,"Clang 14, O1"
-"handle_built,argv        @0x0:0x387",0.05556,"Clang 14, O1"
-"handle_built,builtin     @0x0:0x3b6",-0.04575,"Clang 14, O1"
-"handle_built,cmd         @0x0:0x3a6",0.21242,"Clang 14, O1"
-"handle_built,i           @0x0:0x3d3",-0.27778,"Clang 14, O1"
-"handle_optio,argc        @0x0:0x436",0.00585,"Clang 14, O1"
-"handle_optio,argv        @0x0:0x427",0.00585,"Clang 14, O1"
-"handle_optio,cmd         @0x0:0x470",-0.08571,"Clang 14, O1"
-"handle_optio,cwd         @0x0:0x48b",-0.075,"Clang 14, O1"
-"handle_optio,envchanged  @0x0:0x445",0.00585,"Clang 14, O1"
-"handle_optio,i           @0x0:0x4b7",-0.33334,"Clang 14, O1"
-"handle_optio,list        @0x0:0x4a8",0,"Clang 14, O1"
-"handle_optio,orig_argv   @0x0:0x454",-0.00665,"Clang 14, O1"
-"is_builtin  ,s           @0x0:0x198",0,"Clang 14, O1"
-"list_builtin,exclude_opti@0x0:0x84a",0.14286,"Clang 14, O1"
-"list_builtin,i           @0x0:0x85a",-0.19047,"Clang 14, O1"
-"list_builtin,out         @0x0:0x83a",0.14286,"Clang 14, O1"
-"list_cmds   ,i           @0x0:0x8af",-0.05833,"Clang 14, O1"
-"list_cmds   ,len         @0x0:0x8da",-0.00758,"Clang 14, O1"
-"list_cmds   ,list        @0x0:0x893",0,"Clang 14, O1"
-"list_cmds   ,nongit      @0x0:0x8a1",-0.06667,"Clang 14, O1"
-"list_cmds   ,sb          @0x0:0x8f6",0,"Clang 14, O1"
-"list_cmds   ,sep         @0x0:0x8cb",0.04924,"Clang 14, O1"
-"list_cmds   ,spec        @0x0:0x884",-0.06875,"Clang 14, O1"
-"load_builtin,cmds        @0x0:0x227",0.14286,"Clang 14, O1"
-"load_builtin,i           @0x0:0x246",-0.14286,"Clang 14, O1"
-"load_builtin,name        @0x0:0x237",-0.71429,"Clang 14, O1"
-"load_builtin,prefix      @0x0:0x218",0,"Clang 14, O1"
-"match_token ,len         @0x0:0x96b",0,"Clang 14, O1"
-"match_token ,spec        @0x0:0x95c",0.33333,"Clang 14, O1"
-"match_token ,token       @0x0:0x979",0.33333,"Clang 14, O1"
-"match_token ,token_len   @0x0:0x988",0,"Clang 14, O1"
-"move_array  ,dst         @0x0:0x751",0.25,"Clang 14, O1"
-"move_array  ,n           @0x0:0x771",0.25,"Clang 14, O1"
-"move_array  ,size        @0x0:0x781",0.25,"Clang 14, O1"
-"move_array  ,src         @0x0:0x761",0.25,"Clang 14, O1"
-"run_argv    ,argcp       @0x0:0x4e4",0.02381,"Clang 14, O1"
-"run_argv    ,argv        @0x0:0x4f4",0.02381,"Clang 14, O1"
-"run_argv    ,cmd         @0x0:0x540",0,"Clang 14, O1"
-"run_argv    ,cmd_list    @0x0:0x504",0,"Clang 14, O1"
-"run_argv    ,done_alias  @0x0:0x513",-0.40476,"Clang 14, O1"
-"run_argv    ,i           @0x0:0x550",-0.31373,"Clang 14, O1"
-"run_argv    ,i           @0x0:0x57e",-0.28409,"Clang 14, O1"
-"run_argv    ,item        @0x0:0x59b",-0.85714,"Clang 14, O1"
-"run_argv    ,sb          @0x0:0x56e",0,"Clang 14, O1"
-"run_argv    ,seen        @0x0:0x523",-0.14286,"Clang 14, O1"
-"run_builtin ,argc        @0x0:0x9f6",0.02128,"Clang 14, O1"
-"run_builtin ,argv        @0x0:0xa06",0.02128,"Clang 14, O1"
-"run_builtin ,help        @0x0:0xa36",-0.41117,"Clang 14, O1"
-"run_builtin ,nongit_ok   @0x0:0xa73",0,"Clang 14, O1"
-"run_builtin ,p           @0x0:0x9e6",0.02128,"Clang 14, O1"
-"run_builtin ,prefix      @0x0:0xa46",-0.02979,"Clang 14, O1"
-"run_builtin ,run_setup   @0x0:0xa26",-0.28245,"Clang 14, O1"
-"run_builtin ,st          @0x0:0xa16",0,"Clang 14, O1"
-"run_builtin ,status      @0x0:0xa56",-0.24415,"Clang 14, O1"
-"setup_auto_p,cmd         @0x0:0x14a",0.125,"Clang 14, O1"
-"setup_auto_p,def         @0x0:0x159",0.125,"Clang 14, O1"
-"skip_prefix ,out         @0x0:0x291",0.125,"Clang 14, O1"
-"skip_prefix ,prefix      @0x0:0x281",0.25,"Clang 14, O1"
-"skip_prefix ,str         @0x0:0x271",0.25,"Clang 14, O1"
-"st_mult     ,a           @0x0:0x7ac",0.25,"Clang 14, O1"
-"st_mult     ,b           @0x0:0x7bc",0.25,"Clang 14, O1"
-"strbuf_addst,s           @0x0:0x645",0,"Clang 14, O1"
-"strbuf_addst,sb          @0x0:0x636",0,"Clang 14, O1"
-"trace_pass_f,key         @0x0:0x5c8",0,"Clang 14, O1"
+﻿Variant,Name,CL / SL Delta,
+"Clang 13, O0","_           ,msgid       @0x0:0x3fe",0.2,
+"Clang 13, O0","cmd_main    ,argc        @0x0:0x2bc",0,
+"Clang 13, O0","cmd_main    ,argv        @0x0:0x2cb",0,
+"Clang 13, O0","cmd_main    ,cmd         @0x0:0x2da",0,
+"Clang 13, O0","cmd_main    ,done_help   @0x0:0x2e9",0.02381,
+"Clang 13, O0","cmd_main    ,slash       @0x0:0x306",0.33333,
+"Clang 13, O0","cmd_main    ,was_alias   @0x0:0x324",0.09091,
+"Clang 13, O0","copy_array  ,dst         @0x0:0x7e3",0.25,
+"Clang 13, O0","copy_array  ,n           @0x0:0x803",0.25,
+"Clang 13, O0","copy_array  ,size        @0x0:0x813",0.25,
+"Clang 13, O0","copy_array  ,src         @0x0:0x7f3",0.25,
+"Clang 13, O0","exclude_help,i           @0x0:0x9bc",0.16667,
+"Clang 13, O0","exclude_help,list        @0x0:0x9ad",0.16667,
+"Clang 13, O0","execv_dashed,argv        @0x0:0x5ef",0.04762,
+"Clang 13, O0","execv_dashed,cmd         @0x0:0x5ff",0,
+"Clang 13, O0","execv_dashed,status      @0x0:0x60f",0.7619,
+"Clang 13, O0","get_builtin ,i           @0x0:0x1d3",0.125,
+"Clang 13, O0","get_builtin ,p           @0x0:0x1f0",0.25,
+"Clang 13, O0","get_builtin ,s           @0x0:0x1c3",0.125,
+"Clang 13, O0","git_find_las,path        @0x0:0x350",0,
+"Clang 13, O0","gitstrchrnul,c           @0x0:0x932",0.25,
+"Clang 13, O0","gitstrchrnul,s           @0x0:0x922",0.25,
+"Clang 13, O0","handle_alias,alias_comman@0x0:0x6dc",0.06122,
+"Clang 13, O0","handle_alias,alias_string@0x0:0x6ec",0.08163,
+"Clang 13, O0","handle_alias,argcp       @0x0:0x66f",0.06122,
+"Clang 13, O0","handle_alias,argv        @0x0:0x67f",0,
+"Clang 13, O0","handle_alias,child       @0x0:0x719",0,
+"Clang 13, O0","handle_alias,count       @0x0:0x69e",0,
+"Clang 13, O0","handle_alias,envchanged  @0x0:0x68f",0,
+"Clang 13, O0","handle_alias,new_argv    @0x0:0x6ad",0,
+"Clang 13, O0","handle_alias,nongit_ok   @0x0:0x729",0,
+"Clang 13, O0","handle_alias,option_count@0x0:0x6fc",0.67347,
+"Clang 13, O0","handle_alias,ret         @0x0:0x6bc",0.02041,
+"Clang 13, O0","handle_alias,saved_errno @0x0:0x6cc",0.06122,
+"Clang 13, O0","handle_built,argc        @0x0:0x377",0.05556,
+"Clang 13, O0","handle_built,args        @0x0:0x397",0,
+"Clang 13, O0","handle_built,argv        @0x0:0x387",0.05556,
+"Clang 13, O0","handle_built,builtin     @0x0:0x3b6",0.77778,
+"Clang 13, O0","handle_built,cmd         @0x0:0x3a6",0.38889,
+"Clang 13, O0","handle_built,i           @0x0:0x3d3",0.22222,
+"Clang 13, O0","handle_optio,argc        @0x0:0x436",0.00585,
+"Clang 13, O0","handle_optio,argv        @0x0:0x427",0.00585,
+"Clang 13, O0","handle_optio,cmd         @0x0:0x470",0,
+"Clang 13, O0","handle_optio,cwd         @0x0:0x48b",0.125,
+"Clang 13, O0","handle_optio,envchanged  @0x0:0x445",0.00585,
+"Clang 13, O0","handle_optio,i           @0x0:0x4b7",0.33333,
+"Clang 13, O0","handle_optio,list        @0x0:0x4a8",0,
+"Clang 13, O0","handle_optio,orig_argv   @0x0:0x454",0.0117,
+"Clang 13, O0","is_builtin  ,s           @0x0:0x198",0,
+"Clang 13, O0","list_builtin,exclude_opti@0x0:0x84a",0.14286,
+"Clang 13, O0","list_builtin,i           @0x0:0x85a",0.14286,
+"Clang 13, O0","list_builtin,out         @0x0:0x83a",0.14286,
+"Clang 13, O0","list_cmds   ,i           @0x0:0x8af",0.875,
+"Clang 13, O0","list_cmds   ,len         @0x0:0x8da",0.08333,
+"Clang 13, O0","list_cmds   ,list        @0x0:0x893",0,
+"Clang 13, O0","list_cmds   ,nongit      @0x0:0x8a1",0,
+"Clang 13, O0","list_cmds   ,sb          @0x0:0x8f6",0,
+"Clang 13, O0","list_cmds   ,sep         @0x0:0x8cb",0.95833,
+"Clang 13, O0","list_cmds   ,spec        @0x0:0x884",0.03125,
+"Clang 13, O0","load_builtin,cmds        @0x0:0x227",0.14286,
+"Clang 13, O0","load_builtin,i           @0x0:0x246",0.42857,
+"Clang 13, O0","load_builtin,name        @0x0:0x237",0,
+"Clang 13, O0","load_builtin,prefix      @0x0:0x218",0,
+"Clang 13, O0","match_token ,len         @0x0:0x96b",0,
+"Clang 13, O0","match_token ,spec        @0x0:0x95c",0.33333,
+"Clang 13, O0","match_token ,token       @0x0:0x979",0.33333,
+"Clang 13, O0","match_token ,token_len   @0x0:0x988",0.66667,
+"Clang 13, O0","move_array  ,dst         @0x0:0x751",0.25,
+"Clang 13, O0","move_array  ,n           @0x0:0x771",0.25,
+"Clang 13, O0","move_array  ,size        @0x0:0x781",0.25,
+"Clang 13, O0","move_array  ,src         @0x0:0x761",0.25,
+"Clang 13, O0","run_argv    ,argcp       @0x0:0x4e4",0.02381,
+"Clang 13, O0","run_argv    ,argv        @0x0:0x4f4",0.02381,
+"Clang 13, O0","run_argv    ,cmd         @0x0:0x540",0,
+"Clang 13, O0","run_argv    ,cmd_list    @0x0:0x504",0,
+"Clang 13, O0","run_argv    ,done_alias  @0x0:0x513",0.02381,
+"Clang 13, O0","run_argv    ,i           @0x0:0x550",0.35294,
+"Clang 13, O0","run_argv    ,i           @0x0:0x57e",0.09091,
+"Clang 13, O0","run_argv    ,item        @0x0:0x59b",0.14286,
+"Clang 13, O0","run_argv    ,sb          @0x0:0x56e",0,
+"Clang 13, O0","run_argv    ,seen        @0x0:0x523",0.57143,
+"Clang 13, O0","run_builtin ,argc        @0x0:0x9f6",0.02128,
+"Clang 13, O0","run_builtin ,argv        @0x0:0xa06",0.02128,
+"Clang 13, O0","run_builtin ,help        @0x0:0xa36",0.06383,
+"Clang 13, O0","run_builtin ,nongit_ok   @0x0:0xa73",0,
+"Clang 13, O0","run_builtin ,p           @0x0:0x9e6",0.02128,
+"Clang 13, O0","run_builtin ,prefix      @0x0:0xa46",0.17021,
+"Clang 13, O0","run_builtin ,run_setup   @0x0:0xa26",0.04255,
+"Clang 13, O0","run_builtin ,st          @0x0:0xa16",0,
+"Clang 13, O0","run_builtin ,status      @0x0:0xa56",0.68085,
+"Clang 13, O0","setup_auto_p,cmd         @0x0:0x14a",0.125,
+"Clang 13, O0","setup_auto_p,def         @0x0:0x159",0.125,
+"Clang 13, O0","skip_prefix ,out         @0x0:0x291",0.125,
+"Clang 13, O0","skip_prefix ,prefix      @0x0:0x281",0.25,
+"Clang 13, O0","skip_prefix ,str         @0x0:0x271",0.25,
+"Clang 13, O0","st_mult     ,a           @0x0:0x7ac",0.25,
+"Clang 13, O0","st_mult     ,b           @0x0:0x7bc",0.25,
+"Clang 13, O0","strbuf_addst,s           @0x0:0x645",0,
+"Clang 13, O0","strbuf_addst,sb          @0x0:0x636",0,
+"Clang 13, O0","trace_pass_f,key         @0x0:0x5c8",0.5,
+"Clang 13, O0 + meg2reg","_           ,msgid       @0x0:0x3fe",0,
+"Clang 13, O0 + meg2reg","cmd_main    ,argc        @0x0:0x2bc",0,
+"Clang 13, O0 + meg2reg","cmd_main    ,argv        @0x0:0x2cb",0,
+"Clang 13, O0 + meg2reg","cmd_main    ,cmd         @0x0:0x2da",0,
+"Clang 13, O0 + meg2reg","cmd_main    ,done_help   @0x0:0x2e9",0,
+"Clang 13, O0 + meg2reg","cmd_main    ,slash       @0x0:0x306",0,
+"Clang 13, O0 + meg2reg","cmd_main    ,was_alias   @0x0:0x324",0,
+"Clang 13, O0 + meg2reg","copy_array  ,dst         @0x0:0x7e3",0,
+"Clang 13, O0 + meg2reg","copy_array  ,n           @0x0:0x803",0,
+"Clang 13, O0 + meg2reg","copy_array  ,size        @0x0:0x813",0,
+"Clang 13, O0 + meg2reg","copy_array  ,src         @0x0:0x7f3",0,
+"Clang 13, O0 + meg2reg","exclude_help,i           @0x0:0x9bc",0,
+"Clang 13, O0 + meg2reg","exclude_help,list        @0x0:0x9ad",0,
+"Clang 13, O0 + meg2reg","execv_dashed,argv        @0x0:0x5ef",0,
+"Clang 13, O0 + meg2reg","execv_dashed,cmd         @0x0:0x5ff",0,
+"Clang 13, O0 + meg2reg","execv_dashed,status      @0x0:0x60f",0,
+"Clang 13, O0 + meg2reg","get_builtin ,i           @0x0:0x1d3",0,
+"Clang 13, O0 + meg2reg","get_builtin ,p           @0x0:0x1f0",0,
+"Clang 13, O0 + meg2reg","get_builtin ,s           @0x0:0x1c3",0,
+"Clang 13, O0 + meg2reg","git_find_las,path        @0x0:0x350",0,
+"Clang 13, O0 + meg2reg","gitstrchrnul,c           @0x0:0x932",0,
+"Clang 13, O0 + meg2reg","gitstrchrnul,s           @0x0:0x922",0,
+"Clang 13, O0 + meg2reg","handle_alias,alias_comman@0x0:0x6dc",0,
+"Clang 13, O0 + meg2reg","handle_alias,alias_string@0x0:0x6ec",0,
+"Clang 13, O0 + meg2reg","handle_alias,argcp       @0x0:0x66f",0,
+"Clang 13, O0 + meg2reg","handle_alias,argv        @0x0:0x67f",0,
+"Clang 13, O0 + meg2reg","handle_alias,child       @0x0:0x719",0,
+"Clang 13, O0 + meg2reg","handle_alias,count       @0x0:0x69e",0,
+"Clang 13, O0 + meg2reg","handle_alias,envchanged  @0x0:0x68f",0,
+"Clang 13, O0 + meg2reg","handle_alias,new_argv    @0x0:0x6ad",0,
+"Clang 13, O0 + meg2reg","handle_alias,nongit_ok   @0x0:0x729",0,
+"Clang 13, O0 + meg2reg","handle_alias,option_count@0x0:0x6fc",0,
+"Clang 13, O0 + meg2reg","handle_alias,ret         @0x0:0x6bc",0,
+"Clang 13, O0 + meg2reg","handle_alias,saved_errno @0x0:0x6cc",0,
+"Clang 13, O0 + meg2reg","handle_built,argc        @0x0:0x377",0,
+"Clang 13, O0 + meg2reg","handle_built,args        @0x0:0x397",0,
+"Clang 13, O0 + meg2reg","handle_built,argv        @0x0:0x387",0,
+"Clang 13, O0 + meg2reg","handle_built,builtin     @0x0:0x3b6",0,
+"Clang 13, O0 + meg2reg","handle_built,cmd         @0x0:0x3a6",0,
+"Clang 13, O0 + meg2reg","handle_built,i           @0x0:0x3d3",0,
+"Clang 13, O0 + meg2reg","handle_optio,argc        @0x0:0x436",0,
+"Clang 13, O0 + meg2reg","handle_optio,argv        @0x0:0x427",0,
+"Clang 13, O0 + meg2reg","handle_optio,cmd         @0x0:0x470",0,
+"Clang 13, O0 + meg2reg","handle_optio,cwd         @0x0:0x48b",0,
+"Clang 13, O0 + meg2reg","handle_optio,envchanged  @0x0:0x445",0,
+"Clang 13, O0 + meg2reg","handle_optio,i           @0x0:0x4b7",0,
+"Clang 13, O0 + meg2reg","handle_optio,list        @0x0:0x4a8",0,
+"Clang 13, O0 + meg2reg","handle_optio,orig_argv   @0x0:0x454",0,
+"Clang 13, O0 + meg2reg","is_builtin  ,s           @0x0:0x198",0,
+"Clang 13, O0 + meg2reg","list_builtin,exclude_opti@0x0:0x84a",0,
+"Clang 13, O0 + meg2reg","list_builtin,i           @0x0:0x85a",0,
+"Clang 13, O0 + meg2reg","list_builtin,out         @0x0:0x83a",0,
+"Clang 13, O0 + meg2reg","list_cmds   ,i           @0x0:0x8af",0,
+"Clang 13, O0 + meg2reg","list_cmds   ,len         @0x0:0x8da",0,
+"Clang 13, O0 + meg2reg","list_cmds   ,list        @0x0:0x893",0,
+"Clang 13, O0 + meg2reg","list_cmds   ,nongit      @0x0:0x8a1",0,
+"Clang 13, O0 + meg2reg","list_cmds   ,sb          @0x0:0x8f6",0,
+"Clang 13, O0 + meg2reg","list_cmds   ,sep         @0x0:0x8cb",0,
+"Clang 13, O0 + meg2reg","list_cmds   ,spec        @0x0:0x884",0,
+"Clang 13, O0 + meg2reg","load_builtin,cmds        @0x0:0x227",0,
+"Clang 13, O0 + meg2reg","load_builtin,i           @0x0:0x246",0,
+"Clang 13, O0 + meg2reg","load_builtin,name        @0x0:0x237",0,
+"Clang 13, O0 + meg2reg","load_builtin,prefix      @0x0:0x218",0,
+"Clang 13, O0 + meg2reg","match_token ,len         @0x0:0x96b",0,
+"Clang 13, O0 + meg2reg","match_token ,spec        @0x0:0x95c",0,
+"Clang 13, O0 + meg2reg","match_token ,token       @0x0:0x979",0,
+"Clang 13, O0 + meg2reg","match_token ,token_len   @0x0:0x988",0,
+"Clang 13, O0 + meg2reg","move_array  ,dst         @0x0:0x751",0,
+"Clang 13, O0 + meg2reg","move_array  ,n           @0x0:0x771",0,
+"Clang 13, O0 + meg2reg","move_array  ,size        @0x0:0x781",0,
+"Clang 13, O0 + meg2reg","move_array  ,src         @0x0:0x761",0,
+"Clang 13, O0 + meg2reg","run_argv    ,argcp       @0x0:0x4e4",0,
+"Clang 13, O0 + meg2reg","run_argv    ,argv        @0x0:0x4f4",0,
+"Clang 13, O0 + meg2reg","run_argv    ,cmd         @0x0:0x540",0,
+"Clang 13, O0 + meg2reg","run_argv    ,cmd_list    @0x0:0x504",0,
+"Clang 13, O0 + meg2reg","run_argv    ,done_alias  @0x0:0x513",0,
+"Clang 13, O0 + meg2reg","run_argv    ,i           @0x0:0x550",0,
+"Clang 13, O0 + meg2reg","run_argv    ,i           @0x0:0x57e",0,
+"Clang 13, O0 + meg2reg","run_argv    ,item        @0x0:0x59b",0,
+"Clang 13, O0 + meg2reg","run_argv    ,sb          @0x0:0x56e",0,
+"Clang 13, O0 + meg2reg","run_argv    ,seen        @0x0:0x523",0,
+"Clang 13, O0 + meg2reg","run_builtin ,argc        @0x0:0x9f6",0,
+"Clang 13, O0 + meg2reg","run_builtin ,argv        @0x0:0xa06",0,
+"Clang 13, O0 + meg2reg","run_builtin ,help        @0x0:0xa36",0,
+"Clang 13, O0 + meg2reg","run_builtin ,nongit_ok   @0x0:0xa73",0,
+"Clang 13, O0 + meg2reg","run_builtin ,p           @0x0:0x9e6",0,
+"Clang 13, O0 + meg2reg","run_builtin ,prefix      @0x0:0xa46",0,
+"Clang 13, O0 + meg2reg","run_builtin ,run_setup   @0x0:0xa26",0,
+"Clang 13, O0 + meg2reg","run_builtin ,st          @0x0:0xa16",0,
+"Clang 13, O0 + meg2reg","run_builtin ,status      @0x0:0xa56",0,
+"Clang 13, O0 + meg2reg","setup_auto_p,cmd         @0x0:0x14a",0,
+"Clang 13, O0 + meg2reg","setup_auto_p,def         @0x0:0x159",0,
+"Clang 13, O0 + meg2reg","skip_prefix ,out         @0x0:0x291",0,
+"Clang 13, O0 + meg2reg","skip_prefix ,prefix      @0x0:0x281",0,
+"Clang 13, O0 + meg2reg","skip_prefix ,str         @0x0:0x271",0,
+"Clang 13, O0 + meg2reg","st_mult     ,a           @0x0:0x7ac",0,
+"Clang 13, O0 + meg2reg","st_mult     ,b           @0x0:0x7bc",0,
+"Clang 13, O0 + meg2reg","strbuf_addst,s           @0x0:0x645",0,
+"Clang 13, O0 + meg2reg","strbuf_addst,sb          @0x0:0x636",0,
+"Clang 13, O0 + meg2reg","trace_pass_f,key         @0x0:0x5c8",0,
+"Clang 12, O1","_           ,msgid       @0x0:0x3fe",0.2,
+"Clang 12, O1","cmd_main    ,argc        @0x0:0x2bc",-0.30556,
+"Clang 12, O1","cmd_main    ,argv        @0x0:0x2cb",-0.19444,
+"Clang 12, O1","cmd_main    ,cmd         @0x0:0x2da",-0.11111,
+"Clang 12, O1","cmd_main    ,done_help   @0x0:0x2e9",-0.00397,
+"Clang 12, O1","cmd_main    ,slash       @0x0:0x306",0,
+"Clang 12, O1","cmd_main    ,was_alias   @0x0:0x324",-0.28409,
+"Clang 12, O1","copy_array  ,dst         @0x0:0x7e3",0,
+"Clang 12, O1","copy_array  ,n           @0x0:0x803",0,
+"Clang 12, O1","copy_array  ,size        @0x0:0x813",0.25,
+"Clang 12, O1","copy_array  ,src         @0x0:0x7f3",0,
+"Clang 12, O1","exclude_help,i           @0x0:0x9bc",-0.16666,
+"Clang 12, O1","exclude_help,list        @0x0:0x9ad",0,
+"Clang 12, O1","execv_dashed,argv        @0x0:0x5ef",0.04762,
+"Clang 12, O1","execv_dashed,cmd         @0x0:0x5ff",0,
+"Clang 12, O1","execv_dashed,status      @0x0:0x60f",-0.08021,
+"Clang 12, O1","get_builtin ,i           @0x0:0x1d3",-0.875,
+"Clang 12, O1","get_builtin ,p           @0x0:0x1f0",-0.75,
+"Clang 12, O1","get_builtin ,s           @0x0:0x1c3",0.125,
+"Clang 12, O1","git_find_las,path        @0x0:0x350",0,
+"Clang 12, O1","gitstrchrnul,c           @0x0:0x932",0.25,
+"Clang 12, O1","gitstrchrnul,s           @0x0:0x922",0.25,
+"Clang 12, O1","handle_alias,alias_comman@0x0:0x6dc",-0.24313,
+"Clang 12, O1","handle_alias,alias_string@0x0:0x6ec",-0.61402,
+"Clang 12, O1","handle_alias,argcp       @0x0:0x66f",-0.13443,
+"Clang 12, O1","handle_alias,argv        @0x0:0x67f",-0.15217,
+"Clang 12, O1","handle_alias,child       @0x0:0x719",0,
+"Clang 12, O1","handle_alias,count       @0x0:0x69e",-0.80435,
+"Clang 12, O1","handle_alias,envchanged  @0x0:0x68f",-0.41304,
+"Clang 12, O1","handle_alias,new_argv    @0x0:0x6ad",-0.63043,
+"Clang 12, O1","handle_alias,nongit_ok   @0x0:0x729",-0.06667,
+"Clang 12, O1","handle_alias,option_count@0x0:0x6fc",-0.26131,
+"Clang 12, O1","handle_alias,ret         @0x0:0x6bc",-0.00133,
+"Clang 12, O1","handle_alias,saved_errno @0x0:0x6cc",-0.13443,
+"Clang 12, O1","handle_built,argc        @0x0:0x377",-0.00326,
+"Clang 12, O1","handle_built,args        @0x0:0x397",0,
+"Clang 12, O1","handle_built,argv        @0x0:0x387",0.05556,
+"Clang 12, O1","handle_built,builtin     @0x0:0x3b6",-0.04575,
+"Clang 12, O1","handle_built,cmd         @0x0:0x3a6",0.21242,
+"Clang 12, O1","handle_built,i           @0x0:0x3d3",-0.27778,
+"Clang 12, O1","handle_optio,argc        @0x0:0x436",-0.02167,
+"Clang 12, O1","handle_optio,argv        @0x0:0x427",0.00585,
+"Clang 12, O1","handle_optio,cmd         @0x0:0x470",-0.08571,
+"Clang 12, O1","handle_optio,cwd         @0x0:0x48b",-0.075,
+"Clang 12, O1","handle_optio,envchanged  @0x0:0x445",0.00585,
+"Clang 12, O1","handle_optio,i           @0x0:0x4b7",-0.33334,
+"Clang 12, O1","handle_optio,list        @0x0:0x4a8",0,
+"Clang 12, O1","handle_optio,orig_argv   @0x0:0x454",-0.00665,
+"Clang 12, O1","is_builtin  ,s           @0x0:0x198",0,
+"Clang 12, O1","list_builtin,exclude_opti@0x0:0x84a",0.14286,
+"Clang 12, O1","list_builtin,i           @0x0:0x85a",-0.85714,
+"Clang 12, O1","list_builtin,out         @0x0:0x83a",0.14286,
+"Clang 12, O1","list_cmds   ,i           @0x0:0x8af",-0.05833,
+"Clang 12, O1","list_cmds   ,len         @0x0:0x8da",-0.00758,
+"Clang 12, O1","list_cmds   ,list        @0x0:0x893",0,
+"Clang 12, O1","list_cmds   ,nongit      @0x0:0x8a1",-0.06667,
+"Clang 12, O1","list_cmds   ,sb          @0x0:0x8f6",0,
+"Clang 12, O1","list_cmds   ,sep         @0x0:0x8cb",0.00378,
+"Clang 12, O1","list_cmds   ,spec        @0x0:0x884",-0.06875,
+"Clang 12, O1","load_builtin,cmds        @0x0:0x227",0.14286,
+"Clang 12, O1","load_builtin,i           @0x0:0x246",-0.57143,
+"Clang 12, O1","load_builtin,name        @0x0:0x237",-0.71429,
+"Clang 12, O1","load_builtin,prefix      @0x0:0x218",0,
+"Clang 12, O1","match_token ,len         @0x0:0x96b",0,
+"Clang 12, O1","match_token ,spec        @0x0:0x95c",0.33333,
+"Clang 12, O1","match_token ,token       @0x0:0x979",0.33333,
+"Clang 12, O1","match_token ,token_len   @0x0:0x988",0,
+"Clang 12, O1","move_array  ,dst         @0x0:0x751",0,
+"Clang 12, O1","move_array  ,n           @0x0:0x771",0,
+"Clang 12, O1","move_array  ,size        @0x0:0x781",0.25,
+"Clang 12, O1","move_array  ,src         @0x0:0x761",0,
+"Clang 12, O1","run_argv    ,argcp       @0x0:0x4e4",-0.14762,
+"Clang 12, O1","run_argv    ,argv        @0x0:0x4f4",-0.14762,
+"Clang 12, O1","run_argv    ,cmd         @0x0:0x540",0,
+"Clang 12, O1","run_argv    ,cmd_list    @0x0:0x504",0,
+"Clang 12, O1","run_argv    ,done_alias  @0x0:0x513",-0.40476,
+"Clang 12, O1","run_argv    ,i           @0x0:0x550",-0.31373,
+"Clang 12, O1","run_argv    ,i           @0x0:0x57e",-0.28409,
+"Clang 12, O1","run_argv    ,item        @0x0:0x59b",-0.85714,
+"Clang 12, O1","run_argv    ,sb          @0x0:0x56e",0,
+"Clang 12, O1","run_argv    ,seen        @0x0:0x523",-0.14286,
+"Clang 12, O1","run_builtin ,argc        @0x0:0x9f6",0.02128,
+"Clang 12, O1","run_builtin ,argv        @0x0:0xa06",-0.90372,
+"Clang 12, O1","run_builtin ,help        @0x0:0xa36",-0.41117,
+"Clang 12, O1","run_builtin ,nongit_ok   @0x0:0xa73",0,
+"Clang 12, O1","run_builtin ,p           @0x0:0x9e6",0.02128,
+"Clang 12, O1","run_builtin ,prefix      @0x0:0xa46",-0.02979,
+"Clang 12, O1","run_builtin ,run_setup   @0x0:0xa26",-0.28245,
+"Clang 12, O1","run_builtin ,st          @0x0:0xa16",0,
+"Clang 12, O1","run_builtin ,status      @0x0:0xa56",-0.24415,
+"Clang 12, O1","setup_auto_p,cmd         @0x0:0x14a",-0.04167,
+"Clang 12, O1","setup_auto_p,def         @0x0:0x159",-0.04167,
+"Clang 12, O1","skip_prefix ,out         @0x0:0x291",0.125,
+"Clang 12, O1","skip_prefix ,prefix      @0x0:0x281",0.25,
+"Clang 12, O1","skip_prefix ,str         @0x0:0x271",0.25,
+"Clang 12, O1","st_mult     ,a           @0x0:0x7ac",0.25,
+"Clang 12, O1","st_mult     ,b           @0x0:0x7bc",0.25,
+"Clang 12, O1","strbuf_addst,s           @0x0:0x645",0,
+"Clang 12, O1","strbuf_addst,sb          @0x0:0x636",-0.33333,
+"Clang 12, O1","trace_pass_f,key         @0x0:0x5c8",0,
+"Clang 13, O1","_           ,msgid       @0x0:0x3fe",0.2,
+"Clang 13, O1","cmd_main    ,argc        @0x0:0x2bc",-0.30556,
+"Clang 13, O1","cmd_main    ,argv        @0x0:0x2cb",-0.19444,
+"Clang 13, O1","cmd_main    ,cmd         @0x0:0x2da",-0.11111,
+"Clang 13, O1","cmd_main    ,done_help   @0x0:0x2e9",-0.00397,
+"Clang 13, O1","cmd_main    ,slash       @0x0:0x306",0,
+"Clang 13, O1","cmd_main    ,was_alias   @0x0:0x324",-0.28409,
+"Clang 13, O1","copy_array  ,dst         @0x0:0x7e3",0,
+"Clang 13, O1","copy_array  ,n           @0x0:0x803",0,
+"Clang 13, O1","copy_array  ,size        @0x0:0x813",0.25,
+"Clang 13, O1","copy_array  ,src         @0x0:0x7f3",0,
+"Clang 13, O1","exclude_help,i           @0x0:0x9bc",-0.16666,
+"Clang 13, O1","exclude_help,list        @0x0:0x9ad",0,
+"Clang 13, O1","execv_dashed,argv        @0x0:0x5ef",0.04762,
+"Clang 13, O1","execv_dashed,cmd         @0x0:0x5ff",0,
+"Clang 13, O1","execv_dashed,status      @0x0:0x60f",-0.08021,
+"Clang 13, O1","get_builtin ,i           @0x0:0x1d3",-0.375,
+"Clang 13, O1","get_builtin ,p           @0x0:0x1f0",-0.75,
+"Clang 13, O1","get_builtin ,s           @0x0:0x1c3",0.125,
+"Clang 13, O1","git_find_las,path        @0x0:0x350",0,
+"Clang 13, O1","gitstrchrnul,c           @0x0:0x932",0.25,
+"Clang 13, O1","gitstrchrnul,s           @0x0:0x922",0.25,
+"Clang 13, O1","handle_alias,alias_comman@0x0:0x6dc",-0.24313,
+"Clang 13, O1","handle_alias,alias_string@0x0:0x6ec",-0.61402,
+"Clang 13, O1","handle_alias,argcp       @0x0:0x66f",-0.13443,
+"Clang 13, O1","handle_alias,argv        @0x0:0x67f",0,
+"Clang 13, O1","handle_alias,child       @0x0:0x719",0,
+"Clang 13, O1","handle_alias,count       @0x0:0x69e",-0.80435,
+"Clang 13, O1","handle_alias,envchanged  @0x0:0x68f",-0.41304,
+"Clang 13, O1","handle_alias,new_argv    @0x0:0x6ad",-0.63043,
+"Clang 13, O1","handle_alias,nongit_ok   @0x0:0x729",-0.06667,
+"Clang 13, O1","handle_alias,option_count@0x0:0x6fc",-0.26131,
+"Clang 13, O1","handle_alias,ret         @0x0:0x6bc",-0.00133,
+"Clang 13, O1","handle_alias,saved_errno @0x0:0x6cc",-0.13443,
+"Clang 13, O1","handle_built,argc        @0x0:0x377",-0.00326,
+"Clang 13, O1","handle_built,args        @0x0:0x397",0,
+"Clang 13, O1","handle_built,argv        @0x0:0x387",0.05556,
+"Clang 13, O1","handle_built,builtin     @0x0:0x3b6",-0.04575,
+"Clang 13, O1","handle_built,cmd         @0x0:0x3a6",0.21242,
+"Clang 13, O1","handle_built,i           @0x0:0x3d3",-0.27778,
+"Clang 13, O1","handle_optio,argc        @0x0:0x436",-0.02167,
+"Clang 13, O1","handle_optio,argv        @0x0:0x427",0.00585,
+"Clang 13, O1","handle_optio,cmd         @0x0:0x470",-0.08571,
+"Clang 13, O1","handle_optio,cwd         @0x0:0x48b",-0.075,
+"Clang 13, O1","handle_optio,envchanged  @0x0:0x445",0.00585,
+"Clang 13, O1","handle_optio,i           @0x0:0x4b7",-0.33334,
+"Clang 13, O1","handle_optio,list        @0x0:0x4a8",0,
+"Clang 13, O1","handle_optio,orig_argv   @0x0:0x454",-0.00665,
+"Clang 13, O1","is_builtin  ,s           @0x0:0x198",0,
+"Clang 13, O1","list_builtin,exclude_opti@0x0:0x84a",0.14286,
+"Clang 13, O1","list_builtin,i           @0x0:0x85a",-0.19047,
+"Clang 13, O1","list_builtin,out         @0x0:0x83a",0.14286,
+"Clang 13, O1","list_cmds   ,i           @0x0:0x8af",-0.05833,
+"Clang 13, O1","list_cmds   ,len         @0x0:0x8da",-0.00758,
+"Clang 13, O1","list_cmds   ,list        @0x0:0x893",0,
+"Clang 13, O1","list_cmds   ,nongit      @0x0:0x8a1",-0.06667,
+"Clang 13, O1","list_cmds   ,sb          @0x0:0x8f6",0,
+"Clang 13, O1","list_cmds   ,sep         @0x0:0x8cb",0.00378,
+"Clang 13, O1","list_cmds   ,spec        @0x0:0x884",-0.06875,
+"Clang 13, O1","load_builtin,cmds        @0x0:0x227",0.14286,
+"Clang 13, O1","load_builtin,i           @0x0:0x246",-0.14286,
+"Clang 13, O1","load_builtin,name        @0x0:0x237",-0.71429,
+"Clang 13, O1","load_builtin,prefix      @0x0:0x218",0,
+"Clang 13, O1","match_token ,len         @0x0:0x96b",0,
+"Clang 13, O1","match_token ,spec        @0x0:0x95c",0.33333,
+"Clang 13, O1","match_token ,token       @0x0:0x979",0.33333,
+"Clang 13, O1","match_token ,token_len   @0x0:0x988",0,
+"Clang 13, O1","move_array  ,dst         @0x0:0x751",0,
+"Clang 13, O1","move_array  ,n           @0x0:0x771",0,
+"Clang 13, O1","move_array  ,size        @0x0:0x781",0.25,
+"Clang 13, O1","move_array  ,src         @0x0:0x761",0,
+"Clang 13, O1","run_argv    ,argcp       @0x0:0x4e4",-0.14762,
+"Clang 13, O1","run_argv    ,argv        @0x0:0x4f4",-0.03333,
+"Clang 13, O1","run_argv    ,cmd         @0x0:0x540",0,
+"Clang 13, O1","run_argv    ,cmd_list    @0x0:0x504",0,
+"Clang 13, O1","run_argv    ,done_alias  @0x0:0x513",-0.40476,
+"Clang 13, O1","run_argv    ,i           @0x0:0x550",-0.31373,
+"Clang 13, O1","run_argv    ,i           @0x0:0x57e",-0.28409,
+"Clang 13, O1","run_argv    ,item        @0x0:0x59b",-0.85714,
+"Clang 13, O1","run_argv    ,sb          @0x0:0x56e",0,
+"Clang 13, O1","run_argv    ,seen        @0x0:0x523",-0.14286,
+"Clang 13, O1","run_builtin ,argc        @0x0:0x9f6",0.02128,
+"Clang 13, O1","run_builtin ,argv        @0x0:0xa06",-0.90372,
+"Clang 13, O1","run_builtin ,help        @0x0:0xa36",-0.41117,
+"Clang 13, O1","run_builtin ,nongit_ok   @0x0:0xa73",0,
+"Clang 13, O1","run_builtin ,p           @0x0:0x9e6",0.02128,
+"Clang 13, O1","run_builtin ,prefix      @0x0:0xa46",-0.02979,
+"Clang 13, O1","run_builtin ,run_setup   @0x0:0xa26",-0.28245,
+"Clang 13, O1","run_builtin ,st          @0x0:0xa16",0,
+"Clang 13, O1","run_builtin ,status      @0x0:0xa56",-0.24415,
+"Clang 13, O1","setup_auto_p,cmd         @0x0:0x14a",-0.04167,
+"Clang 13, O1","setup_auto_p,def         @0x0:0x159",-0.04167,
+"Clang 13, O1","skip_prefix ,out         @0x0:0x291",0.125,
+"Clang 13, O1","skip_prefix ,prefix      @0x0:0x281",0.25,
+"Clang 13, O1","skip_prefix ,str         @0x0:0x271",0.25,
+"Clang 13, O1","st_mult     ,a           @0x0:0x7ac",0.25,
+"Clang 13, O1","st_mult     ,b           @0x0:0x7bc",0.25,
+"Clang 13, O1","strbuf_addst,s           @0x0:0x645",0,
+"Clang 13, O1","strbuf_addst,sb          @0x0:0x636",0,
+"Clang 13, O1","trace_pass_f,key         @0x0:0x5c8",0,
+"Clang 14, O1","_           ,msgid       @0x0:0x3fe",0.2,
+"Clang 14, O1","cmd_main    ,argc        @0x0:0x2bc",-0.33333,
+"Clang 14, O1","cmd_main    ,argv        @0x0:0x2cb",-0.19444,
+"Clang 14, O1","cmd_main    ,cmd         @0x0:0x2da",-0.22222,
+"Clang 14, O1","cmd_main    ,done_help   @0x0:0x2e9",-0.00397,
+"Clang 14, O1","cmd_main    ,slash       @0x0:0x306",0,
+"Clang 14, O1","cmd_main    ,was_alias   @0x0:0x324",-0.28409,
+"Clang 14, O1","copy_array  ,dst         @0x0:0x7e3",0.25,
+"Clang 14, O1","copy_array  ,n           @0x0:0x803",0.25,
+"Clang 14, O1","copy_array  ,size        @0x0:0x813",0.25,
+"Clang 14, O1","copy_array  ,src         @0x0:0x7f3",0.25,
+"Clang 14, O1","exclude_help,i           @0x0:0x9bc",-0.16666,
+"Clang 14, O1","exclude_help,list        @0x0:0x9ad",0.16667,
+"Clang 14, O1","execv_dashed,argv        @0x0:0x5ef",0.04762,
+"Clang 14, O1","execv_dashed,cmd         @0x0:0x5ff",0,
+"Clang 14, O1","execv_dashed,status      @0x0:0x60f",-0.08021,
+"Clang 14, O1","get_builtin ,i           @0x0:0x1d3",-0.375,
+"Clang 14, O1","get_builtin ,p           @0x0:0x1f0",-0.75,
+"Clang 14, O1","get_builtin ,s           @0x0:0x1c3",0.125,
+"Clang 14, O1","git_find_las,path        @0x0:0x350",0,
+"Clang 14, O1","gitstrchrnul,c           @0x0:0x932",0.25,
+"Clang 14, O1","gitstrchrnul,s           @0x0:0x922",0.25,
+"Clang 14, O1","handle_alias,alias_comman@0x0:0x6dc",-0.04748,
+"Clang 14, O1","handle_alias,alias_string@0x0:0x6ec",-0.61402,
+"Clang 14, O1","handle_alias,argcp       @0x0:0x66f",0.06122,
+"Clang 14, O1","handle_alias,argv        @0x0:0x67f",0,
+"Clang 14, O1","handle_alias,child       @0x0:0x719",0,
+"Clang 14, O1","handle_alias,count       @0x0:0x69e",-0.80435,
+"Clang 14, O1","handle_alias,envchanged  @0x0:0x68f",-0.41304,
+"Clang 14, O1","handle_alias,new_argv    @0x0:0x6ad",-0.63043,
+"Clang 14, O1","handle_alias,nongit_ok   @0x0:0x729",-0.06667,
+"Clang 14, O1","handle_alias,option_count@0x0:0x6fc",-0.26131,
+"Clang 14, O1","handle_alias,ret         @0x0:0x6bc",-0.00133,
+"Clang 14, O1","handle_alias,saved_errno @0x0:0x6cc",-0.13443,
+"Clang 14, O1","handle_built,argc        @0x0:0x377",0.05556,
+"Clang 14, O1","handle_built,args        @0x0:0x397",0,
+"Clang 14, O1","handle_built,argv        @0x0:0x387",0.05556,
+"Clang 14, O1","handle_built,builtin     @0x0:0x3b6",-0.04575,
+"Clang 14, O1","handle_built,cmd         @0x0:0x3a6",0.21242,
+"Clang 14, O1","handle_built,i           @0x0:0x3d3",-0.27778,
+"Clang 14, O1","handle_optio,argc        @0x0:0x436",0.00585,
+"Clang 14, O1","handle_optio,argv        @0x0:0x427",0.00585,
+"Clang 14, O1","handle_optio,cmd         @0x0:0x470",-0.08571,
+"Clang 14, O1","handle_optio,cwd         @0x0:0x48b",-0.075,
+"Clang 14, O1","handle_optio,envchanged  @0x0:0x445",0.00585,
+"Clang 14, O1","handle_optio,i           @0x0:0x4b7",-0.33334,
+"Clang 14, O1","handle_optio,list        @0x0:0x4a8",0,
+"Clang 14, O1","handle_optio,orig_argv   @0x0:0x454",-0.00665,
+"Clang 14, O1","is_builtin  ,s           @0x0:0x198",0,
+"Clang 14, O1","list_builtin,exclude_opti@0x0:0x84a",0.14286,
+"Clang 14, O1","list_builtin,i           @0x0:0x85a",-0.19047,
+"Clang 14, O1","list_builtin,out         @0x0:0x83a",0.14286,
+"Clang 14, O1","list_cmds   ,i           @0x0:0x8af",-0.05833,
+"Clang 14, O1","list_cmds   ,len         @0x0:0x8da",-0.00758,
+"Clang 14, O1","list_cmds   ,list        @0x0:0x893",0,
+"Clang 14, O1","list_cmds   ,nongit      @0x0:0x8a1",-0.06667,
+"Clang 14, O1","list_cmds   ,sb          @0x0:0x8f6",0,
+"Clang 14, O1","list_cmds   ,sep         @0x0:0x8cb",0.04924,
+"Clang 14, O1","list_cmds   ,spec        @0x0:0x884",-0.06875,
+"Clang 14, O1","load_builtin,cmds        @0x0:0x227",0.14286,
+"Clang 14, O1","load_builtin,i           @0x0:0x246",-0.14286,
+"Clang 14, O1","load_builtin,name        @0x0:0x237",-0.71429,
+"Clang 14, O1","load_builtin,prefix      @0x0:0x218",0,
+"Clang 14, O1","match_token ,len         @0x0:0x96b",0,
+"Clang 14, O1","match_token ,spec        @0x0:0x95c",0.33333,
+"Clang 14, O1","match_token ,token       @0x0:0x979",0.33333,
+"Clang 14, O1","match_token ,token_len   @0x0:0x988",0,
+"Clang 14, O1","move_array  ,dst         @0x0:0x751",0.25,
+"Clang 14, O1","move_array  ,n           @0x0:0x771",0.25,
+"Clang 14, O1","move_array  ,size        @0x0:0x781",0.25,
+"Clang 14, O1","move_array  ,src         @0x0:0x761",0.25,
+"Clang 14, O1","run_argv    ,argcp       @0x0:0x4e4",0.02381,
+"Clang 14, O1","run_argv    ,argv        @0x0:0x4f4",0.02381,
+"Clang 14, O1","run_argv    ,cmd         @0x0:0x540",0,
+"Clang 14, O1","run_argv    ,cmd_list    @0x0:0x504",0,
+"Clang 14, O1","run_argv    ,done_alias  @0x0:0x513",-0.40476,
+"Clang 14, O1","run_argv    ,i           @0x0:0x550",-0.31373,
+"Clang 14, O1","run_argv    ,i           @0x0:0x57e",-0.28409,
+"Clang 14, O1","run_argv    ,item        @0x0:0x59b",-0.85714,
+"Clang 14, O1","run_argv    ,sb          @0x0:0x56e",0,
+"Clang 14, O1","run_argv    ,seen        @0x0:0x523",-0.14286,
+"Clang 14, O1","run_builtin ,argc        @0x0:0x9f6",0.02128,
+"Clang 14, O1","run_builtin ,argv        @0x0:0xa06",0.02128,
+"Clang 14, O1","run_builtin ,help        @0x0:0xa36",-0.41117,
+"Clang 14, O1","run_builtin ,nongit_ok   @0x0:0xa73",0,
+"Clang 14, O1","run_builtin ,p           @0x0:0x9e6",0.02128,
+"Clang 14, O1","run_builtin ,prefix      @0x0:0xa46",-0.02979,
+"Clang 14, O1","run_builtin ,run_setup   @0x0:0xa26",-0.28245,
+"Clang 14, O1","run_builtin ,st          @0x0:0xa16",0,
+"Clang 14, O1","run_builtin ,status      @0x0:0xa56",-0.24415,
+"Clang 14, O1","setup_auto_p,cmd         @0x0:0x14a",0.125,
+"Clang 14, O1","setup_auto_p,def         @0x0:0x159",0.125,
+"Clang 14, O1","skip_prefix ,out         @0x0:0x291",0.125,
+"Clang 14, O1","skip_prefix ,prefix      @0x0:0x281",0.25,
+"Clang 14, O1","skip_prefix ,str         @0x0:0x271",0.25,
+"Clang 14, O1","st_mult     ,a           @0x0:0x7ac",0.25,
+"Clang 14, O1","st_mult     ,b           @0x0:0x7bc",0.25,
+"Clang 14, O1","strbuf_addst,s           @0x0:0x645",0,
+"Clang 14, O1","strbuf_addst,sb          @0x0:0x636",0,
+"Clang 14, O1","trace_pass_f,key         @0x0:0x5c8",0,

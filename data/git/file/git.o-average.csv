@@ -1,4 +1,6 @@
 ﻿Variant,Average Coverage
+"Clang 13, O0",1.1614477
+"Clang 13, O0 + mem2reg",1
 "Clang 12, O1",0.8991341
 "Clang 13, O1",0.9210844
 "Clang 14, O1",0.9564624
