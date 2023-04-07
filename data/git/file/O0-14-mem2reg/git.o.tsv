@@ -1,0 +1,106 @@
+Name	Cov (B)     	Scope (B)   	CB / SB     	Cov (L)     	Scope (L)   	CL / SL     
+
+match_token ,spec        @0x0:0x95c	          58	          96	     0.60417	           2	           3	     0.66667
+match_token ,len         @0x0:0x96b	          96	          96	     1.00000	           3	           3	     1.00000
+match_token ,token       @0x0:0x979	          51	          96	     0.53125	           2	           3	     0.66667
+match_token ,token_len   @0x0:0x988	          53	          96	     0.55208	           1	           3	     0.33333
+execv_dashed,argv        @0x0:0x5ef	         358	         416	     0.86058	          20	          21	     0.95238
+execv_dashed,cmd         @0x0:0x5ff	         416	         416	     1.00000	          21	          21	     1.00000
+execv_dashed,status      @0x0:0x60f	          85	         416	     0.20433	           5	          21	     0.23810
+list_cmds   ,spec        @0x0:0x884	         583	         610	     0.95574	          31	          32	     0.96875
+list_cmds   ,list        @0x0:0x893	         610	         610	     1.00000	          32	          32	     1.00000
+list_cmds   ,nongit      @0x0:0x8a1	         610	         610	     1.00000	          32	          32	     1.00000
+list_cmds   ,i           @0x0:0x8af	          69	         610	     0.11311	           4	          32	     0.12500
+list_cmds   ,sep         @0x0:0x8cb	           3	         445	     0.00674	           1	          24	     0.04167
+list_cmds   ,len         @0x0:0x8da	         420	         445	     0.94382	          22	          24	     0.91667
+list_cmds   ,sb          @0x0:0x8f6	          76	          76	     1.00000	           5	           5	     1.00000
+handle_built,argc        @0x0:0x377	         308	         341	     0.90323	          17	          18	     0.94444
+handle_built,argv        @0x0:0x387	         300	         341	     0.87977	          17	          18	     0.94444
+handle_built,args        @0x0:0x397	         341	         341	     1.00000	          18	          18	     1.00000
+handle_built,cmd         @0x0:0x3a6	         219	         341	     0.64223	          11	          18	     0.61111
+handle_built,builtin     @0x0:0x3b6	          63	         341	     0.18475	           4	          18	     0.22222
+handle_built,i           @0x0:0x3d3	          97	         123	     0.78862	           7	           9	     0.77778
+move_array  ,dst         @0x0:0x751	          60	          72	     0.83333	           3	           4	     0.75000
+move_array  ,src         @0x0:0x761	          56	          72	     0.77778	           3	           4	     0.75000
+move_array  ,n           @0x0:0x771	          52	          72	     0.72222	           3	           4	     0.75000
+move_array  ,size        @0x0:0x781	          48	          72	     0.66667	           3	           4	     0.75000
+copy_array  ,dst         @0x0:0x7e3	          60	          72	     0.83333	           3	           4	     0.75000
+copy_array  ,src         @0x0:0x7f3	          56	          72	     0.77778	           3	           4	     0.75000
+copy_array  ,n           @0x0:0x803	          52	          72	     0.72222	           3	           4	     0.75000
+copy_array  ,size        @0x0:0x813	          48	          72	     0.66667	           3	           4	     0.75000
+_           ,msgid       @0x0:0x3fe	          41	          53	     0.77358	           4	           5	     0.80000
+get_builtin ,s           @0x0:0x1c3	         105	         117	     0.89744	           7	           8	     0.87500
+get_builtin ,i           @0x0:0x1d3	          93	         117	     0.79487	           7	           8	     0.87500
+get_builtin ,p           @0x0:0x1f0	          22	          46	     0.47826	           3	           4	     0.75000
+setup_auto_p,cmd         @0x0:0x14a	          68	          80	     0.85000	           7	           8	     0.87500
+setup_auto_p,def         @0x0:0x159	          65	          80	     0.81250	           7	           8	     0.87500
+exclude_help,list        @0x0:0x9ad	         111	         123	     0.90244	           5	           6	     0.83333
+exclude_help,i           @0x0:0x9bc	          94	         123	     0.76423	           5	           6	     0.83333
+st_mult     ,a           @0x0:0x7ac	          78	          90	     0.86667	           3	           4	     0.75000
+st_mult     ,b           @0x0:0x7bc	          74	          90	     0.82222	           3	           4	     0.75000
+trace_pass_f,key         @0x0:0x5c8	          44	          52	     0.84615	           1	           2	     0.50000
+run_argv    ,argcp       @0x0:0x4e4	         915	         953	     0.96013	          41	          42	     0.97619
+run_argv    ,argv        @0x0:0x4f4	         910	         953	     0.95488	          41	          42	     0.97619
+run_argv    ,cmd_list    @0x0:0x504	         953	         953	     1.00000	          42	          42	     1.00000
+run_argv    ,done_alias  @0x0:0x513	         916	         953	     0.96118	          41	          42	     0.97619
+run_argv    ,seen        @0x0:0x523	         365	         953	     0.38300	          18	          42	     0.42857
+run_argv    ,cmd         @0x0:0x540	         419	         419	     1.00000	          17	          17	     1.00000
+run_argv    ,i           @0x0:0x550	         267	         419	     0.63723	          11	          17	     0.64706
+run_argv    ,sb          @0x0:0x56e	         265	         265	     1.00000	          11	          11	     1.00000
+run_argv    ,i           @0x0:0x57e	         207	         265	     0.78113	          10	          11	     0.90909
+run_argv    ,item        @0x0:0x59b	         108	         129	     0.83721	           6	           7	     0.85714
+run_builtin ,p           @0x0:0x9e6	        1084	        1102	     0.98367	          46	          47	     0.97872
+run_builtin ,argc        @0x0:0x9f6	        1078	        1102	     0.97822	          46	          47	     0.97872
+run_builtin ,argv        @0x0:0xa06	        1071	        1102	     0.97187	          46	          47	     0.97872
+run_builtin ,st          @0x0:0xa16	        1102	        1102	     1.00000	          47	          47	     1.00000
+run_builtin ,run_setup   @0x0:0xa26	        1035	        1102	     0.93920	          45	          47	     0.95745
+run_builtin ,help        @0x0:0xa36	         985	        1102	     0.89383	          44	          47	     0.93617
+run_builtin ,prefix      @0x0:0xa46	         870	        1102	     0.78947	          39	          47	     0.82979
+run_builtin ,status      @0x0:0xa56	         299	        1102	     0.27132	          15	          47	     0.31915
+run_builtin ,nongit_ok   @0x0:0xa73	          21	          21	     1.00000	           2	           2	     1.00000
+load_builtin,prefix      @0x0:0x218	         186	         186	     1.00000	           7	           7	     1.00000
+load_builtin,cmds        @0x0:0x227	         162	         186	     0.87097	           6	           7	     0.85714
+load_builtin,name        @0x0:0x237	         186	         186	     1.00000	           7	           7	     1.00000
+load_builtin,i           @0x0:0x246	         103	         186	     0.55376	           4	           7	     0.57143
+list_builtin,out         @0x0:0x83a	         116	         128	     0.90625	           6	           7	     0.85714
+list_builtin,exclude_opti@0x0:0x84a	         113	         128	     0.88281	           6	           7	     0.85714
+list_builtin,i           @0x0:0x85a	         101	         128	     0.78906	           6	           7	     0.85714
+gitstrchrnul,s           @0x0:0x922	          68	          81	     0.83951	           3	           4	     0.75000
+gitstrchrnul,c           @0x0:0x932	          74	          81	     0.91358	           3	           4	     0.75000
+skip_prefix ,str         @0x0:0x271	         101	         114	     0.88596	           6	           8	     0.75000
+skip_prefix ,prefix      @0x0:0x281	         101	         114	     0.88596	           6	           8	     0.75000
+skip_prefix ,out         @0x0:0x291	         106	         114	     0.92982	           7	           8	     0.87500
+handle_alias,argcp       @0x0:0x66f	        1112	        1185	     0.93840	          46	          49	     0.93878
+handle_alias,argv        @0x0:0x67f	        1185	        1185	     1.00000	          49	          49	     1.00000
+handle_alias,envchanged  @0x0:0x68f	        1185	        1185	     1.00000	          49	          49	     1.00000
+handle_alias,count       @0x0:0x69e	        1185	        1185	     1.00000	          49	          49	     1.00000
+handle_alias,new_argv    @0x0:0x6ad	        1185	        1185	     1.00000	          49	          49	     1.00000
+handle_alias,ret         @0x0:0x6bc	        1141	        1185	     0.96287	          48	          49	     0.97959
+handle_alias,saved_errno @0x0:0x6cc	        1096	        1185	     0.92489	          46	          49	     0.93878
+handle_alias,alias_comman@0x0:0x6dc	        1098	        1185	     0.92658	          46	          49	     0.93878
+handle_alias,alias_string@0x0:0x6ec	        1105	        1185	     0.93249	          45	          49	     0.91837
+handle_alias,option_count@0x0:0x6fc	         464	        1185	     0.39156	          16	          49	     0.32653
+handle_alias,child       @0x0:0x719	         351	         351	     1.00000	          18	          18	     1.00000
+handle_alias,nongit_ok   @0x0:0x729	         351	         351	     1.00000	          18	          18	     1.00000
+cmd_main    ,argc        @0x0:0x2bc	         709	         709	     1.00000	          42	          42	     1.00000
+cmd_main    ,argv        @0x0:0x2cb	         709	         709	     1.00000	          42	          42	     1.00000
+cmd_main    ,cmd         @0x0:0x2da	         709	         709	     1.00000	          42	          42	     1.00000
+cmd_main    ,done_help   @0x0:0x2e9	         677	         709	     0.95487	          41	          42	     0.97619
+cmd_main    ,slash       @0x0:0x306	          18	          31	     0.58065	           2	           3	     0.66667
+cmd_main    ,was_alias   @0x0:0x324	         132	         151	     0.87417	          10	          11	     0.90909
+handle_optio,argv        @0x0:0x427	        3336	        3351	     0.99552	         170	         171	     0.99415
+handle_optio,argc        @0x0:0x436	        3332	        3351	     0.99433	         170	         171	     0.99415
+handle_optio,envchanged  @0x0:0x445	        3328	        3351	     0.99314	         170	         171	     0.99415
+handle_optio,orig_argv   @0x0:0x454	        3321	        3351	     0.99105	         169	         171	     0.98830
+handle_optio,cmd         @0x0:0x470	        3272	        3272	     1.00000	         167	         167	     1.00000
+handle_optio,cwd         @0x0:0x48b	          88	         103	     0.85437	           7	           8	     0.87500
+handle_optio,list        @0x0:0x4a8	         163	         163	     1.00000	           6	           6	     1.00000
+handle_optio,i           @0x0:0x4b7	         113	         163	     0.69325	           4	           6	     0.66667
+strbuf_addst,sb          @0x0:0x636	          54	          54	     1.00000	           3	           3	     1.00000
+strbuf_addst,s           @0x0:0x645	          54	          54	     1.00000	           3	           3	     1.00000
+is_builtin  ,s           @0x0:0x198	          27	          27	     1.00000	           2	           2	     1.00000
+git_find_las,path        @0x0:0x350	          16	          16	     1.00000	           2	           2	     1.00000
+
+params	       22719	       23593	     0.96296	        1122	        1165	     0.96309
+vars	       29127	       34377	     0.84728	        1375	        1606	     0.85616
+all	       51846	       57970	     0.89436	        2497	        2771	     0.90112
