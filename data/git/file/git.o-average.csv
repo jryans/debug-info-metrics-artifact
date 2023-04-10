@@ -1,6 +1,6 @@
 ﻿Variant,Arithmetic Mean (Normalised),Arithmetic Mean (Unnormalised),
 "Clang 14, O0",1.1614477,1,1
 "Clang 14, O0 + mem2reg",1,0.8385523,0.785161237
-"Clang 12, O1",0.8991341,0.7376864,#NUM!
-"Clang 13, O1",0.9210844,0.7596367,#NUM!
-"Clang 14, O1",0.9564624,0.7950147,#NUM!
+"Clang 12, O1",0.8378556,0.7376864,#NUM!
+"Clang 13, O1",0.8598059,0.7596367,#NUM!
+"Clang 14, O1",0.8951838,0.7950147,#NUM!
