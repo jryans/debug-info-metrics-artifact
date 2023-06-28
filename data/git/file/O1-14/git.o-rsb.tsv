@@ -1,105 +1,105 @@
 Name	Cov (B)     	Scope (B)   	CB / SB     	Cov (L)     	Scope (L)   	CL / SL     
 
-trace_pass_f,key         @0x0:0x2634	          17	          33	     0.51515	           1	           2	     0.50000
-handle_alias,argcp       @0x0:0x2291	         901	         901	     1.00000	          45	          46	     0.97826
-handle_alias,argv        @0x0:0x22a1	         901	         901	     1.00000	          46	          46	     1.00000
-handle_alias,envchanged  @0x0:0x22b1	         515	         901	     0.57159	          27	          46	     0.58696
-handle_alias,ret         @0x0:0x22c1	         845	         901	     0.93785	          45	          46	     0.97826
-handle_alias,saved_errno @0x0:0x22d1	         734	         901	     0.81465	          37	          46	     0.80435
-handle_alias,alias_comman@0x0:0x22e1	         826	         901	     0.91676	          41	          46	     0.89130
-handle_alias,alias_string@0x0:0x22f1	         288	         901	     0.31964	          14	          46	     0.30435
-handle_alias,new_argv    @0x0:0x2301	         320	         901	     0.35516	          17	          46	     0.36957
-handle_alias,count       @0x0:0x2311	         100	         901	     0.11099	           9	          46	     0.19565
-handle_alias,option_count@0x0:0x2321	          48	         901	     0.05327	           3	          46	     0.06522
-handle_alias,child       @0x0:0x2336	         285	         285	     1.00000	          15	          15	     1.00000
-handle_alias,nongit_ok   @0x0:0x2346	         213	         285	     0.74737	          14	          15	     0.93333
-cmd_main    ,argc        @0x0:0x4d7	         365	         635	     0.57480	          24	          36	     0.66667
-cmd_main    ,argv        @0x0:0x4e7	         453	         635	     0.71339	          29	          36	     0.80556
-cmd_main    ,done_help   @0x0:0x4f7	         579	         635	     0.91181	          35	          36	     0.97222
-cmd_main    ,cmd         @0x0:0x507	         449	         635	     0.70709	          28	          36	     0.77778
-cmd_main    ,slash       @0x0:0x524	           9	          16	     0.56250	           2	           3	     0.66667
-cmd_main    ,was_alias   @0x0:0x53a	          71	         131	     0.54198	           5	           8	     0.62500
-load_builtin,prefix      @0x0:0x31b	         156	         168	     0.92857	           7	           7	     1.00000
-load_builtin,cmds        @0x0:0x32b	         168	         168	     1.00000	           6	           7	     0.85714
-load_builtin,i           @0x0:0x33b	          51	         168	     0.30357	           3	           7	     0.42857
-load_builtin,name        @0x0:0x34b	          43	         168	     0.25595	           2	           7	     0.28571
-get_builtin ,s           @0x0:0x2ca	          92	          92	     1.00000	           3	           4	     0.75000
-get_builtin ,i           @0x0:0x2da	          35	          92	     0.38043	           2	           4	     0.50000
-get_builtin ,p           @0x0:0x2f7	           0	          18	     0.00000	           0	           1	     0.00000
-run_argv    ,argcp       @0x0:0xa8a	         759	         759	     1.00000	          34	          35	     0.97143
-run_argv    ,argv        @0x0:0xa9a	         759	         759	     1.00000	          34	          35	     0.97143
-run_argv    ,cmd_list    @0x0:0xaaa	         759	         759	     1.00000	          35	          35	     1.00000
-run_argv    ,done_alias  @0x0:0xaba	         397	         759	     0.52306	          20	          35	     0.57143
-run_argv    ,seen        @0x0:0xaca	         204	         759	     0.26877	          10	          35	     0.28571
-run_argv    ,cmd         @0x0:0xadf	         349	         349	     1.00000	          15	          15	     1.00000
-run_argv    ,i           @0x0:0xaef	         115	         349	     0.32951	           5	          15	     0.33333
-run_argv    ,sb          @0x0:0xb05	         177	         177	     1.00000	           8	           8	     1.00000
-run_argv    ,i           @0x0:0xb15	         113	         177	     0.63842	           5	           8	     0.62500
-run_argv    ,item        @0x0:0xb2a	           3	          84	     0.03571	           0	           4	     0.00000
-run_builtin ,p           @0x0:0xeb3	         690	         690	     1.00000	          39	          40	     0.97500
-run_builtin ,argc        @0x0:0xec3	         690	         690	     1.00000	          39	          40	     0.97500
-run_builtin ,argv        @0x0:0xed3	         690	         690	     1.00000	          39	          40	     0.97500
-run_builtin ,st          @0x0:0xee3	         690	         690	     1.00000	          40	          40	     1.00000
-run_builtin ,run_setup   @0x0:0xef3	         459	         690	     0.66522	          27	          40	     0.67500
-run_builtin ,help        @0x0:0xf03	         301	         690	     0.43623	          21	          40	     0.52500
-run_builtin ,prefix      @0x0:0xf13	         552	         690	     0.80000	          32	          40	     0.80000
-run_builtin ,status      @0x0:0xf23	          52	         690	     0.07536	           3	          40	     0.07500
-run_builtin ,nongit_ok   @0x0:0xf40	           5	           5	     1.00000	           1	           1	     1.00000
-list_builtin,out         @0x0:0x1e54	          80	          80	     1.00000	           5	           6	     0.83333
-list_builtin,exclude_opti@0x0:0x1e64	          80	          80	     1.00000	           5	           6	     0.83333
-list_builtin,i           @0x0:0x1e74	          37	          80	     0.46250	           4	           6	     0.66667
-handle_optio,argv        @0x0:0x6bb	        2270	        2270	     1.00000	         108	         109	     0.99083
-handle_optio,argc        @0x0:0x6ca	        2270	        2270	     1.00000	         108	         109	     0.99083
-handle_optio,envchanged  @0x0:0x6d9	        2270	        2270	     1.00000	         108	         109	     0.99083
-handle_optio,orig_argv   @0x0:0x6e8	        2243	        2270	     0.98811	         107	         109	     0.98165
-handle_optio,cmd         @0x0:0x6fc	        1832	        2182	     0.83960	          96	         105	     0.91429
-handle_optio,list        @0x0:0x718	         116	         116	     1.00000	           6	           6	     1.00000
-handle_optio,i           @0x0:0x728	          51	         116	     0.43966	           2	           6	     0.33333
-handle_optio,cwd         @0x0:0x746	          45	          53	     0.84906	           4	           5	     0.80000
-list_cmds   ,spec        @0x0:0x1ec4	         474	         542	     0.87454	          26	          30	     0.86667
-list_cmds   ,list        @0x0:0x1ed3	         542	         542	     1.00000	          30	          30	     1.00000
-list_cmds   ,nongit      @0x0:0x1ee2	         499	         542	     0.92066	          28	          30	     0.93333
-list_cmds   ,i           @0x0:0x1ef1	          54	         542	     0.09963	           2	          30	     0.06667
-list_cmds   ,len         @0x0:0x1f05	         357	         371	     0.96226	          20	          22	     0.90909
-list_cmds   ,sep         @0x0:0x1f14	          17	         371	     0.04582	           2	          22	     0.09091
-list_cmds   ,sb          @0x0:0x1f30	          66	          66	     1.00000	           4	           4	     1.00000
-strbuf_addst,sb          @0x0:0x27e1	          40	          40	     1.00000	           3	           3	     1.00000
-strbuf_addst,s           @0x0:0x27f1	          40	          40	     1.00000	           3	           3	     1.00000
-is_builtin  ,s           @0x0:0x28a	          21	          21	     1.00000	           2	           2	     1.00000
-git_find_las,path        @0x0:0x684	          16	          16	     1.00000	           2	           2	     1.00000
-execv_dashed,argv        @0x0:0x2137	         367	         367	     1.00000	          18	          19	     0.94737
-execv_dashed,cmd         @0x0:0x2147	         367	         367	     1.00000	          19	          19	     1.00000
-execv_dashed,status      @0x0:0x2157	          25	         367	     0.06812	           3	          19	     0.15789
-handle_built,argc        @0x0:0xd3f	         240	         244	     0.98361	          16	          17	     0.94118
-handle_built,argv        @0x0:0xd4f	         234	         244	     0.95902	          16	          17	     0.94118
-handle_built,args        @0x0:0xd5f	         244	         244	     1.00000	          17	          17	     1.00000
-handle_built,cmd         @0x0:0xd6f	         194	         244	     0.79508	          14	          17	     0.82353
-handle_built,builtin     @0x0:0xd7f	          28	         244	     0.11475	           3	          17	     0.17647
-handle_built,i           @0x0:0xd9c	          68	          94	     0.72340	           4	           8	     0.50000
-exclude_help,list        @0x0:0x2dd8	         109	         109	     1.00000	           5	           6	     0.83333
-exclude_help,i           @0x0:0x2de7	          88	         109	     0.80734	           4	           6	     0.66667
-skip_prefix ,str         @0x0:0x3e2	          52	          52	     1.00000	           4	           5	     0.80000
-skip_prefix ,prefix      @0x0:0x3f2	          52	          52	     1.00000	           4	           5	     0.80000
-skip_prefix ,out         @0x0:0x400	          52	          52	     1.00000	           4	           5	     0.80000
-gitstrchrnul,s           @0x0:0x2d35	          36	          36	     1.00000	           3	           4	     0.75000
-gitstrchrnul,c           @0x0:0x2d45	          36	          36	     1.00000	           3	           4	     0.75000
-match_token ,spec        @0x0:0x2d6c	          69	          69	     1.00000	           2	           3	     0.66667
-match_token ,len         @0x0:0x2d7b	          69	          69	     1.00000	           3	           3	     1.00000
-match_token ,token       @0x0:0x2d8a	          69	          69	     1.00000	           2	           3	     0.66667
-match_token ,token_len   @0x0:0x2d99	          20	          69	     0.28986	           1	           3	     0.33333
-st_mult     ,a           @0x0:0x2f66	          43	          43	     1.00000	           3	           4	     0.75000
-st_mult     ,b           @0x0:0x2f73	          43	          43	     1.00000	           3	           4	     0.75000
-setup_auto_p,cmd         @0x0:0x1a8	          60	          60	     1.00000	           5	           6	     0.83333
-setup_auto_p,def         @0x0:0x1b7	          60	          60	     1.00000	           5	           6	     0.83333
-_           ,msgid       @0x0:0xcf0	          25	          25	     1.00000	           3	           4	     0.75000
-move_array  ,dst         @0x0:0x2f01	          45	          45	     1.00000	           3	           4	     0.75000
-move_array  ,src         @0x0:0x2f11	          45	          45	     1.00000	           3	           4	     0.75000
-move_array  ,n           @0x0:0x2f21	          45	          45	     1.00000	           3	           4	     0.75000
-move_array  ,size        @0x0:0x2f31	          45	          45	     1.00000	           3	           4	     0.75000
-copy_array  ,dst         @0x0:0x2fc4	          45	          45	     1.00000	           3	           4	     0.75000
-copy_array  ,src         @0x0:0x2fd4	          45	          45	     1.00000	           3	           4	     0.75000
-copy_array  ,n           @0x0:0x2fe4	          45	          45	     1.00000	           3	           4	     0.75000
-copy_array  ,size        @0x0:0x2ff4	          45	          45	     1.00000	           3	           4	     0.75000
+trace_pass_fl, key, decl trace.h:273, unit git.c	          17	          33	     0.51515	           1	           2	     0.50000
+handle_alias, argcp, decl git.c:337, unit git.c	         901	         901	     1.00000	          45	          46	     0.97826
+handle_alias, argv, decl git.c:337, unit git.c	         901	         901	     1.00000	          46	          46	     1.00000
+handle_alias, envchanged, decl git.c:339, unit git.c	         515	         901	     0.57159	          27	          46	     0.58696
+handle_alias, ret, decl git.c:339, unit git.c	         845	         901	     0.93785	          45	          46	     0.97826
+handle_alias, saved_errno, decl git.c:339, unit git.c	         734	         901	     0.81465	          37	          46	     0.80435
+handle_alias, alias_command, decl git.c:342, unit git.c	         826	         901	     0.91676	          41	          46	     0.89130
+handle_alias, alias_string, decl git.c:343, unit git.c	         288	         901	     0.31964	          14	          46	     0.30435
+handle_alias, new_argv, decl git.c:341, unit git.c	         320	         901	     0.35516	          17	          46	     0.36957
+handle_alias, count, decl git.c:340, unit git.c	         100	         901	     0.11099	           9	          46	     0.19565
+handle_alias, option_count, decl git.c:340, unit git.c	          48	         901	     0.05327	           3	          46	     0.06522
+handle_alias, child, decl git.c:352, unit git.c	         285	         285	     1.00000	          15	          15	     1.00000
+handle_alias, nongit_ok, decl git.c:353, unit git.c	         213	         285	     0.74737	          14	          15	     0.93333
+cmd_main, argc, decl git.c:864, unit git.c	         365	         635	     0.57480	          24	          36	     0.66667
+cmd_main, argv, decl git.c:864, unit git.c	         453	         635	     0.71339	          29	          36	     0.80556
+cmd_main, done_help, decl git.c:867, unit git.c	         579	         635	     0.91181	          35	          36	     0.97222
+cmd_main, cmd, decl git.c:866, unit git.c	         449	         635	     0.70709	          28	          36	     0.77778
+cmd_main, slash, decl git.c:873, unit git.c	           9	          16	     0.56250	           2	           3	     0.66667
+cmd_main, was_alias, decl git.c:926, unit git.c	          71	         131	     0.54198	           5	           8	     0.62500
+load_builtin_commands, prefix, decl git.c:662, unit git.c	         156	         168	     0.92857	           7	           7	     1.00000
+load_builtin_commands, cmds, decl git.c:662, unit git.c	         168	         168	     1.00000	           6	           7	     0.85714
+load_builtin_commands, i, decl git.c:665, unit git.c	          51	         168	     0.30357	           3	           7	     0.42857
+load_builtin_commands, name, decl git.c:664, unit git.c	          43	         168	     0.25595	           2	           7	     0.28571
+get_builtin, s, decl git.c:635, unit git.c	          92	          92	     1.00000	           3	           4	     0.75000
+get_builtin, i, decl git.c:637, unit git.c	          35	          92	     0.38043	           2	           4	     0.50000
+get_builtin, p, decl git.c:639, unit git.c	           0	          18	     0.00000	           0	           1	     0.00000
+run_argv, argcp, decl git.c:771, unit git.c	         759	         759	     1.00000	          34	          35	     0.97143
+run_argv, argv, decl git.c:771, unit git.c	         759	         759	     1.00000	          34	          35	     0.97143
+run_argv, cmd_list, decl git.c:774, unit git.c	         759	         759	     1.00000	          35	          35	     1.00000
+run_argv, done_alias, decl git.c:773, unit git.c	         397	         759	     0.52306	          20	          35	     0.57143
+run_argv, seen, decl git.c:775, unit git.c	         204	         759	     0.26877	          10	          35	     0.28571
+run_argv, cmd, decl git.c:790, unit git.c	         349	         349	     1.00000	          15	          15	     1.00000
+run_argv, i, decl git.c:791, unit git.c	         115	         349	     0.32951	           5	          15	     0.33333
+run_argv, sb, decl git.c:833, unit git.c	         177	         177	     1.00000	           8	           8	     1.00000
+run_argv, i, decl git.c:832, unit git.c	         113	         177	     0.63842	           5	           8	     0.62500
+run_argv, item, decl git.c:835, unit git.c	           3	          84	     0.03571	           0	           4	     0.00000
+run_builtin, p, decl git.c:420, unit git.c	         690	         690	     1.00000	          39	          40	     0.97500
+run_builtin, argc, decl git.c:420, unit git.c	         690	         690	     1.00000	          39	          40	     0.97500
+run_builtin, argv, decl git.c:420, unit git.c	         690	         690	     1.00000	          39	          40	     0.97500
+run_builtin, st, decl git.c:423, unit git.c	         690	         690	     1.00000	          40	          40	     1.00000
+run_builtin, run_setup, decl git.c:425, unit git.c	         459	         690	     0.66522	          27	          40	     0.67500
+run_builtin, help, decl git.c:422, unit git.c	         301	         690	     0.43623	          21	          40	     0.52500
+run_builtin, prefix, decl git.c:424, unit git.c	         552	         690	     0.80000	          32	          40	     0.80000
+run_builtin, status, decl git.c:422, unit git.c	          52	         690	     0.07536	           3	          40	     0.07500
+run_builtin, nongit_ok, decl git.c:435, unit git.c	           5	           5	     1.00000	           1	           1	     1.00000
+list_builtins, out, decl git.c:651, unit git.c	          80	          80	     1.00000	           5	           6	     0.83333
+list_builtins, exclude_option, decl git.c:651, unit git.c	          80	          80	     1.00000	           5	           6	     0.83333
+list_builtins, i, decl git.c:653, unit git.c	          37	          80	     0.46250	           4	           6	     0.66667
+handle_options, argv, decl git.c:135, unit git.c	        2270	        2270	     1.00000	         108	         109	     0.99083
+handle_options, argc, decl git.c:135, unit git.c	        2270	        2270	     1.00000	         108	         109	     0.99083
+handle_options, envchanged, decl git.c:135, unit git.c	        2270	        2270	     1.00000	         108	         109	     0.99083
+handle_options, orig_argv, decl git.c:137, unit git.c	        2243	        2270	     0.98811	         107	         109	     0.98165
+handle_options, cmd, decl git.c:140, unit git.c	        1832	        2182	     0.83960	          96	         105	     0.91429
+handle_options, list, decl git.c:315, unit git.c	         116	         116	     1.00000	           6	           6	     1.00000
+handle_options, i, decl git.c:316, unit git.c	          51	         116	     0.43966	           2	           6	     0.33333
+handle_options, cwd, decl git.c:244, unit git.c	          45	          53	     0.84906	           4	           5	     0.80000
+list_cmds, spec, decl git.c:64, unit git.c	         474	         542	     0.87454	          26	          30	     0.86667
+list_cmds, list, decl git.c:66, unit git.c	         542	         542	     1.00000	          30	          30	     1.00000
+list_cmds, nongit, decl git.c:68, unit git.c	         499	         542	     0.92066	          28	          30	     0.93333
+list_cmds, i, decl git.c:67, unit git.c	          54	         542	     0.09963	           2	          30	     0.06667
+list_cmds, len, decl git.c:78, unit git.c	         357	         371	     0.96226	          20	          22	     0.90909
+list_cmds, sep, decl git.c:77, unit git.c	          17	         371	     0.04582	           2	          22	     0.09091
+list_cmds, sb, decl git.c:93, unit git.c	          66	          66	     1.00000	           4	           4	     1.00000
+strbuf_addstr, sb, decl strbuf.h:303, unit git.c	          40	          40	     1.00000	           3	           3	     1.00000
+strbuf_addstr, s, decl strbuf.h:303, unit git.c	          40	          40	     1.00000	           3	           3	     1.00000
+is_builtin, s, decl git.c:646, unit git.c	          21	          21	     1.00000	           2	           2	     1.00000
+git_find_last_dir_sep, path, decl git-compat-util.h:536, unit git.c	          16	          16	     1.00000	           2	           2	     1.00000
+execv_dashed_external, argv, decl git.c:725, unit git.c	         367	         367	     1.00000	          18	          19	     0.94737
+execv_dashed_external, cmd, decl git.c:727, unit git.c	         367	         367	     1.00000	          19	          19	     1.00000
+execv_dashed_external, status, decl git.c:728, unit git.c	          25	         367	     0.06812	           3	          19	     0.15789
+handle_builtin, argc, decl git.c:693, unit git.c	         240	         244	     0.98361	          16	          17	     0.94118
+handle_builtin, argv, decl git.c:693, unit git.c	         234	         244	     0.95902	          16	          17	     0.94118
+handle_builtin, args, decl git.c:695, unit git.c	         244	         244	     1.00000	          17	          17	     1.00000
+handle_builtin, cmd, decl git.c:696, unit git.c	         194	         244	     0.79508	          14	          17	     0.82353
+handle_builtin, builtin, decl git.c:697, unit git.c	          28	         244	     0.11475	           3	          17	     0.17647
+handle_builtin, i, decl git.c:704, unit git.c	          68	          94	     0.72340	           4	           8	     0.50000
+exclude_helpers_from_list, list, decl git.c:45, unit git.c	         109	         109	     1.00000	           5	           6	     0.83333
+exclude_helpers_from_list, i, decl git.c:47, unit git.c	          88	         109	     0.80734	           4	           6	     0.66667
+skip_prefix, str, decl git-compat-util.h:674, unit git.c	          52	          52	     1.00000	           4	           5	     0.80000
+skip_prefix, prefix, decl git-compat-util.h:674, unit git.c	          52	          52	     1.00000	           4	           5	     0.80000
+skip_prefix, out, decl git-compat-util.h:675, unit git.c	          52	          52	     1.00000	           4	           5	     0.80000
+gitstrchrnul, s, decl git-compat-util.h:959, unit git.c	          36	          36	     1.00000	           3	           4	     0.75000
+gitstrchrnul, c, decl git-compat-util.h:959, unit git.c	          36	          36	     1.00000	           3	           4	     0.75000
+match_token, spec, decl git.c:57, unit git.c	          69	          69	     1.00000	           2	           3	     0.66667
+match_token, len, decl git.c:57, unit git.c	          69	          69	     1.00000	           3	           3	     1.00000
+match_token, token, decl git.c:57, unit git.c	          69	          69	     1.00000	           2	           3	     0.66667
+match_token, token_len, decl git.c:59, unit git.c	          20	          69	     0.28986	           1	           3	     0.33333
+st_mult, a, decl git-compat-util.h:990, unit git.c	          43	          43	     1.00000	           3	           4	     0.75000
+st_mult, b, decl git-compat-util.h:990, unit git.c	          43	          43	     1.00000	           3	           4	     0.75000
+setup_auto_pager, cmd, decl git.c:125, unit git.c	          60	          60	     1.00000	           5	           6	     0.83333
+setup_auto_pager, def, decl git.c:125, unit git.c	          60	          60	     1.00000	           5	           6	     0.83333
+_, msgid, decl gettext.h:44, unit git.c	          25	          25	     1.00000	           3	           4	     0.75000
+move_array, dst, decl git-compat-util.h:1104, unit git.c	          45	          45	     1.00000	           3	           4	     0.75000
+move_array, src, decl git-compat-util.h:1104, unit git.c	          45	          45	     1.00000	           3	           4	     0.75000
+move_array, n, decl git-compat-util.h:1104, unit git.c	          45	          45	     1.00000	           3	           4	     0.75000
+move_array, size, decl git-compat-util.h:1104, unit git.c	          45	          45	     1.00000	           3	           4	     0.75000
+copy_array, dst, decl git-compat-util.h:1096, unit git.c	          45	          45	     1.00000	           3	           4	     0.75000
+copy_array, src, decl git-compat-util.h:1096, unit git.c	          45	          45	     1.00000	           3	           4	     0.75000
+copy_array, n, decl git-compat-util.h:1096, unit git.c	          45	          45	     1.00000	           3	           4	     0.75000
+copy_array, size, decl git-compat-util.h:1096, unit git.c	          45	          45	     1.00000	           3	           4	     0.75000
 
 params	       16178	       16740	     0.96643	         877	         900	     0.97444
 vars	       16480	       25498	     0.64633	         891	        1337	     0.66642

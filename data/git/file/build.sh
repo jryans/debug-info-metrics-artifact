@@ -31,7 +31,7 @@ git clean -f
 make V=1 CC=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-14.0.0/bin/clang CFLAGS="${CC_COMMON_OPTS} ${CC_O3_OPTS}"
 
 # Extract bitcode
-# extract-bc git
+# extract-bc git.o
 
 # Apply mem2reg only
 # llvm release-clang-lldb-13.0.0 opt -o O0-13-plus-mem2reg/git.o.bc --mem2reg O0-13/git.o.bc
