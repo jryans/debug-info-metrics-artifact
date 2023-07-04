@@ -35,11 +35,23 @@ git clean -f
 # Build for O3 (14)
 make V=1 CC=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-14.0.0/bin/clang CFLAGS="${CC_COMMON_OPTS} ${CC_O3_OPTS}"
 
-# Extract bitcode
+# O0
+
+## Extract bitcode for O0
 # extract-bc git
+# cp git.bc O0-14/
 
-# Apply mem2reg only
-# llvm release-clang-lldb-13.0.0 opt -o O0-13-plus-mem2reg/git.o.bc --mem2reg O0-13/git.o.bc
+## Compile O0 bitcode to object file
+# llvm release-clang-lldb-14.0.0 llc -O0 -o O0-14/git.o --filetype obj O0-14/git.bc
 
-# Compile bitcode to object file
-# llvm release-clang-lldb-13.0.0 llc -O0 -o git.o --filetype obj git.o.bc
+## Apply mem2reg only
+# llvm release-clang-lldb-14.0.0 opt -o O0-14-mem2reg/git.bc --mem2reg O0-14/git.bc
+
+## Compile O0 plus meg2reg bitcode to object file
+# llvm release-clang-lldb-14.0.0 llc -O0 -o O0-14-mem2reg/git.o --filetype obj O0-14-mem2reg/git.bc
+
+# O1+
+
+## Gather debug info
+# dsymutil git
+# cp git.dSYM/Contents/Resources/DWARF/git O1-14/git.dSYM
