@@ -1,4 +1,4 @@
 *.bc
-*.dSYM
+*.dwarf
 *.o
 *.tsv

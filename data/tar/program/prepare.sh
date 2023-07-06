@@ -12,6 +12,8 @@ source "${SCRIPT_DIR}/../../vars.sh"
 # Requires newer version of GNU Bison
 export PATH="/usr/local/opt/bison/bin:$PATH"
 
+echo "## Preparing \`tar\`"
+
 # Bootstrap
 ./bootstrap
 
