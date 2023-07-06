@@ -69,6 +69,9 @@ for i in ${!levels[*]}; do
   version=${versions[$i]}
   echo "## Building \`${BUILT_PROGRAM_NAME}\` (${level}-${version})"
 
+  make clean
+  git clean -f
+
   ## Build
   cc_level_opts="CC_${level}_OPTS"
   make \
