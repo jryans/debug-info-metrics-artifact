@@ -1,13 +1,53 @@
 #!/usr/bin/env bash
 set -eux
 
-# O0 + mem2reg baseline
-debuginfo-quality --variables --tsv --range-start-baseline --extend-from-baseline --baseline O0-14-mem2reg/git.o O0-14-mem2reg/git.o > O0-14-mem2reg/git-rsb-efb.tsv
+SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" &> /dev/null && pwd)
 
-# Other versions and levels using above as baseline
-debuginfo-quality --variables --tsv --range-start-baseline --baseline O0-14-mem2reg/git.o O1-12/git.dSYM > O1-12/git-rsb.tsv
-debuginfo-quality --variables --tsv --range-start-baseline --baseline O0-14-mem2reg/git.o O1-13/git.dSYM > O1-13/git-rsb.tsv
-debuginfo-quality --variables --tsv --range-start-baseline --baseline O0-14-mem2reg/git.o O1-14/git.dSYM > O1-14/git-rsb.tsv
-debuginfo-quality --variables --tsv --range-start-baseline --extend-from-baseline --baseline O0-14-mem2reg/git.o O1-14/git.dSYM > O1-14/git-rsb-efb.tsv
-debuginfo-quality --variables --tsv --range-start-baseline --baseline O0-14-mem2reg/git.o O2-14/git.dSYM > O2-14/git-rsb.tsv
-debuginfo-quality --variables --tsv --range-start-baseline --baseline O0-14-mem2reg/git.o O3-14/git.dSYM > O3-14/git-rsb.tsv
+# Expects to run from this script's directory
+if [ "${PWD}" != "${SCRIPT_DIR}" ]; then
+  echo "Does not appear to be the expected directory, abort!"
+  exit
+fi
+
+BUILT_PROGRAM_NAME="git"
+
+# O0 + mem2reg baseline
+level="O0"
+version="14"
+echo "## Checking debug quality of \`${BUILT_PROGRAM_NAME}\` (${level}-${version})"
+debuginfo-quality \
+  --variables \
+  --tsv \
+  --range-start-baseline \
+  --extend-from-baseline \
+  --baseline O0-14-mem2reg/${BUILT_PROGRAM_NAME}.o \
+  ${level}-${version}-mem2reg/${BUILT_PROGRAM_NAME}.o \
+  > ${level}-${version}-mem2reg/${BUILT_PROGRAM_NAME}-rsb-efb.tsv
+
+# O1+ using above as baseline
+  levels=(O1 O1 O1 O2 O3)
+versions=(12 13 14 14 14)
+
+for i in ${!levels[*]}; do
+  level=${levels[$i]}
+  version=${versions[$i]}
+  echo "## Checking debug quality of \`${BUILT_PROGRAM_NAME}\` (${level}-${version})"
+  debuginfo-quality \
+    --variables \
+    --tsv \
+    --range-start-baseline \
+    --baseline O0-14-mem2reg/${BUILT_PROGRAM_NAME}.o \
+    ${level}-${version}/${BUILT_PROGRAM_NAME}.dwarf \
+    > ${level}-${version}/${BUILT_PROGRAM_NAME}-rsb.tsv
+
+  if [ "${level}-${version}" == "O1-14" ]; then
+    debuginfo-quality \
+      --variables \
+      --tsv \
+      --range-start-baseline \
+      --extend-from-baseline \
+      --baseline O0-14-mem2reg/${BUILT_PROGRAM_NAME}.o \
+      ${level}-${version}/${BUILT_PROGRAM_NAME}.dwarf \
+      > ${level}-${version}/${BUILT_PROGRAM_NAME}-rsb-efb.tsv
+  fi
+done
