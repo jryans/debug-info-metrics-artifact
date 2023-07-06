@@ -5,30 +5,17 @@ if [ "${PWD##*/}" != "tar" ]; then
   exit
 fi
 
-SYSROOT="--sysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk"
-CC_COMMON_OPTS="${SYSROOT} -g -fno-inline -fno-discard-value-names -Xclang -disable-O0-optnone"
-CC_O0_OPTS=""
-CC_O1_OPTS="-O1"
-CC_O2_OPTS="-O2"
-CC_O3_OPTS="-O3"
+SCRIPT_DIR=$(dirname "${BASH_SOURCE[0]}")
+source "${SCRIPT_DIR}/../../vars.sh"
+
+# Requires newer version of GNU Bison
+export PATH="/usr/local/opt/bison/bin:$PATH"
 
 export LLVM_COMPILER=clang
 export LLVM_COMPILER_PATH=/Users/jryans/Projects/LLVM/llvm/build-release-clang-lldb-14.0.0/bin
 
 make clean
 git clean -f
-
-# Requires newer version of GNU Bison
-export PATH="/usr/local/opt/bison/bin:$PATH"
-
-# Bootstrap
-# ./bootstrap
-
-# Configure
-# ./configure \
-# CFLAGS="" \
-# LDFLAGS="-liconv" \
-# MAKEINFO=true
 
 # Build for O0
 # make V=1 CC=wllvm CFLAGS="${CC_COMMON_OPTS} ${CC_O0_OPTS}"
