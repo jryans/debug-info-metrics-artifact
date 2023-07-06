@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 set -eux
 
+# Expects to run from program source directory
 if [ "${PWD##*/}" != "tar" ]; then
   echo "Does not appear to be the expected directory, abort!"
   exit
