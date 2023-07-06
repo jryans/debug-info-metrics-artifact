@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 set -eux
 
 if [ "${PWD##*/}" != "tar" ]; then

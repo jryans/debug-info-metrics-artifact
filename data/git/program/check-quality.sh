@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 set -eux
 
 # O0 + mem2reg baseline
