@@ -1,0 +1,47 @@
+digraph FullLifeCycle
+{
+
+InScopeOnly -> AllocatedUninit [label="allocate storage"];
+
+AllocatedUninit -> NormalPLive  [label="initialize storage"];
+
+InScopeOnly -> UnallocatedPLive  [label="initialize residually"];
+
+NormalPLive -> UnallocatedPLive  [label="drop allocation, state recoverable"];
+
+UnallocatedPLive -> KnowablePDead [label="last use, state recoverable"];
+
+KnowablePDead -> Unrecoverable [label="drop recovery state"];
+
+KnowablePDead -> UnallocatedPLive [label="new def, residual"];
+
+KnowablePDead -> NormalPLive [label="new def, allocated"];
+
+NormalPLive -> AllocatedStale      [label="dead store eliminated but not residualised"];
+
+NormalPLive -> AllocatedPDead      [label="last use, remaining allocated"];
+
+AllocatedStale -> NormalPLive      [label="new def, allocated"]
+
+AllocatedStale -> UnallocatedPLive      [label="new def, residual"]
+
+Unrecoverable -> OutOfScope   [label="end of scope"];
+
+AllocatedPDead -> KnowablePDead  [label="drop allocation, state recoverable"];
+
+Unrecoverable -> NormalPLive [label="new def, allocated"];
+
+Unrecoverable -> UnallocatedPLive [label="new def, residual"];
+}
+
+
+
+//%            A   D   L   C                   example/notes
+//%            0   0   0   0    in name only   just come into scope
+//%            0   1   0   0    unrecoverable  no storage, value not program-live, no longer recoverable
+//%            0   1   0   1    recoverable    variable happens to be recoverable; not live or allocated
+//%            0   1   1   1    transformed    normal case of non-allocated live variable//
+//%            1   0   0   0    uninitialized  uninitialized reg or stack slot
+//%            1   1   0   0    evil zombie    (marginal) (e.g.) dead store eliminated but storage not yet reclaimed? a.k.a. evil zombie -- debug info describes how to get a stale value only
+//%            1   1   0   1    benign zombie  normal case of 'range extension' of program-dead value
+//%            1   1   1   1    normal         normal case

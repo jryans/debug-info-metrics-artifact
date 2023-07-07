@@ -1,0 +1,16 @@
+digraph DefUse
+{
+
+InScopeUndefined -> LiveDef      [label="initialize"];
+
+LiveDef -> DefNoLongerUsed      [label="last use of def"];
+
+DefNoLongerUsed -> LiveDef      [label="new def"];
+
+DefNoLongerUsed -> DefNoLongerUsed  [label="unused assignment"];
+
+DefNoLongerUsed -> OutOfScope      [label="end of scope"];
+
+InScopeUndefined -> OutOfScope     [label="unused var"];
+
+}
