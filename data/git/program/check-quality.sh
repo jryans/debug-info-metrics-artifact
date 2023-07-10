@@ -40,14 +40,13 @@ for i in ${!levels[*]}; do
     ${level}-${version}/${BUILT_PROGRAM_NAME}.dwarf \
     > ${level}-${version}/${BUILT_PROGRAM_NAME}-rsb.tsv
 
-  if [ "${level}-${version}" == "O1-14" ]; then
-    debuginfo-quality \
-      --variables \
-      --tsv \
-      --range-start-baseline \
-      --extend-from-baseline \
-      --baseline O0-14-mem2reg/${BUILT_PROGRAM_NAME}.o \
-      ${level}-${version}/${BUILT_PROGRAM_NAME}.dwarf \
-      > ${level}-${version}/${BUILT_PROGRAM_NAME}-rsb-efb.tsv
-  fi
+  # With knowledge extension
+  debuginfo-quality \
+    --variables \
+    --tsv \
+    --range-start-baseline \
+    --extend-from-baseline \
+    --baseline O0-14-mem2reg/${BUILT_PROGRAM_NAME}.o \
+    ${level}-${version}/${BUILT_PROGRAM_NAME}.dwarf \
+    > ${level}-${version}/${BUILT_PROGRAM_NAME}-rsb-efb.tsv
 done
