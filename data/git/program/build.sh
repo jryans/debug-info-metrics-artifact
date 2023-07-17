@@ -11,7 +11,7 @@ SCRIPT_DIR=$(dirname "${BASH_SOURCE[0]}")
 source "${SCRIPT_DIR}/../../vars.sh"
 
 export LLVM_COMPILER="clang"
-export LLVM_COMPILER_PATH="$(llvm release-clang-lldb-14.0.0)/bin"
+export LLVM_COMPILER_PATH="$(llvm release-clang-lldb-15.0.0)/bin"
 
 BUILT_PROGRAM_NAME="git"
 BUILT_PROGRAM_PATH="${BUILT_PROGRAM_NAME}"
@@ -19,7 +19,7 @@ BUILT_PROGRAM_PATH="${BUILT_PROGRAM_NAME}"
 # O0
 
 level="O0"
-version="14"
+version="15"
 echo "## Building \`${BUILT_PROGRAM_NAME}\` (${level}-${version})"
 
 make clean
@@ -58,8 +58,8 @@ $(llvm release-clang-lldb-${version}.0.0 llc) \
 
 # O1+
 
-  levels=(O1 O1 O1 O2 O3)
-versions=(12 13 14 14 14)
+  levels=(O1 O1 O1 O1 O2 O3)
+versions=(12 13 14 15 15 15)
 
 for i in ${!levels[*]}; do
   level=${levels[$i]}
