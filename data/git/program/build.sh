@@ -16,6 +16,28 @@ export LLVM_COMPILER_PATH="$(llvm release-clang-lldb-15.0.0)/bin"
 BUILT_PROGRAM_NAME="git"
 BUILT_PROGRAM_PATH="${BUILT_PROGRAM_NAME}"
 
+# Source analysis
+echo "## Building \`${BUILT_PROGRAM_NAME}\` (source analysis)"
+
+make clean
+git clean -f
+
+## Build via `dbgcov` to report source code regions of various kinds
+export PATH="${DBGCOV_PATH}:${PATH}"
+DBGCOV_OPTS=$(dbgcov-cflags)
+make CC="${DBGCOV_CC}" CFLAGS="-save-temps ${DBGCOV_OPTS} ${CC_SYSROOT_OPTS}"
+
+## Collect deduplicated source code regions
+mkdir -p "${SCRIPT_DIR}/source-analysis"
+## Using `LC_ALL=C` gives ~10x performance boost: 29.6s -> 2.6s
+( \
+  export LC_ALL=C; \
+  find . -name '*.dbgcov' | \
+  xargs cat | \
+  sort -u \
+  > "${SCRIPT_DIR}/source-analysis/${BUILT_PROGRAM_NAME}.dbgcov" \
+)
+
 # O0
 
 level="O0"

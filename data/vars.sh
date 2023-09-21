@@ -16,3 +16,6 @@ CC_O0_OPTS=""
 CC_O1_OPTS="-O1"
 CC_O2_OPTS="-O2"
 CC_O3_OPTS="-O3"
+
+DBGCOV_PATH="${HOME}/Projects/dbgcov/bin"
+DBGCOV_CC="gcc-13"
