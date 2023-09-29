@@ -12,7 +12,6 @@ fi
 BUILT_PROGRAM_NAME="git"
 
 # O0 + mem2reg baseline
-# TODO: Do we want to apply regions here...?
 level="O0"
 version="15"
 echo "## Checking debug quality of \`${BUILT_PROGRAM_NAME}\` (${level}-${version})"
@@ -21,8 +20,22 @@ debuginfo-quality \
   --tsv \
   --baseline O0-15-mem2reg/${BUILT_PROGRAM_NAME}.o \
   --range-start-baseline \
+  --regions source-analysis/${BUILT_PROGRAM_NAME}.dbgcov \
+  --scope-regions \
+  --only-computation-regions \
+  --range-start-first-defined-region \
+  ${level}-${version}-mem2reg/${BUILT_PROGRAM_NAME}.o \
+  > ${level}-${version}-mem2reg/${BUILT_PROGRAM_NAME}.tsv
+
+# With knowledge extension
+debuginfo-quality \
+  --variables \
+  --tsv \
+  --baseline O0-15-mem2reg/${BUILT_PROGRAM_NAME}.o \
+  --range-start-baseline \
   --extend-from-baseline \
   --regions source-analysis/${BUILT_PROGRAM_NAME}.dbgcov \
+  --scope-regions \
   --only-computation-regions \
   --range-start-first-defined-region \
   ${level}-${version}-mem2reg/${BUILT_PROGRAM_NAME}.o \
@@ -42,6 +55,7 @@ for i in ${!levels[*]}; do
     --baseline O0-15-mem2reg/${BUILT_PROGRAM_NAME}.o \
     --range-start-baseline \
     --regions source-analysis/${BUILT_PROGRAM_NAME}.dbgcov \
+    --scope-regions \
     --only-computation-regions \
     --range-start-first-defined-region \
     ${level}-${version}/${BUILT_PROGRAM_NAME}.dwarf \
@@ -55,6 +69,7 @@ for i in ${!levels[*]}; do
     --range-start-baseline \
     --extend-from-baseline \
     --regions source-analysis/${BUILT_PROGRAM_NAME}.dbgcov \
+    --scope-regions \
     --only-computation-regions \
     --range-start-first-defined-region \
     ${level}-${version}/${BUILT_PROGRAM_NAME}.dwarf \
