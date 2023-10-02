@@ -16,14 +16,14 @@ export PATH="/usr/local/opt/bison/bin:$PATH"
 export LLVM_COMPILER="clang"
 export LLVM_COMPILER_PATH="$(llvm release-clang-lldb-14.0.0)/bin"
 
-BUILT_PROGRAM_NAME="tar"
-BUILT_PROGRAM_PATH="src/${BUILT_PROGRAM_NAME}"
+TARGET_NAME="tar"
+TARGET_PATH="src/${TARGET_NAME}"
 
 # O0
 
 level="O0"
 version="14"
-echo "## Building \`${BUILT_PROGRAM_NAME}\` (${level}-${version})"
+echo "## Building \`${TARGET_NAME}\` (${level}-${version})"
 
 make clean
 git clean -f
@@ -32,32 +32,32 @@ git clean -f
 make CC=wllvm CFLAGS="${CC_COMMON_OPTS} ${CC_O0_OPTS}"
 
 ## Extract bitcode for O0
-extract-bc ${BUILT_PROGRAM_PATH}
+extract-bc ${TARGET_PATH}
 mkdir -p "${SCRIPT_DIR}/${level}-${version}"
 cp \
-  ${BUILT_PROGRAM_PATH}.bc \
+  ${TARGET_PATH}.bc \
   "${SCRIPT_DIR}/${level}-${version}/"
 
 ## Compile O0 bitcode to object file
 $(llvm release-clang-lldb-${version}.0.0 llc) \
   -${level} \
-  -o "${SCRIPT_DIR}/${level}-${version}/${BUILT_PROGRAM_NAME}.o" \
+  -o "${SCRIPT_DIR}/${level}-${version}/${TARGET_NAME}.o" \
   --filetype obj \
-  "${SCRIPT_DIR}/${level}-${version}/${BUILT_PROGRAM_NAME}.bc"
+  "${SCRIPT_DIR}/${level}-${version}/${TARGET_NAME}.bc"
 
 ## Apply mem2reg only
 mkdir -p "${SCRIPT_DIR}/${level}-${version}-mem2reg"
 $(llvm release-clang-lldb-${version}.0.0 opt) \
-  -o "${SCRIPT_DIR}/${level}-${version}-mem2reg/${BUILT_PROGRAM_NAME}.bc" \
+  -o "${SCRIPT_DIR}/${level}-${version}-mem2reg/${TARGET_NAME}.bc" \
   --mem2reg \
-  "${SCRIPT_DIR}/${level}-${version}/${BUILT_PROGRAM_NAME}.bc"
+  "${SCRIPT_DIR}/${level}-${version}/${TARGET_NAME}.bc"
 
 ## Compile O0 plus mem2reg bitcode to object file
 $(llvm release-clang-lldb-${version}.0.0 llc) \
   -${level} \
-  -o "${SCRIPT_DIR}/${level}-${version}-mem2reg/${BUILT_PROGRAM_NAME}.o" \
+  -o "${SCRIPT_DIR}/${level}-${version}-mem2reg/${TARGET_NAME}.o" \
   --filetype obj \
-  "${SCRIPT_DIR}/${level}-${version}-mem2reg/${BUILT_PROGRAM_NAME}.bc"
+  "${SCRIPT_DIR}/${level}-${version}-mem2reg/${TARGET_NAME}.bc"
 
 # O1+
 
@@ -67,7 +67,7 @@ versions=(12 13 14 14 14)
 for i in ${!levels[*]}; do
   level=${levels[$i]}
   version=${versions[$i]}
-  echo "## Building \`${BUILT_PROGRAM_NAME}\` (${level}-${version})"
+  echo "## Building \`${TARGET_NAME}\` (${level}-${version})"
 
   make clean
   git clean -f
@@ -79,10 +79,10 @@ for i in ${!levels[*]}; do
     CFLAGS="${CC_COMMON_OPTS} ${!cc_level_opts}"
 
   ## Gather debug info
-  dsymutil --flat "${BUILT_PROGRAM_PATH}"
+  dsymutil --flat "${TARGET_PATH}"
   mkdir -p "${SCRIPT_DIR}/${level}-${version}"
   cp \
-    "${BUILT_PROGRAM_PATH}.dwarf" \
+    "${TARGET_PATH}.dwarf" \
     "${SCRIPT_DIR}/${level}-${version}/"
 done
 
