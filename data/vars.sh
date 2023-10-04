@@ -4,10 +4,10 @@ llvm() {
   local build=${1}
   local program=${2:-}
   if [ -z "${program}" ]; then
-    echo "${HOME}/Projects/LLVM/llvm/build-${build}"
+    echo "${HOME}/Projects/LLVM/llvm/builds/${build}"
     return
   fi
-  echo "${HOME}/Projects/LLVM/llvm/build-${build}/bin/${program}"
+  echo "${HOME}/Projects/LLVM/llvm/builds/${build}/bin/${program}"
 }
 
 CC_SYSROOT_OPTS="--sysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk"
