@@ -3,5 +3,7 @@ __pycache__
 *.bc
 *.dbgcov
 *.dwarf
+*.i
 *.o
+*.s
 *.tsv

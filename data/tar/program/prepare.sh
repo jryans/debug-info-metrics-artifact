@@ -19,7 +19,9 @@ echo "## Preparing \`tar\`"
 
 # Configure
 # TODO: Work out why `configure` fails to set `-liconv` itself
+# Dependency tracking causes trouble for coverage wrappers, disable for now
 ./configure \
+--disable-dependency-tracking \
 CFLAGS="${CC_SYSROOT_OPTS}" \
 LDFLAGS="-liconv" \
 MAKEINFO=true

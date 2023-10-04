@@ -25,11 +25,13 @@ git clean -f
 ## Build via `dbgcov` to report source code regions of various kinds
 export PATH="${DBGCOV_PATH}:${PATH}"
 DBGCOV_OPTS=$(dbgcov-cflags)
-make CC="${DBGCOV_CC}" CFLAGS="-save-temps ${DBGCOV_OPTS} ${CC_SYSROOT_OPTS}"
+make \
+  CC="${DBGCOV_CC}" \
+  CFLAGS="-save-temps ${DBGCOV_OPTS} ${CC_SYSROOT_OPTS}"
 
 ## Collect deduplicated source code regions
 mkdir -p "${SCRIPT_DIR}/source-analysis"
-## Using `LC_ALL=C` gives ~10x performance boost: 29.6s -> 2.6s
+## Using `LC_ALL=C` gives ~10x performance boost
 ( \
   export LC_ALL=C; \
   find . -name '*.dbgcov' | \
