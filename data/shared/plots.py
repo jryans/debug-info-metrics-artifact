@@ -9,17 +9,21 @@ import seaborn.objects as so
 
 target_name = None
 friendly_name = None
+data_path_prefix = None
 
-def configure(target, friendly):
-  global target_name, friendly_name
+def configure(target, friendly, path_prefix = ""):
+  global target_name, friendly_name, data_path_prefix
   target_name = target
   friendly_name = friendly
+  data_path_prefix = path_prefix
 
 def load_data():
-  assert target_name, friendly_name
+  assert target_name
+  assert friendly_name
+  assert data_path_prefix is not None
 
   def read_run(file, variant):
-    df = pd.read_table(file)
+    df = pd.read_table(f"{data_path_prefix}{file}")
     # Clean up column names
     df.columns = df.columns.str.strip()
     # Sort by name to aid matching across datasets
