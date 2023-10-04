@@ -11,7 +11,7 @@ target_name = None
 friendly_name = None
 data_path_prefix = None
 
-def configure(target, friendly, path_prefix = ""):
+def configure(target, friendly, path_prefix=""):
   global target_name, friendly_name, data_path_prefix
   target_name = target
   friendly_name = friendly
