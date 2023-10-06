@@ -46,8 +46,16 @@ def load_data():
   o3_15_df = read_run(f"O3-15/{target_name}.tsv", "Clang 15, O3")
   o3_15_efb_df = read_run(f"O3-15/{target_name}-efb.tsv", "Clang 15, O3 + KE")
 
+  # Manufacture virtual data frame representing full coverage
+  full_df = o0_15_df.copy()
+  full_df["Cov (B)"] = full_df["Scope (B)"]
+  full_df["Cov (L)"] = full_df["Scope (L)"]
+  full_df["Flt Cov (L)"] = full_df["Src Scope (L)"]
+  full_df["Adj Cov (L)"] = full_df["Src Scope (L)"]
+
   # Restrict all data frames to common names they all share
   common_names = (
+    set(full_df["Name"]) &
     set(o0_15_df["Name"]) &
     set(o0_15_m2r_df["Name"]) &
     set(o0_15_m2r_efb_df["Name"]) &
@@ -66,6 +74,7 @@ def load_data():
     diff = len(df) - len(df[df["Name"].isin(common_names)])
     print(f"Dropped {diff} unique names from {variant}")
     return df[df["Name"].isin(common_names)]
+  full_df = common_only(full_df, "Defined region")
   o0_15_df = common_only(o0_15_df, "Clang 15, O0")
   o0_15_m2r_df = common_only(o0_15_m2r_df, "Clang 15, O0 + mem2reg")
   o0_15_m2r_efb_df = common_only(o0_15_m2r_efb_df, "Clang 15, O0 + mem2reg + KE")
@@ -85,6 +94,7 @@ def load_data():
   # `diff` to access KE vs. not, etc.
   # Re-check all transformations when changing the order.
   compilations_df = pd.concat([
+    full_df,
     o0_15_df,
     o0_15_m2r_df,
     o0_15_m2r_efb_df,
@@ -98,6 +108,7 @@ def load_data():
     o3_15_df,
     o3_15_efb_df,
   ], keys=[
+    "Defined region",
     "Clang 15, O0",
     "Clang 15, O0 + mem2reg",
     "Clang 15, O0 + mem2reg + KE",
@@ -130,7 +141,7 @@ def normalise(df):
   df["CL / MSL"] = df["Cov (L)"] / df["Max Scope (L)"]
   # Normalise values to baseline (Clang 15, O0 + mem2reg)
   # Chooses the correct row for `mem2reg` even in the presence of NaN
-  df["Baseline Cov (L)"] = df.groupby("Name")["Adj Cov (L)"].transform(lambda x: x.iloc[1])
+  df["Baseline Cov (L)"] = df.groupby("Name")["Adj Cov (L)"].transform(lambda x: x.iloc[2])
   with np.errstate(all="ignore"):
     df["ACL / BCL"] = df["Adj Cov (L)"] / df["Baseline Cov (L)"]
 
@@ -138,7 +149,13 @@ def coverage_by_compiler_version(df):
   df = df.copy()
   df["Order"] = df.sort_values(by="FCL / SSL", ascending=False).groupby("Variant").cumcount()
   variants = df.index.get_level_values("Variant")
-  df = df[variants.str.contains("O[01]") & ~(variants.str.contains("KE"))]
+  df = df[
+    variants.str.contains("Defined") |
+    (
+      variants.str.contains("O1") &
+      ~(variants.str.contains("KE"))
+    )
+  ]
   g = sns.relplot(
     df,
     x="Order",
@@ -166,7 +183,13 @@ def coverage_by_optimisation_level(df):
   df = df.copy()
   df["Order"] = df.sort_values(by="FCL / SSL", ascending=False).groupby("Variant").cumcount()
   variants = df.index.get_level_values("Variant")
-  df = df[variants.str.contains("Clang 15") & ~(variants.str.contains("KE"))]
+  df = df[
+    variants.str.contains("Defined") |
+    (
+      variants.str.contains("Clang 15") &
+      ~(variants.str.contains("KE"))
+    )
+  ]
   g = sns.relplot(
     df,
     x="Order",
@@ -177,7 +200,7 @@ def coverage_by_optimisation_level(df):
   sns.move_legend(
     g,
     "center left",
-    bbox_to_anchor=(0.125, 0.65),
+    bbox_to_anchor=(0.125, 0.60),
     frameon=True,
     shadow=True,
     title=None,
@@ -194,7 +217,13 @@ def coverage_with_ke_sorted_independently(df):
   df = df.copy()
   df["Order"] = df.sort_values(by="FCL / SSL", ascending=False).groupby("Variant").cumcount()
   variants = df.index.get_level_values("Variant")
-  df = df[variants.str.contains("O[01]") & variants.str.contains("Clang 15")]
+  df = df[
+    variants.str.contains("Defined") |
+    (
+      variants.str.contains("O[01]") &
+      variants.str.contains("Clang 15")
+    )
+  ]
   g = sns.relplot(
     df,
     x="Order",
