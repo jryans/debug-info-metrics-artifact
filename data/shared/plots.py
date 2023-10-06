@@ -33,8 +33,9 @@ def load_data():
     df = df.drop_duplicates("Name", keep=False)
     return df
 
-  o0_15_df = read_run(f"O0-15-mem2reg/{target_name}.tsv", "Clang 15, O0 + mem2reg")
-  o0_15_efb_df = read_run(f"O0-15-mem2reg/{target_name}-efb.tsv", "Clang 15, O0 + mem2reg + KE")
+  o0_15_df = read_run(f"O0-15/{target_name}.tsv", "Clang 15, O0")
+  o0_15_m2r_df = read_run(f"O0-15-mem2reg/{target_name}.tsv", "Clang 15, O0 + mem2reg")
+  o0_15_m2r_efb_df = read_run(f"O0-15-mem2reg/{target_name}-efb.tsv", "Clang 15, O0 + mem2reg + KE")
   o1_12_df = read_run(f"O1-12/{target_name}.tsv", "Clang 12, O1")
   o1_13_df = read_run(f"O1-13/{target_name}.tsv", "Clang 13, O1")
   o1_14_df = read_run(f"O1-14/{target_name}.tsv", "Clang 14, O1")
@@ -48,7 +49,8 @@ def load_data():
   # Restrict all data frames to common names they all share
   common_names = (
     set(o0_15_df["Name"]) &
-    set(o0_15_efb_df["Name"]) &
+    set(o0_15_m2r_df["Name"]) &
+    set(o0_15_m2r_efb_df["Name"]) &
     set(o1_12_df["Name"]) &
     set(o1_13_df["Name"]) &
     set(o1_14_df["Name"]) &
@@ -64,8 +66,9 @@ def load_data():
     diff = len(df) - len(df[df["Name"].isin(common_names)])
     print(f"Dropped {diff} unique names from {variant}")
     return df[df["Name"].isin(common_names)]
-  o0_15_df = common_only(o0_15_df, "Clang 15, O0 + mem2reg")
-  o0_15_efb_df = common_only(o0_15_efb_df, "Clang 15, O0 + mem2reg + KE")
+  o0_15_df = common_only(o0_15_df, "Clang 15, O0")
+  o0_15_m2r_df = common_only(o0_15_m2r_df, "Clang 15, O0 + mem2reg")
+  o0_15_m2r_efb_df = common_only(o0_15_m2r_efb_df, "Clang 15, O0 + mem2reg + KE")
   o1_12_df = common_only(o1_12_df, "Clang 12, O1")
   o1_13_df = common_only(o1_13_df, "Clang 13, O1")
   o1_14_df = common_only(o1_14_df, "Clang 14, O1")
@@ -76,12 +79,15 @@ def load_data():
   o3_15_df = common_only(o3_15_df, "Clang 15, O3")
   o3_15_efb_df = common_only(o3_15_efb_df, "Clang 15, O3 + KE")
 
-  # Order is important here: some data transformations rely on `first` to access
-  # the baseline, `diff` to access KE vs. not, etc.
+  # Order is important here!
+  # Some data transformations rely on
+  # `iloc[1]` to access the baseline,
+  # `diff` to access KE vs. not, etc.
   # Re-check all transformations when changing the order.
   compilations_df = pd.concat([
     o0_15_df,
-    o0_15_efb_df,
+    o0_15_m2r_df,
+    o0_15_m2r_efb_df,
     o1_12_df,
     o1_13_df,
     o1_14_df,
@@ -92,6 +98,7 @@ def load_data():
     o3_15_df,
     o3_15_efb_df,
   ], keys=[
+    "Clang 15, O0",
     "Clang 15, O0 + mem2reg",
     "Clang 15, O0 + mem2reg + KE",
     "Clang 12, O1",
@@ -122,7 +129,8 @@ def normalise(df):
   df["Max Scope (L)"] = df.groupby("Name")["Scope (L)"].transform("max")
   df["CL / MSL"] = df["Cov (L)"] / df["Max Scope (L)"]
   # Normalise values to baseline (Clang 15, O0 + mem2reg)
-  df["Baseline Cov (L)"] = df.groupby("Name")["Adj Cov (L)"].transform("first")
+  # Chooses the correct row for `mem2reg` even in the presence of NaN
+  df["Baseline Cov (L)"] = df.groupby("Name")["Adj Cov (L)"].transform(lambda x: x.iloc[1])
   with np.errstate(all="ignore"):
     df["ACL / BCL"] = df["Adj Cov (L)"] / df["Baseline Cov (L)"]
 
