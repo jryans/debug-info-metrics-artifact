@@ -419,7 +419,7 @@ def coverage_achievability(df):
   defined_y = ax.lines[1].get_ydata()
   ax.fill_between(x, scope_y, defined_y, color="gray", alpha=0.5)
   ax.annotate(
-    "Unachievable\ncoverage",
+    "Unachievable\n“coverage”",
     xy=(0.875, 0.9),
     xycoords="axes fraction",
     horizontalalignment="center",
