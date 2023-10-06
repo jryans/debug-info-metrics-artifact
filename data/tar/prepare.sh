@@ -7,7 +7,7 @@ if [ "${PWD##*/}" != "tar" ]; then
 fi
 
 SCRIPT_DIR=$(dirname "${BASH_SOURCE[0]}")
-source "${SCRIPT_DIR}/../../vars.sh"
+source "${SCRIPT_DIR}/../vars.sh"
 
 # Requires newer version of GNU Bison
 export PATH="/usr/local/opt/bison/bin:$PATH"
