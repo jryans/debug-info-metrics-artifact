@@ -247,7 +247,7 @@ def coverage_with_ke_sorted_independently(df):
     ybound=(0, 1.002),
   )
 
-def coverage_difference_with_ke_absolute_O1(df):
+def coverage_difference_with_ke_absolute_o1(df):
   df = df.copy()
   # Add coverage difference for plots showing change across runs
   df["Flt Cov Diff (L)"] = df.groupby("Name")["Flt Cov (L)"].transform("diff")
@@ -276,7 +276,7 @@ def coverage_difference_with_ke_absolute_O1(df):
     ybound=(0, df["Flt Cov Diff (L)"].max()),
   )
 
-def coverage_difference_with_ke_ratios_O1(df):
+def coverage_difference_with_ke_ratios_o1(df):
   df = df.copy()
   # Add coverage difference for plots showing change across runs
   df["FCL / SSL Diff"] = df.groupby("Name")["FCL / SSL"].transform("diff")
@@ -312,7 +312,7 @@ def coverage_difference_with_ke_ratios_O1(df):
     label="Coverage ratio without knowledge extension",
   )
 
-def coverage_difference_with_ke_distribution_O1(df):
+def coverage_difference_with_ke_distribution_o1(df):
   df = df.copy()
   # Add coverage difference for plots showing change across runs
   df["Flt Cov Diff (L)"] = df.groupby("Name")["Flt Cov (L)"].transform("diff")
@@ -341,7 +341,7 @@ def coverage_difference_with_ke_distribution_O1(df):
     ybound=(0, 500),
   )
 
-def coverage_with_ke_O1_sorted_consistently(df):
+def coverage_with_ke_o1_sorted_consistently(df):
   df = df.copy()
   variants = df.index.get_level_values("Variant")
   df["Variant Label"] = variants # Keep the variant label accessible after `.loc`
@@ -462,7 +462,7 @@ def coverage_achievability(df):
     ybound=(0, 1.002),
   )
 
-def coverage_comparison_ratios_O0_sorted_independently(df):
+def coverage_comparison_ratios_o0_sorted_independently(df):
   df = df.copy()
   df = df.loc["Clang 15, O0 + mem2reg"]
   # Revive `Variant` column to assist `melt` below
@@ -502,7 +502,7 @@ def coverage_comparison_ratios_O0_sorted_independently(df):
     ybound=(0, 1.002),
   )
 
-def coverage_comparison_ratios_O1_sorted_independently(df):
+def coverage_comparison_ratios_o1_sorted_independently(df):
   df = df.copy()
   df = df.loc["Clang 15, O1"]
   # Revive `Variant` column to assist `melt` below
@@ -542,7 +542,7 @@ def coverage_comparison_ratios_O1_sorted_independently(df):
     ybound=(0, 1.002),
   )
 
-def coverage_comparison_ratios_O1_sorted_consistently_old_metric(df):
+def coverage_comparison_ratios_o1_sorted_consistently_old_metric(df):
   df = df.copy()
   df = df.loc["Clang 15, O1"]
   # Revive `Variant` column to assist `melt` below
@@ -631,7 +631,7 @@ def coverage_comparison_ratios_O1_sorted_consistently_old_metric(df):
   ax2.set_ylabel("Coverage ratio (multiple metrics)")
   ax2.set_ybound(0, 1.002)
 
-def coverage_comparison_ratios_O1_sorted_consistently_new_metric_same_denominators(df):
+def coverage_comparison_ratios_o1_sorted_consistently_new_metric_same_denominators(df):
   df = df.copy()
   df = df.loc["Clang 15, O1"]
   # Revive `Variant` column to assist `melt` below
@@ -714,7 +714,7 @@ def coverage_comparison_ratios_O1_sorted_consistently_new_metric_same_denominato
   ax2.set_ylabel("Coverage ratio (multiple metrics)")
   ax2.set_ybound(0, 1.002)
 
-def coverage_comparison_ratios_O1_sorted_consistently_new_metric_different_denominators_max_scope(df):
+def coverage_comparison_ratios_o1_sorted_consistently_new_metric_different_denominators_max_scope(df):
   df = df.copy()
   df = df.loc["Clang 15, O1"]
   # Revive `Variant` column to assist `melt` below
@@ -803,7 +803,7 @@ def coverage_comparison_ratios_O1_sorted_consistently_new_metric_different_denom
   ax2.set_ylabel("Coverage ratio (multiple metrics)")
   ax2.set_ybound(0, 1.002)
 
-def coverage_comparison_ratios_O1_sorted_consistently_new_metric_different_denominators_own_scope(df):
+def coverage_comparison_ratios_o1_sorted_consistently_new_metric_different_denominators_own_scope(df):
   df = df.copy()
   df = df.loc["Clang 15, O1"]
   # Revive `Variant` column to assist `melt` below
@@ -886,7 +886,7 @@ def coverage_comparison_ratios_O1_sorted_consistently_new_metric_different_denom
   ax2.set_ylabel("Coverage ratio (multiple metrics)")
   ax2.set_ybound(0, 1.002)
 
-def coverage_comparison_ratios_O1_sorted_consistently_new_metric_different_denominators_bytes(df):
+def coverage_comparison_ratios_o1_sorted_consistently_new_metric_different_denominators_bytes(df):
   df = df.copy()
   df = df.loc["Clang 15, O1"]
   # Revive `Variant` column to assist `melt` below
@@ -969,7 +969,7 @@ def coverage_comparison_ratios_O1_sorted_consistently_new_metric_different_denom
   ax2.set_ylabel("Coverage ratio (multiple metrics)")
   ax2.set_ybound(0, 1.002)
 
-def coverage_comparison_ratios_O1_distribution(df):
+def coverage_comparison_ratios_o1_distribution(df):
   df = df.copy()
   df = df.loc["Clang 15, O1"]
   # Revive `Variant` column to assist `melt` below
