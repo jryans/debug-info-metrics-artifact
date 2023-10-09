@@ -9,7 +9,7 @@ import seaborn.objects as so
 
 target_name = None
 friendly_name = None
-data_path_prefix = None
+data_path_prefix = ""
 
 def configure(target, friendly, path_prefix=""):
   global target_name, friendly_name, data_path_prefix
@@ -20,7 +20,6 @@ def configure(target, friendly, path_prefix=""):
 def load_data():
   assert target_name
   assert friendly_name
-  assert data_path_prefix is not None
 
   def read_run(file, variant):
     df = pd.read_table(f"{data_path_prefix}{file}")
