@@ -59,7 +59,7 @@ extract-bc ${TARGET_PATH}
 mkdir -p "${SCRIPT_DIR}/${level}-${version}"
 cp \
   ${TARGET_PATH}.bc \
-  "${SCRIPT_DIR}/${level}-${version}/"
+  "${SCRIPT_DIR}/${level}-${version}/${TARGET_NAME}.bc"
 
 ## Compile O0 bitcode to object file
 $(llvm release-clang-lldb-${version}.0.0 llc) \
@@ -106,7 +106,7 @@ for i in ${!levels[*]}; do
   mkdir -p "${SCRIPT_DIR}/${level}-${version}"
   cp \
     "${TARGET_PATH}.dwarf" \
-    "${SCRIPT_DIR}/${level}-${version}/"
+    "${SCRIPT_DIR}/${level}-${version}/${TARGET_NAME}.dwarf"
 done
 
 # Cleanup
