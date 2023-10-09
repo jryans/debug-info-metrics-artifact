@@ -57,7 +57,9 @@ make clean
 git clean -f
 
 ## Build for O0
-make CC=wllvm CFLAGS="${CC_COMMON_OPTS} ${CC_O0_OPTS}"
+make \
+  CC=wllvm \
+  CFLAGS="${CC_COMMON_OPTS} ${CC_O0_OPTS}"
 
 ## Extract bitcode for O0
 extract-bc ${TARGET_PATH}
