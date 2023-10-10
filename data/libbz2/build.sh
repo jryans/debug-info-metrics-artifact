@@ -27,10 +27,10 @@ git clean -df
 
 ## Build via `dbgcov` to report source code regions of various kinds
 export PATH="${DBGCOV_PATH}:${PATH}"
-DBGCOV_OPTS=$(dbgcov-cflags)
+DBGCOV_OPTS="$(dbgcov-cflags) -save-temps"
 make -f Makefile-libbz2_so \
   CC="${DBGCOV_CC}" \
-  CFLAGS="${DEFAULT_OPTS} -save-temps ${DBGCOV_OPTS} ${CC_SYSROOT_OPTS}"
+  CFLAGS="${DEFAULT_OPTS} ${DBGCOV_OPTS} ${CC_SYSROOT_OPTS}"
 
 ## Collect deduplicated source code regions
 mkdir -p "${SCRIPT_DIR}/source-analysis"

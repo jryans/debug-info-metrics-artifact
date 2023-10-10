@@ -28,13 +28,13 @@ git clean -f
 
 ## Build via `dbgcov` to report source code regions of various kinds
 export PATH="${DBGCOV_PATH}:${PATH}"
-DBGCOV_OPTS=$(dbgcov-cflags)
+DBGCOV_OPTS="$(dbgcov-cflags) -save-temps"
 ## Defines below are attempting find a common subset of `gnulib` and
 ## system headers that can be processed in both Clang and GCC
 HEADER_OPTS="-D __clang__ -D __EDG__ -D __GNUC__=10 -D __GNUC_GNU_INLINE__"
 make \
   CC="${DBGCOV_CC}" \
-  CFLAGS="${HEADER_OPTS} -save-temps ${DBGCOV_OPTS} ${CC_SYSROOT_OPTS}"
+  CFLAGS="${DBGCOV_OPTS} ${CC_SYSROOT_OPTS} ${HEADER_OPTS}"
 
 ## Collect deduplicated source code regions
 mkdir -p "${SCRIPT_DIR}/source-analysis"
