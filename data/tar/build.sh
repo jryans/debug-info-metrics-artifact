@@ -31,7 +31,10 @@ export PATH="${DBGCOV_PATH}:${PATH}"
 DBGCOV_OPTS="$(dbgcov-cflags) -save-temps"
 ## Defines below are attempting find a common subset of `gnulib` and
 ## system headers that can be processed in both Clang and GCC
-HEADER_OPTS="-D __clang__ -D __EDG__ -D __GNUC__=10 -D __GNUC_GNU_INLINE__"
+HEADER_OPTS+="-D __clang__ "
+HEADER_OPTS+="-D __EDG__ "
+HEADER_OPTS+="-D __GNUC__=10 "
+HEADER_OPTS+="-D __GNUC_GNU_INLINE__"
 make \
   CC="${DBGCOV_CC}" \
   CFLAGS="${DBGCOV_OPTS} ${CC_SYSROOT_OPTS} ${HEADER_OPTS}"
