@@ -14,7 +14,7 @@ export LLVM_COMPILER="clang"
 export LLVM_COMPILER_PATH="$(llvm release-clang-lldb-15.0.0)/bin"
 
 TARGET_NAME="libbz2"
-TARGET_PATH="libbz2.so.1.0"
+TARGET_PATH="${TARGET_NAME}.so.1.0"
 
 ## Copied from repo, doesn't seem to support additive options
 DEFAULT_OPTS="-fpic -fPIC -Wall -Winline -D_FILE_OFFSET_BITS=64"
