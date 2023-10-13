@@ -85,8 +85,6 @@ $(llvm release-clang-lldb-${version}.0.0 llc) \
   --filetype obj \
   "${SCRIPT_DIR}/${level}-${version}-mem2reg/${TARGET_NAME}.bc"
 
-exit
-
 # O1+
 
   levels=(O1 O1 O1 O1 O2 O3)
