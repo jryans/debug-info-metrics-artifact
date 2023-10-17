@@ -34,9 +34,9 @@ def load_data():
   o0_15_df = read_run(f"O0-15/{target_name}.tsv", "Clang 15, O0")
   o0_15_m2r_df = read_run(f"O0-15-mem2reg/{target_name}.tsv", "Clang 15, O0 + mem2reg")
   o0_15_m2r_efb_df = read_run(f"O0-15-mem2reg/{target_name}-efb.tsv", "Clang 15, O0 + mem2reg + KE")
-  o1_12_df = read_run(f"O1-12/{target_name}.tsv", "Clang 12, O1")
-  o1_13_df = read_run(f"O1-13/{target_name}.tsv", "Clang 13, O1")
-  o1_14_df = read_run(f"O1-14/{target_name}.tsv", "Clang 14, O1")
+  o2_12_df = read_run(f"O2-12/{target_name}.tsv", "Clang 12, O2")
+  o2_13_df = read_run(f"O2-13/{target_name}.tsv", "Clang 13, O2")
+  o2_14_df = read_run(f"O2-14/{target_name}.tsv", "Clang 14, O2")
   o1_15_df = read_run(f"O1-15/{target_name}.tsv", "Clang 15, O1")
   o1_15_efb_df = read_run(f"O1-15/{target_name}-efb.tsv", "Clang 15, O1 + KE")
   o2_15_df = read_run(f"O2-15/{target_name}.tsv", "Clang 15, O2")
@@ -57,9 +57,9 @@ def load_data():
     set(o0_15_df["Name"]) &
     set(o0_15_m2r_df["Name"]) &
     set(o0_15_m2r_efb_df["Name"]) &
-    set(o1_12_df["Name"]) &
-    set(o1_13_df["Name"]) &
-    set(o1_14_df["Name"]) &
+    set(o2_12_df["Name"]) &
+    set(o2_13_df["Name"]) &
+    set(o2_14_df["Name"]) &
     set(o1_15_df["Name"]) &
     set(o1_15_efb_df["Name"]) &
     set(o2_15_df["Name"]) &
@@ -76,9 +76,9 @@ def load_data():
   o0_15_df = common_only(o0_15_df, "Clang 15, O0")
   o0_15_m2r_df = common_only(o0_15_m2r_df, "Clang 15, O0 + mem2reg")
   o0_15_m2r_efb_df = common_only(o0_15_m2r_efb_df, "Clang 15, O0 + mem2reg + KE")
-  o1_12_df = common_only(o1_12_df, "Clang 12, O1")
-  o1_13_df = common_only(o1_13_df, "Clang 13, O1")
-  o1_14_df = common_only(o1_14_df, "Clang 14, O1")
+  o2_12_df = common_only(o2_12_df, "Clang 12, O2")
+  o2_13_df = common_only(o2_13_df, "Clang 13, O2")
+  o2_14_df = common_only(o2_14_df, "Clang 14, O2")
   o1_15_df = common_only(o1_15_df, "Clang 15, O1")
   o1_15_efb_df = common_only(o1_15_efb_df, "Clang 15, O1 + KE")
   o2_15_df = common_only(o2_15_df, "Clang 15, O2")
@@ -96,9 +96,9 @@ def load_data():
     o0_15_df,
     o0_15_m2r_df,
     o0_15_m2r_efb_df,
-    o1_12_df,
-    o1_13_df,
-    o1_14_df,
+    o2_12_df,
+    o2_13_df,
+    o2_14_df,
     o1_15_df,
     o1_15_efb_df,
     o2_15_df,
@@ -110,9 +110,9 @@ def load_data():
     "Clang 15, O0",
     "Clang 15, O0 + mem2reg",
     "Clang 15, O0 + mem2reg + KE",
-    "Clang 12, O1",
-    "Clang 13, O1",
-    "Clang 14, O1",
+    "Clang 12, O2",
+    "Clang 13, O2",
+    "Clang 14, O2",
     "Clang 15, O1",
     "Clang 15, O1 + KE",
     "Clang 15, O2",
@@ -150,7 +150,7 @@ def coverage_by_compiler_version(df):
   df = df[
     variants.str.contains("Defined") |
     (
-      variants.str.contains("O1") &
+      variants.str.contains("O2") &
       ~(variants.str.contains("KE"))
     )
   ]
@@ -1009,7 +1009,7 @@ def arithmetic_mean_coverage(df):
   df = df.copy()
   df = df.groupby("Variant")["FCL / SSL"].mean().reset_index()
   df = df.sort_values(by="FCL / SSL", ascending=False).reset_index()
-  df = df[df["Variant"].str.contains("O[01]") & ~(df["Variant"].str.contains("KE"))]
+  df = df[df["Variant"].str.contains("O[02]") & ~(df["Variant"].str.contains("KE"))]
   g = sns.catplot(
     df,
     x="Variant",

@@ -95,7 +95,7 @@ exit
 
 # O1+
 
-  levels=(O1 O1 O1 O1 O2 O3)
+  levels=(O2 O2 O2 O1 O2 O3)
 versions=(12 13 14 15 15 15)
 
 for i in ${!levels[*]}; do
