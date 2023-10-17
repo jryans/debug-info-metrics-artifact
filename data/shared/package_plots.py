@@ -27,9 +27,8 @@ def load_data():
     df.columns = df.columns.str.strip()
     # Sort by name to aid matching across datasets
     df = df.sort_values("Name", ignore_index=True)
-    # Remove duplicate names (e.g. from macro-generated code with multiple uses of
-    # the same variable name)
-    df = df.drop_duplicates("Name", keep=False)
+    # Summarise across inlined call sites with arithmetic mean
+    df = df.groupby("Name", as_index=False).mean(numeric_only=True)
     return df
 
   o0_15_df = read_run(f"O0-15/{target_name}.tsv", "Clang 15, O0")
@@ -165,7 +164,7 @@ def coverage_by_compiler_version(df):
   sns.move_legend(
     g,
     "center left",
-    bbox_to_anchor=(0.125, 0.60),
+    bbox_to_anchor=(0.125, 0.50),
     frameon=True,
     shadow=True,
     title=None,
@@ -199,7 +198,7 @@ def coverage_by_optimisation_level(df):
   sns.move_legend(
     g,
     "center left",
-    bbox_to_anchor=(0.125, 0.60),
+    bbox_to_anchor=(0.125, 0.45),
     frameon=True,
     shadow=True,
     title=None,
@@ -233,7 +232,7 @@ def coverage_with_ke_sorted_independently(df):
   sns.move_legend(
     g,
     "center left",
-    bbox_to_anchor=(0.125, 0.5),
+    bbox_to_anchor=(0.125, 0.45),
     frameon=True,
     shadow=True,
     title=None,
