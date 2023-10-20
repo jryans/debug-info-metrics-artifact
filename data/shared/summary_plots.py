@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import seaborn.objects as so
 
-def coverage_by_package_o1(df):
+def coverage_by_package_o2(df):
   df = df.copy()
   grouped = df.sort_values(by="FCL / SSL", ascending=False).groupby([
     "Package",
@@ -18,7 +18,7 @@ def coverage_by_package_o1(df):
   df = df[
     # variants.str.contains("Defined") |
     (
-      variants.str.contains("Clang 15, O1") &
+      variants.str.contains("Clang 15, O2") &
       ~(variants.str.contains("KE"))
     )
   ]
@@ -38,7 +38,7 @@ def coverage_by_package_o1(df):
     title=None,
   )
   g.set(
-    title="Variable value source line coverage (Clang 15, O1, multiple packages)",
+    title="Variable value source line coverage (Clang 15, O2, multiple packages)",
     xlabel="Variable normalised index (sorted by coverage)",
     xbound=(0, 1),
     ylabel="Covered source lines normalised to defined region",
