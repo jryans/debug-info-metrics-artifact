@@ -32,7 +32,7 @@ def coverage_by_package_o2(df):
   sns.move_legend(
     g,
     "center left",
-    bbox_to_anchor=(0.125, 0.60),
+    bbox_to_anchor=(0.125, 0.50),
     frameon=True,
     shadow=True,
     title=None,

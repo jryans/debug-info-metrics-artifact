@@ -16,38 +16,36 @@ export LLVM_COMPILER_PATH="$(llvm release-clang-lldb-15.0.0)/bin"
 TARGET_NAME="ffmpeg"
 TARGET_PATH="${TARGET_NAME}"
 
-# # Source analysis
-# echo "## Building \`${TARGET_NAME}\` (source analysis)"
+# Source analysis
+echo "## Building \`${TARGET_NAME}\` (source analysis)"
 
-# make clean
-# git clean -f
+make clean
+git clean -f
 
-# ## Build via `dbgcov` to report source code regions of various kinds
-# export PATH="${DBGCOV_PATH}:${PATH}"
-# DBGCOV_OPTS="$(dbgcov-cflags) -save-temps"
-# ## Defines below are attempting find a common subset of
-# ## headers that can be processed in both Clang and GCC
-# HEADER_OPTS+="-I ./compat/atomics/dummy "
-# HEADER_OPTS+="-D SDL_DISABLE_IMMINTRIN_H "
-# HEADER_OPTS+="-D SDL_DISABLE_XMMINTRIN_H "
-# HEADER_OPTS+="-D SDL_DISABLE_EMMINTRIN_H "
-# HEADER_OPTS+="-D SDL_DISABLE_PMMINTRIN_H "
-# make \
-#   CC="${DBGCOV_CC}" \
-#   ECFLAGS="${DBGCOV_OPTS} ${CC_SYSROOT_OPTS} ${HEADER_OPTS}"
+## Build via `dbgcov` to report source code regions of various kinds
+export PATH="${DBGCOV_PATH}:${PATH}"
+DBGCOV_OPTS="$(dbgcov-cflags) -save-temps"
+## Defines below are attempting find a common subset of
+## headers that can be processed in both Clang and GCC
+HEADER_OPTS+="-I ./compat/atomics/dummy "
+HEADER_OPTS+="-D SDL_DISABLE_IMMINTRIN_H "
+HEADER_OPTS+="-D SDL_DISABLE_XMMINTRIN_H "
+HEADER_OPTS+="-D SDL_DISABLE_EMMINTRIN_H "
+HEADER_OPTS+="-D SDL_DISABLE_PMMINTRIN_H "
+make \
+  CC="${DBGCOV_CC}" \
+  ECFLAGS="${DBGCOV_OPTS} ${CC_SYSROOT_OPTS} ${HEADER_OPTS}"
 
-# ## Collect deduplicated source code regions
-# mkdir -p "${SCRIPT_DIR}/source-analysis"
-# ## Using `LC_ALL=C` gives ~10x performance boost
-# ( \
-#   export LC_ALL=C; \
-#   find . -name '*.dbgcov' | \
-#   xargs cat | \
-#   sort -u \
-#   > "${SCRIPT_DIR}/source-analysis/${TARGET_NAME}.dbgcov" \
-# )
-
-# exit
+## Collect deduplicated source code regions
+mkdir -p "${SCRIPT_DIR}/source-analysis"
+## Using `LC_ALL=C` gives ~10x performance boost
+( \
+  export LC_ALL=C; \
+  find . -name '*.dbgcov' | \
+  xargs cat | \
+  sort -u \
+  > "${SCRIPT_DIR}/source-analysis/${TARGET_NAME}.dbgcov" \
+)
 
 # O0
 
@@ -90,8 +88,6 @@ $(llvm release-clang-lldb-${version}.0.0 llc) \
   -o "${SCRIPT_DIR}/${level}-${version}-mem2reg/${TARGET_NAME}.o" \
   --filetype obj \
   "${SCRIPT_DIR}/${level}-${version}-mem2reg/${TARGET_NAME}.bc"
-
-exit
 
 # O1+
 
