@@ -371,13 +371,13 @@ def coverage_comparison_ratios_o0_sorted_independently(df):
   df = df.loc["Clang 15, O0 + mem2reg"]
   # Revive `Variant` column to assist `melt` below
   df["Variant"] = "Clang 15, O0 + mem2reg"
-  df["Covered / defined source lines (our approach)"] = df["FCL / SSL"]
-  df["Covered / scope source lines (other tools)"] = df["CL / SL"]
+  df["Filtered covered / defined source lines (our approach)"] = df["FCL / SSL"]
+  df["Raw covered / scope source lines (other tools)"] = df["CL / SL"]
   df = df.melt(
     id_vars=["Name", "Variant"],
     value_vars=[
-      "Covered / defined source lines (our approach)",
-      "Covered / scope source lines (other tools)",
+      "Filtered covered / defined source lines (our approach)",
+      "Raw covered / scope source lines (other tools)",
     ],
     var_name="Cov Type",
     value_name="Cov Value",
@@ -411,13 +411,13 @@ def coverage_comparison_ratios_o1_sorted_independently(df):
   df = df.loc["Clang 15, O1"]
   # Revive `Variant` column to assist `melt` below
   df["Variant"] = "Clang 15, O1"
-  df["Covered / defined source lines (our approach)"] = df["FCL / SSL"]
-  df["Covered / scope source lines (other tools)"] = df["CL / SL"]
+  df["Filtered covered / defined source lines (our approach)"] = df["FCL / SSL"]
+  df["Raw covered / scope source lines (other tools)"] = df["CL / SL"]
   df = df.melt(
     id_vars=["Name", "Variant"],
     value_vars=[
-      "Covered / defined source lines (our approach)",
-      "Covered / scope source lines (other tools)",
+      "Filtered covered / defined source lines (our approach)",
+      "Raw covered / scope source lines (other tools)",
     ],
     var_name="Cov Type",
     value_name="Cov Value",
@@ -451,17 +451,17 @@ def coverage_comparison_ratios_o1_sorted_consistently_old_metric(df):
   df = df.loc["Clang 15, O1"]
   # Revive `Variant` column to assist `melt` below
   df["Variant"] = "Clang 15, O1"
-  df["Covered / defined source lines (our approach)"] = df["ACL / BCL"]
+  df["Adjusted covered / defined source lines (our approach)"] = df["ACL / BCL"]
   # Using max scope in the denominator here to ensure it matches the baseline for
   # variables that cover the full scope. The baseline (O0-mem2reg) tends to
   # include a few extra lines than optimised versions, so max scope is more fair
   # comparison than the original scope from an optimised dataset.
   # Once we integrate source analysis to determine allowable lines, we may be able
   # to avoid the max here.
-  df["Covered / scope source lines (other tools)"] = df["CL / MSL"]
+  df["Raw covered / max scope source lines (other tools)"] = df["CL / MSL"]
   coverage_types = [
-    "Covered / defined source lines (our approach)",
-    "Covered / scope source lines (other tools)",
+    "Adjusted covered / defined source lines (our approach)",
+    "Raw covered / max scope source lines (other tools)",
   ]
   df = df.melt(
     id_vars=["Name", "Variant"],
@@ -478,7 +478,7 @@ def coverage_comparison_ratios_o1_sorted_consistently_old_metric(df):
   df["Order"] = df.sort_values(by="Cov Value", ascending=False).groupby("Cov Type").cumcount()
   df["Order"] = df.groupby("Name")["Order"].transform("first")
   sns.lineplot(
-    df[df["Cov Type"] == "Covered / defined source lines (our approach)"],
+    df[df["Cov Type"] == "Adjusted covered / defined source lines (our approach)"],
     x="Order",
     y="Cov Value",
     hue="Cov Type",
@@ -489,7 +489,7 @@ def coverage_comparison_ratios_o1_sorted_consistently_old_metric(df):
     ax=ax1,
   )
   sns.scatterplot(
-    df[df["Cov Type"] == "Covered / scope source lines (other tools)"],
+    df[df["Cov Type"] == "Raw covered / max scope source lines (other tools)"],
     x="Order",
     y="Cov Value",
     hue="Cov Type",
@@ -508,7 +508,7 @@ def coverage_comparison_ratios_o1_sorted_consistently_old_metric(df):
   df["Order"] = df.sort_values(by="Cov Value", ascending=False).groupby("Cov Type").cumcount()
   df["Order"] = df.groupby("Name")["Order"].transform("last")
   sns.scatterplot(
-    df[df["Cov Type"] == "Covered / defined source lines (our approach)"],
+    df[df["Cov Type"] == "Adjusted covered / defined source lines (our approach)"],
     x="Order",
     y="Cov Value",
     hue="Cov Type",
@@ -519,7 +519,7 @@ def coverage_comparison_ratios_o1_sorted_consistently_old_metric(df):
     ax=ax2,
   )
   sns.lineplot(
-    df[df["Cov Type"] == "Covered / scope source lines (other tools)"],
+    df[df["Cov Type"] == "Raw covered / max scope source lines (other tools)"],
     x="Order",
     y="Cov Value",
     hue="Cov Type",
@@ -540,11 +540,11 @@ def coverage_comparison_ratios_o1_sorted_consistently_new_metric_same_denominato
   df = df.loc["Clang 15, O1"]
   # Revive `Variant` column to assist `melt` below
   df["Variant"] = "Clang 15, O1"
-  df["Covered / defined source lines (our approach)"] = df["FCL / SSL"]
-  df["Covered / scope source lines (other tools)"] = df["CL / SSL"]
+  df["Filtered covered / defined source lines (our approach)"] = df["FCL / SSL"]
+  df["Raw covered / scope source lines (other tools simulation)"] = df["CL / SSL"]
   coverage_types = [
-    "Covered / defined source lines (our approach)",
-    "Covered / scope source lines (other tools)",
+    "Filtered covered / defined source lines (our approach)",
+    "Raw covered / scope source lines (other tools simulation)",
   ]
   df = df.melt(
     id_vars=["Name", "Variant"],
@@ -561,7 +561,7 @@ def coverage_comparison_ratios_o1_sorted_consistently_new_metric_same_denominato
   df["Order"] = df.sort_values(by="Cov Value", ascending=False).groupby("Cov Type").cumcount()
   df["Order"] = df.groupby("Name")["Order"].transform("first")
   sns.lineplot(
-    df[df["Cov Type"] == "Covered / defined source lines (our approach)"],
+    df[df["Cov Type"] == "Filtered covered / defined source lines (our approach)"],
     x="Order",
     y="Cov Value",
     hue="Cov Type",
@@ -572,7 +572,7 @@ def coverage_comparison_ratios_o1_sorted_consistently_new_metric_same_denominato
     ax=ax1,
   )
   sns.scatterplot(
-    df[df["Cov Type"] == "Covered / scope source lines (other tools)"],
+    df[df["Cov Type"] == "Raw covered / scope source lines (other tools simulation)"],
     x="Order",
     y="Cov Value",
     hue="Cov Type",
@@ -591,7 +591,7 @@ def coverage_comparison_ratios_o1_sorted_consistently_new_metric_same_denominato
   df["Order"] = df.sort_values(by="Cov Value", ascending=False).groupby("Cov Type").cumcount()
   df["Order"] = df.groupby("Name")["Order"].transform("last")
   sns.scatterplot(
-    df[df["Cov Type"] == "Covered / defined source lines (our approach)"],
+    df[df["Cov Type"] == "Filtered covered / defined source lines (our approach)"],
     x="Order",
     y="Cov Value",
     hue="Cov Type",
@@ -602,7 +602,7 @@ def coverage_comparison_ratios_o1_sorted_consistently_new_metric_same_denominato
     ax=ax2,
   )
   sns.lineplot(
-    df[df["Cov Type"] == "Covered / scope source lines (other tools)"],
+    df[df["Cov Type"] == "Raw covered / scope source lines (other tools simulation)"],
     x="Order",
     y="Cov Value",
     hue="Cov Type",
@@ -623,17 +623,17 @@ def coverage_comparison_ratios_o1_sorted_consistently_new_metric_different_denom
   df = df.loc["Clang 15, O1"]
   # Revive `Variant` column to assist `melt` below
   df["Variant"] = "Clang 15, O1"
-  df["Covered / defined source lines (our approach)"] = df["FCL / SSL"]
+  df["Filtered covered / defined source lines (our approach)"] = df["FCL / SSL"]
   # Using max scope in the denominator here to ensure it matches the baseline for
   # variables that cover the full scope. The baseline (O0-mem2reg) tends to
   # include a few extra lines than optimised versions, so max scope is more fair
   # comparison than the original scope from an optimised dataset.
   # Once we integrate source analysis to determine allowable lines, we may be able
   # to avoid the max here.
-  df["Covered / scope source lines (other tools)"] = df["CL / MSL"]
+  df["Raw covered / max scope source lines (other tools simulation)"] = df["CL / MSL"]
   coverage_types = [
-    "Covered / defined source lines (our approach)",
-    "Covered / scope source lines (other tools)",
+    "Filtered covered / defined source lines (our approach)",
+    "Raw covered / max scope source lines (other tools simulation)",
   ]
   df = df.melt(
     id_vars=["Name", "Variant"],
@@ -650,7 +650,7 @@ def coverage_comparison_ratios_o1_sorted_consistently_new_metric_different_denom
   df["Order"] = df.sort_values(by="Cov Value", ascending=False).groupby("Cov Type").cumcount()
   df["Order"] = df.groupby("Name")["Order"].transform("first")
   sns.lineplot(
-    df[df["Cov Type"] == "Covered / defined source lines (our approach)"],
+    df[df["Cov Type"] == "Filtered covered / defined source lines (our approach)"],
     x="Order",
     y="Cov Value",
     hue="Cov Type",
@@ -661,7 +661,7 @@ def coverage_comparison_ratios_o1_sorted_consistently_new_metric_different_denom
     ax=ax1,
   )
   sns.scatterplot(
-    df[df["Cov Type"] == "Covered / scope source lines (other tools)"],
+    df[df["Cov Type"] == "Raw covered / max scope source lines (other tools simulation)"],
     x="Order",
     y="Cov Value",
     hue="Cov Type",
@@ -680,7 +680,7 @@ def coverage_comparison_ratios_o1_sorted_consistently_new_metric_different_denom
   df["Order"] = df.sort_values(by="Cov Value", ascending=False).groupby("Cov Type").cumcount()
   df["Order"] = df.groupby("Name")["Order"].transform("last")
   sns.scatterplot(
-    df[df["Cov Type"] == "Covered / defined source lines (our approach)"],
+    df[df["Cov Type"] == "Filtered covered / defined source lines (our approach)"],
     x="Order",
     y="Cov Value",
     hue="Cov Type",
@@ -691,7 +691,7 @@ def coverage_comparison_ratios_o1_sorted_consistently_new_metric_different_denom
     ax=ax2,
   )
   sns.lineplot(
-    df[df["Cov Type"] == "Covered / scope source lines (other tools)"],
+    df[df["Cov Type"] == "Raw covered / max scope source lines (other tools simulation)"],
     x="Order",
     y="Cov Value",
     hue="Cov Type",
@@ -712,11 +712,11 @@ def coverage_comparison_ratios_o1_sorted_consistently_new_metric_different_denom
   df = df.loc["Clang 15, O1"]
   # Revive `Variant` column to assist `melt` below
   df["Variant"] = "Clang 15, O1"
-  df["Covered / defined source lines (our approach)"] = df["FCL / SSL"]
-  df["Covered / scope source lines (other tools)"] = df["CL / SL"]
+  df["Filtered covered / defined source lines (our approach)"] = df["FCL / SSL"]
+  df["Raw covered / scope source lines (other tools)"] = df["CL / SL"]
   coverage_types = [
-    "Covered / defined source lines (our approach)",
-    "Covered / scope source lines (other tools)",
+    "Filtered covered / defined source lines (our approach)",
+    "Raw covered / scope source lines (other tools)",
   ]
   df = df.melt(
     id_vars=["Name", "Variant"],
@@ -733,7 +733,7 @@ def coverage_comparison_ratios_o1_sorted_consistently_new_metric_different_denom
   df["Order"] = df.sort_values(by="Cov Value", ascending=False).groupby("Cov Type").cumcount()
   df["Order"] = df.groupby("Name")["Order"].transform("first")
   sns.lineplot(
-    df[df["Cov Type"] == "Covered / defined source lines (our approach)"],
+    df[df["Cov Type"] == "Filtered covered / defined source lines (our approach)"],
     x="Order",
     y="Cov Value",
     hue="Cov Type",
@@ -744,7 +744,7 @@ def coverage_comparison_ratios_o1_sorted_consistently_new_metric_different_denom
     ax=ax1,
   )
   sns.scatterplot(
-    df[df["Cov Type"] == "Covered / scope source lines (other tools)"],
+    df[df["Cov Type"] == "Raw covered / scope source lines (other tools)"],
     x="Order",
     y="Cov Value",
     hue="Cov Type",
@@ -763,7 +763,7 @@ def coverage_comparison_ratios_o1_sorted_consistently_new_metric_different_denom
   df["Order"] = df.sort_values(by="Cov Value", ascending=False).groupby("Cov Type").cumcount()
   df["Order"] = df.groupby("Name")["Order"].transform("last")
   sns.scatterplot(
-    df[df["Cov Type"] == "Covered / defined source lines (our approach)"],
+    df[df["Cov Type"] == "Filtered covered / defined source lines (our approach)"],
     x="Order",
     y="Cov Value",
     hue="Cov Type",
@@ -774,7 +774,7 @@ def coverage_comparison_ratios_o1_sorted_consistently_new_metric_different_denom
     ax=ax2,
   )
   sns.lineplot(
-    df[df["Cov Type"] == "Covered / scope source lines (other tools)"],
+    df[df["Cov Type"] == "Raw covered / scope source lines (other tools)"],
     x="Order",
     y="Cov Value",
     hue="Cov Type",
@@ -795,11 +795,11 @@ def coverage_comparison_ratios_o1_sorted_consistently_new_metric_different_denom
   df = df.loc["Clang 15, O1"]
   # Revive `Variant` column to assist `melt` below
   df["Variant"] = "Clang 15, O1"
-  df["Covered / defined source lines (our approach)"] = df["FCL / SSL"]
-  df["Covered / scope source bytes (other tools)"] = df["CB / SB"]
+  df["Filtered covered / defined source lines (our approach)"] = df["FCL / SSL"]
+  df["Raw covered / scope source bytes (other tools)"] = df["CB / SB"]
   coverage_types = [
-    "Covered / defined source lines (our approach)",
-    "Covered / scope source bytes (other tools)",
+    "Filtered covered / defined source lines (our approach)",
+    "Raw covered / scope source bytes (other tools)",
   ]
   df = df.melt(
     id_vars=["Name", "Variant"],
@@ -816,7 +816,7 @@ def coverage_comparison_ratios_o1_sorted_consistently_new_metric_different_denom
   df["Order"] = df.sort_values(by="Cov Value", ascending=False).groupby("Cov Type").cumcount()
   df["Order"] = df.groupby("Name")["Order"].transform("first")
   sns.lineplot(
-    df[df["Cov Type"] == "Covered / defined source lines (our approach)"],
+    df[df["Cov Type"] == "Filtered covered / defined source lines (our approach)"],
     x="Order",
     y="Cov Value",
     hue="Cov Type",
@@ -827,7 +827,7 @@ def coverage_comparison_ratios_o1_sorted_consistently_new_metric_different_denom
     ax=ax1,
   )
   sns.scatterplot(
-    df[df["Cov Type"] == "Covered / scope source bytes (other tools)"],
+    df[df["Cov Type"] == "Raw covered / scope source bytes (other tools)"],
     x="Order",
     y="Cov Value",
     hue="Cov Type",
@@ -846,7 +846,7 @@ def coverage_comparison_ratios_o1_sorted_consistently_new_metric_different_denom
   df["Order"] = df.sort_values(by="Cov Value", ascending=False).groupby("Cov Type").cumcount()
   df["Order"] = df.groupby("Name")["Order"].transform("last")
   sns.scatterplot(
-    df[df["Cov Type"] == "Covered / defined source lines (our approach)"],
+    df[df["Cov Type"] == "Filtered covered / defined source lines (our approach)"],
     x="Order",
     y="Cov Value",
     hue="Cov Type",
@@ -857,7 +857,7 @@ def coverage_comparison_ratios_o1_sorted_consistently_new_metric_different_denom
     ax=ax2,
   )
   sns.lineplot(
-    df[df["Cov Type"] == "Covered / scope source bytes (other tools)"],
+    df[df["Cov Type"] == "Raw covered / scope source bytes (other tools)"],
     x="Order",
     y="Cov Value",
     hue="Cov Type",
@@ -878,13 +878,13 @@ def coverage_comparison_ratios_o1_distribution(df):
   df = df.loc["Clang 15, O1"]
   # Revive `Variant` column to assist `melt` below
   df["Variant"] = "Clang 15, O1"
-  df["Covered / defined source lines (our approach)"] = df["FCL / SSL"]
-  df["Covered / scope source lines (other tools)"] = df["CL / SL"]
+  df["Filtered covered / defined source lines (our approach)"] = df["FCL / SSL"]
+  df["Raw covered / scope source lines (other tools)"] = df["CL / SL"]
   df = df.melt(
     id_vars=["Name", "Variant"],
     value_vars=[
-      "Covered / defined source lines (our approach)",
-      "Covered / scope source lines (other tools)",
+      "Filtered covered / defined source lines (our approach)",
+      "Raw covered / scope source lines (other tools)",
     ],
     var_name="Cov Type",
     value_name="Cov Value",
