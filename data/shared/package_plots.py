@@ -218,7 +218,7 @@ def coverage_with_ke_sorted_independently(df):
   df = df[
     variants.str.contains("Defined") |
     (
-      variants.str.contains("O[02]") &
+      variants.str.contains("O[01]") &
       variants.str.contains("Clang 15")
     )
   ]
