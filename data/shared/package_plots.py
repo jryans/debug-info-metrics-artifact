@@ -218,7 +218,7 @@ def coverage_with_ke_sorted_independently(df):
   df = df[
     variants.str.contains("Defined") |
     (
-      variants.str.contains("O[01]") &
+      variants.str.contains("O[02]") &
       variants.str.contains("Clang 15")
     )
   ]
@@ -245,11 +245,11 @@ def coverage_with_ke_sorted_independently(df):
     ybound=(0, 1.002),
   )
 
-def coverage_with_ke_o1_sorted_consistently(df):
+def coverage_with_ke_sorted_consistently(df):
   df = df.copy()
   variants = df.index.get_level_values("Variant")
   df["Variant Label"] = variants # Keep the variant label accessible after `.loc`
-  df = df[variants.str.contains("Clang 15") & variants.str.contains("O1")]
+  df = df[variants.str.contains("Clang 15") & variants.str.contains("O2")]
   variant_labels = df.index.unique("Variant").to_list()
 
   # Create figure with multiple axes
@@ -406,11 +406,11 @@ def coverage_comparison_ratios_o0_sorted_independently(df):
     ybound=(0, 1.002),
   )
 
-def coverage_comparison_ratios_o1_sorted_independently(df):
+def coverage_comparison_ratios_o2_sorted_independently(df):
   df = df.copy()
-  df = df.loc["Clang 15, O1"]
+  df = df.loc["Clang 15, O2"]
   # Revive `Variant` column to assist `melt` below
-  df["Variant"] = "Clang 15, O1"
+  df["Variant"] = "Clang 15, O2"
   df["Filtered covered / defined source lines (our approach)"] = df["FCL / SSL"]
   df["Raw covered / scope source lines (other tools)"] = df["CL / SL"]
   df = df.melt(
@@ -439,18 +439,18 @@ def coverage_comparison_ratios_o1_sorted_independently(df):
     title=None,
   )
   g.set(
-    title=f"Coverage metric comparison ({friendly_name}, Clang 15, O1)",
+    title=f"Coverage metric comparison ({friendly_name}, Clang 15, O2)",
     xlabel="Variable index (sorted by coverage)",
     xbound=(0, df["Order"].max()),
     ylabel="Coverage ratio (multiple metrics)",
     ybound=(0, 1.002),
   )
 
-def coverage_comparison_ratios_o1_sorted_consistently_old_metric(df):
+def coverage_comparison_ratios_o2_sorted_consistently_old_metric(df):
   df = df.copy()
-  df = df.loc["Clang 15, O1"]
+  df = df.loc["Clang 15, O2"]
   # Revive `Variant` column to assist `melt` below
-  df["Variant"] = "Clang 15, O1"
+  df["Variant"] = "Clang 15, O2"
   df["Adjusted covered / defined source lines (our approach)"] = df["ACL / BCL"]
   # Using max scope in the denominator here to ensure it matches the baseline for
   # variables that cover the full scope. The baseline (O0-mem2reg) tends to
@@ -473,7 +473,7 @@ def coverage_comparison_ratios_o1_sorted_consistently_old_metric(df):
   # Create figure with multiple axes
   fig, axs = plt.subplots(1, 2, figsize=(10, 5))
   [ax1, ax2] = axs
-  fig.suptitle(f"Coverage metric comparison ({friendly_name}, Clang 15, O1)")
+  fig.suptitle(f"Coverage metric comparison ({friendly_name}, Clang 15, O2)")
 
   df["Order"] = df.sort_values(by="Cov Value", ascending=False).groupby("Cov Type").cumcount()
   df["Order"] = df.groupby("Name")["Order"].transform("first")
@@ -535,11 +535,11 @@ def coverage_comparison_ratios_o1_sorted_consistently_old_metric(df):
   ax2.set_ylabel("Coverage ratio (multiple metrics)")
   ax2.set_ybound(0, 1.002)
 
-def coverage_comparison_ratios_o1_sorted_consistently_new_metric_same_denominators(df):
+def coverage_comparison_ratios_o2_sorted_consistently_new_metric_same_denominators(df):
   df = df.copy()
-  df = df.loc["Clang 15, O1"]
+  df = df.loc["Clang 15, O2"]
   # Revive `Variant` column to assist `melt` below
-  df["Variant"] = "Clang 15, O1"
+  df["Variant"] = "Clang 15, O2"
   df["Filtered covered / defined source lines (our approach)"] = df["FCL / SSL"]
   df["Raw covered / scope source lines (other tools simulation)"] = df["CL / SSL"]
   coverage_types = [
@@ -556,7 +556,7 @@ def coverage_comparison_ratios_o1_sorted_consistently_new_metric_same_denominato
   # Create figure with multiple axes
   fig, axs = plt.subplots(1, 2, figsize=(10, 5))
   [ax1, ax2] = axs
-  fig.suptitle(f"Coverage metric comparison ({friendly_name}, Clang 15, O1)")
+  fig.suptitle(f"Coverage metric comparison ({friendly_name}, Clang 15, O2)")
 
   df["Order"] = df.sort_values(by="Cov Value", ascending=False).groupby("Cov Type").cumcount()
   df["Order"] = df.groupby("Name")["Order"].transform("first")
@@ -618,11 +618,11 @@ def coverage_comparison_ratios_o1_sorted_consistently_new_metric_same_denominato
   ax2.set_ylabel("Coverage ratio (multiple metrics)")
   ax2.set_ybound(0, 1.002)
 
-def coverage_comparison_ratios_o1_sorted_consistently_new_metric_different_denominators_max_scope(df):
+def coverage_comparison_ratios_o2_sorted_consistently_new_metric_different_denominators_max_scope(df):
   df = df.copy()
-  df = df.loc["Clang 15, O1"]
+  df = df.loc["Clang 15, O2"]
   # Revive `Variant` column to assist `melt` below
-  df["Variant"] = "Clang 15, O1"
+  df["Variant"] = "Clang 15, O2"
   df["Filtered covered / defined source lines (our approach)"] = df["FCL / SSL"]
   # Using max scope in the denominator here to ensure it matches the baseline for
   # variables that cover the full scope. The baseline (O0-mem2reg) tends to
@@ -645,7 +645,7 @@ def coverage_comparison_ratios_o1_sorted_consistently_new_metric_different_denom
   # Create figure with multiple axes
   fig, axs = plt.subplots(1, 2, figsize=(10, 5))
   [ax1, ax2] = axs
-  fig.suptitle(f"Coverage metric comparison ({friendly_name}, Clang 15, O1)")
+  fig.suptitle(f"Coverage metric comparison ({friendly_name}, Clang 15, O2)")
 
   df["Order"] = df.sort_values(by="Cov Value", ascending=False).groupby("Cov Type").cumcount()
   df["Order"] = df.groupby("Name")["Order"].transform("first")
@@ -707,11 +707,11 @@ def coverage_comparison_ratios_o1_sorted_consistently_new_metric_different_denom
   ax2.set_ylabel("Coverage ratio (multiple metrics)")
   ax2.set_ybound(0, 1.002)
 
-def coverage_comparison_ratios_o1_sorted_consistently_new_metric_different_denominators_own_scope(df):
+def coverage_comparison_ratios_o2_sorted_consistently_new_metric_different_denominators_own_scope(df):
   df = df.copy()
-  df = df.loc["Clang 15, O1"]
+  df = df.loc["Clang 15, O2"]
   # Revive `Variant` column to assist `melt` below
-  df["Variant"] = "Clang 15, O1"
+  df["Variant"] = "Clang 15, O2"
   df["Filtered covered / defined source lines (our approach)"] = df["FCL / SSL"]
   df["Raw covered / scope source lines (other tools)"] = df["CL / SL"]
   coverage_types = [
@@ -728,7 +728,7 @@ def coverage_comparison_ratios_o1_sorted_consistently_new_metric_different_denom
   # Create figure with multiple axes
   fig, axs = plt.subplots(1, 2, figsize=(10, 5))
   [ax1, ax2] = axs
-  fig.suptitle(f"Coverage metric comparison ({friendly_name}, Clang 15, O1)")
+  fig.suptitle(f"Coverage metric comparison ({friendly_name}, Clang 15, O2)")
 
   df["Order"] = df.sort_values(by="Cov Value", ascending=False).groupby("Cov Type").cumcount()
   df["Order"] = df.groupby("Name")["Order"].transform("first")
@@ -790,11 +790,11 @@ def coverage_comparison_ratios_o1_sorted_consistently_new_metric_different_denom
   ax2.set_ylabel("Coverage ratio (multiple metrics)")
   ax2.set_ybound(0, 1.002)
 
-def coverage_comparison_ratios_o1_sorted_consistently_new_metric_different_denominators_bytes(df):
+def coverage_comparison_ratios_o2_sorted_consistently_new_metric_different_denominators_bytes(df):
   df = df.copy()
-  df = df.loc["Clang 15, O1"]
+  df = df.loc["Clang 15, O2"]
   # Revive `Variant` column to assist `melt` below
-  df["Variant"] = "Clang 15, O1"
+  df["Variant"] = "Clang 15, O2"
   df["Filtered covered / defined source lines (our approach)"] = df["FCL / SSL"]
   df["Raw covered / scope source bytes (other tools)"] = df["CB / SB"]
   coverage_types = [
@@ -811,7 +811,7 @@ def coverage_comparison_ratios_o1_sorted_consistently_new_metric_different_denom
   # Create figure with multiple axes
   fig, axs = plt.subplots(1, 2, figsize=(10, 5))
   [ax1, ax2] = axs
-  fig.suptitle(f"Coverage metric comparison ({friendly_name}, Clang 15, O1)")
+  fig.suptitle(f"Coverage metric comparison ({friendly_name}, Clang 15, O2)")
 
   df["Order"] = df.sort_values(by="Cov Value", ascending=False).groupby("Cov Type").cumcount()
   df["Order"] = df.groupby("Name")["Order"].transform("first")
@@ -873,11 +873,11 @@ def coverage_comparison_ratios_o1_sorted_consistently_new_metric_different_denom
   ax2.set_ylabel("Coverage ratio (multiple metrics)")
   ax2.set_ybound(0, 1.002)
 
-def coverage_comparison_ratios_o1_distribution(df):
+def coverage_comparison_ratios_o2_distribution(df):
   df = df.copy()
-  df = df.loc["Clang 15, O1"]
+  df = df.loc["Clang 15, O2"]
   # Revive `Variant` column to assist `melt` below
-  df["Variant"] = "Clang 15, O1"
+  df["Variant"] = "Clang 15, O2"
   df["Filtered covered / defined source lines (our approach)"] = df["FCL / SSL"]
   df["Raw covered / scope source lines (other tools)"] = df["CL / SL"]
   df = df.melt(
@@ -904,7 +904,7 @@ def coverage_comparison_ratios_o1_distribution(df):
     title=None,
   )
   g.set(
-    title=f"Coverage metric comparison ({friendly_name}, Clang 15, O1)",
+    title=f"Coverage metric comparison ({friendly_name}, Clang 15, O2)",
     xlabel="Coverage ratio (multiple metrics)",
     xbound=(0, 1.02),
     ylabel="Variables",
