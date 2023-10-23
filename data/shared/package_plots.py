@@ -222,12 +222,29 @@ def coverage_with_ke_sorted_independently(df):
       variants.str.contains("Clang 15")
     )
   ]
+
+  def lightness(color, amount):
+    import colorsys
+    c = colorsys.rgb_to_hls(*color)
+    return colorsys.hls_to_rgb(c[0], max(0, min(1, amount * c[1])), c[2])
+
+  base_palette = sns.color_palette("colorblind", n_colors=3)
+  palette = [
+    base_palette[0],                 # Defined region
+    base_palette[1],                 # Clang 15, O0
+    lightness(base_palette[1], 2/3), # Clang 15, O0 + mem2reg
+    lightness(base_palette[1], 1/3), # Clang 15, O0 + mem2reg + KE
+    base_palette[2],                 # Clang 15, O1
+    lightness(base_palette[2], 1/3), # Clang 15, O1 + KE
+  ]
+
   g = sns.relplot(
     df,
     x="Order",
     y="FCL / SSL",
     hue="Variant",
     kind="line",
+    palette=palette,
   )
   sns.move_legend(
     g,
