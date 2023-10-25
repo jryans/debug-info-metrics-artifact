@@ -51,7 +51,8 @@ def load_data():
   full_df["Flt Cov (L)"] = full_df["Src Scope (L)"]
   full_df["Adj Cov (L)"] = full_df["Src Scope (L)"]
 
-  # Restrict all data frames to common names they all share
+  # Check names present in each compilation for differences
+  print("# Names")
   common_names = (
     set(full_df["Name"]) &
     set(o0_15_df["Name"]) &
@@ -68,23 +69,83 @@ def load_data():
     set(o3_15_efb_df["Name"])
   )
   print(f"Common names: {len(common_names)}")
-  def common_only(df, variant):
-    diff = len(df) - len(df[df["Name"].isin(common_names)])
-    print(f"Dropped {diff} unique names from {variant}")
-    return df[df["Name"].isin(common_names)]
-  full_df = common_only(full_df, "Defined region")
-  o0_15_df = common_only(o0_15_df, "Clang 15, O0")
-  o0_15_m2r_df = common_only(o0_15_m2r_df, "Clang 15, O0 + mem2reg")
-  o0_15_m2r_efb_df = common_only(o0_15_m2r_efb_df, "Clang 15, O0 + mem2reg + KE")
-  o2_12_df = common_only(o2_12_df, "Clang 12, O2")
-  o2_13_df = common_only(o2_13_df, "Clang 13, O2")
-  o2_14_df = common_only(o2_14_df, "Clang 14, O2")
-  o1_15_df = common_only(o1_15_df, "Clang 15, O1")
-  o1_15_efb_df = common_only(o1_15_efb_df, "Clang 15, O1 + KE")
-  o2_15_df = common_only(o2_15_df, "Clang 15, O2")
-  o2_15_efb_df = common_only(o2_15_efb_df, "Clang 15, O2 + KE")
-  o3_15_df = common_only(o3_15_df, "Clang 15, O3")
-  o3_15_efb_df = common_only(o3_15_efb_df, "Clang 15, O3 + KE")
+  all_names = (
+    set(full_df["Name"]) |
+    set(o0_15_df["Name"]) |
+    set(o0_15_m2r_df["Name"]) |
+    set(o0_15_m2r_efb_df["Name"]) |
+    set(o2_12_df["Name"]) |
+    set(o2_13_df["Name"]) |
+    set(o2_14_df["Name"]) |
+    set(o1_15_df["Name"]) |
+    set(o1_15_efb_df["Name"]) |
+    set(o2_15_df["Name"]) |
+    set(o2_15_efb_df["Name"]) |
+    set(o3_15_df["Name"]) |
+    set(o3_15_efb_df["Name"])
+  )
+  all_names_df = pd.DataFrame({ "Name": list(all_names) })
+  print(f"All names: {len(all_names)}")
+  print()
+
+  def name_diffs(df, variant):
+    print(f"## {variant}")
+    missing_all_diff = len(all_names_df[~all_names_df["Name"].isin(df["Name"])])
+    print(f"{missing_all_diff} names from other compilations missing from this compilation")
+    common_diff = len(df[~df["Name"].isin(common_names)])
+    print(f"{common_diff} names missing from one or more other compilations")
+    print()
+
+  name_diffs(full_df, "Defined region")
+  name_diffs(o0_15_df, "Clang 15, O0")
+  name_diffs(o0_15_m2r_df, "Clang 15, O0 + mem2reg")
+  name_diffs(o0_15_m2r_efb_df, "Clang 15, O0 + mem2reg + KE")
+  name_diffs(o2_12_df, "Clang 12, O2")
+  name_diffs(o2_13_df, "Clang 13, O2")
+  name_diffs(o2_14_df, "Clang 14, O2")
+  name_diffs(o1_15_df, "Clang 15, O1")
+  name_diffs(o1_15_efb_df, "Clang 15, O1 + KE")
+  name_diffs(o2_15_df, "Clang 15, O2")
+  name_diffs(o2_15_efb_df, "Clang 15, O2 + KE")
+  name_diffs(o3_15_df, "Clang 15, O3")
+  name_diffs(o3_15_efb_df, "Clang 15, O3 + KE")
+
+  def add_missing_rows(df, variant):
+    # Create additional dataset with missing rows
+    missing_df = all_names_df[~all_names_df["Name"].isin(df["Name"])].copy()
+    missing_df["Cov (B)"] = 0
+    missing_df["Scope (B)"] = 1
+    missing_df["Cov (L)"] = 0
+    missing_df["Scope (L)"] = 1
+    missing_df["Adj Cov (L)"] = 0
+    missing_df["Flt Cov (L)"] = 0
+    missing_df["Src Scope (L)"] = 1
+    print(f"Adding {len(missing_df)} missing names to {variant}")
+    # Append to existing data and resort
+    df = pd.concat(
+      [
+        df,
+        missing_df,
+      ],
+      ignore_index=True,
+    )
+    assert len(df) == len(all_names_df), "Names still missing"
+    return df.sort_values("Name", ignore_index=True)
+
+  # Add any missing rows so that all compilations contain the union of all names
+  full_df = add_missing_rows(full_df, "Defined region")
+  o0_15_df = add_missing_rows(o0_15_df, "Clang 15, O0")
+  o0_15_m2r_df = add_missing_rows(o0_15_m2r_df, "Clang 15, O0 + mem2reg")
+  o0_15_m2r_efb_df = add_missing_rows(o0_15_m2r_efb_df, "Clang 15, O0 + mem2reg + KE")
+  o2_12_df = add_missing_rows(o2_12_df, "Clang 12, O2")
+  o2_13_df = add_missing_rows(o2_13_df, "Clang 13, O2")
+  o2_14_df = add_missing_rows(o2_14_df, "Clang 14, O2")
+  o1_15_df = add_missing_rows(o1_15_df, "Clang 15, O1")
+  o1_15_efb_df = add_missing_rows(o1_15_efb_df, "Clang 15, O1 + KE")
+  o2_15_df = add_missing_rows(o2_15_df, "Clang 15, O2")
+  o2_15_efb_df = add_missing_rows(o2_15_efb_df, "Clang 15, O2 + KE")
+  o3_15_df = add_missing_rows(o3_15_df, "Clang 15, O3")
+  o3_15_efb_df = add_missing_rows(o3_15_efb_df, "Clang 15, O3 + KE")
 
   # Order is important here!
   # Some data transformations rely on
