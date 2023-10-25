@@ -415,7 +415,7 @@ def coverage_achievability(df):
   sns.move_legend(
     g,
     "upper left",
-    bbox_to_anchor=(0.1, 0.8),
+    bbox_to_anchor=(0.125, 0.8),
     frameon=True,
     shadow=True,
     title=None,
