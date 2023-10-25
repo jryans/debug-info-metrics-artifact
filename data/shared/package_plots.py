@@ -44,17 +44,9 @@ def load_data():
   o3_15_df = read_run(f"O3-15/{target_name}.tsv", "Clang 15, O3")
   o3_15_efb_df = read_run(f"O3-15/{target_name}-efb.tsv", "Clang 15, O3 + KE")
 
-  # Manufacture virtual data frame representing full coverage
-  full_df = o0_15_df.copy()
-  full_df["Cov (B)"] = full_df["Scope (B)"]
-  full_df["Cov (L)"] = full_df["Scope (L)"]
-  full_df["Flt Cov (L)"] = full_df["Src Scope (L)"]
-  full_df["Adj Cov (L)"] = full_df["Src Scope (L)"]
-
   # Check names present in each compilation for differences
   print("# Names")
   common_names = (
-    set(full_df["Name"]) &
     set(o0_15_df["Name"]) &
     set(o0_15_m2r_df["Name"]) &
     set(o0_15_m2r_efb_df["Name"]) &
@@ -70,7 +62,6 @@ def load_data():
   )
   print(f"Common names: {len(common_names)}")
   all_names = (
-    set(full_df["Name"]) |
     set(o0_15_df["Name"]) |
     set(o0_15_m2r_df["Name"]) |
     set(o0_15_m2r_efb_df["Name"]) |
@@ -96,7 +87,6 @@ def load_data():
     print(f"{common_diff} names missing from one or more other compilations")
     print()
 
-  name_diffs(full_df, "Defined region")
   name_diffs(o0_15_df, "Clang 15, O0")
   name_diffs(o0_15_m2r_df, "Clang 15, O0 + mem2reg")
   name_diffs(o0_15_m2r_efb_df, "Clang 15, O0 + mem2reg + KE")
@@ -133,7 +123,6 @@ def load_data():
     return df.sort_values("Name", ignore_index=True)
 
   # Add any missing rows so that all compilations contain the union of all names
-  full_df = add_missing_rows(full_df, "Defined region")
   o0_15_df = add_missing_rows(o0_15_df, "Clang 15, O0")
   o0_15_m2r_df = add_missing_rows(o0_15_m2r_df, "Clang 15, O0 + mem2reg")
   o0_15_m2r_efb_df = add_missing_rows(o0_15_m2r_efb_df, "Clang 15, O0 + mem2reg + KE")
@@ -146,6 +135,13 @@ def load_data():
   o2_15_efb_df = add_missing_rows(o2_15_efb_df, "Clang 15, O2 + KE")
   o3_15_df = add_missing_rows(o3_15_df, "Clang 15, O3")
   o3_15_efb_df = add_missing_rows(o3_15_efb_df, "Clang 15, O3 + KE")
+
+  # Manufacture virtual data frame representing full coverage
+  full_df = o0_15_df.copy()
+  full_df["Cov (B)"] = full_df["Scope (B)"]
+  full_df["Cov (L)"] = full_df["Scope (L)"]
+  full_df["Flt Cov (L)"] = full_df["Src Scope (L)"]
+  full_df["Adj Cov (L)"] = full_df["Src Scope (L)"]
 
   # Order is important here!
   # Some data transformations rely on
