@@ -13,11 +13,11 @@ def load_our_data():
   def summarise(file):
     df = pd.read_table(file)
     # Some files are expected to be empty (whole program optimised away)
-    if df.shape[0] == 0:
+    if len(df) == 0:
       raise RuntimeError("No data")
     df.columns = df.columns.str.strip()
 
-    line_coverage = df[df["Present"] == 1].shape[0] / df.shape[0]
+    line_coverage = len(df[df["Present"] == 1]) / len(df)
 
     # Not convinced this is statistically valid, but it's what ASPLOS does
     df["Locatability"] = df["Locatable (V)"] / df["Scope (V)"]
