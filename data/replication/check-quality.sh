@@ -10,7 +10,7 @@ if [ "${PWD}" != "${SCRIPT_DIR}" ]; then
 fi
 
 versions=(5 7 9 11)
-  levels=(2 3 g s)
+  levels=(0 1 2 3 g s)
 
 for tc in $(find -H testcases -type d -depth 1 | cut -c 11- | sort -n); do
   for version in ${versions[*]}; do
