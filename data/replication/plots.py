@@ -17,11 +17,13 @@ def load_our_data():
       raise RuntimeError("No data")
     df.columns = df.columns.str.strip()
 
-    line_coverage = len(df[df["Present"] == 1]) / len(df)
+    df["Locatability"] = df["Locatable (V)"] / df["Scope (V)"]
+
+    present_df = df[df["Present"] == 1]
+    line_coverage = len(present_df) / len(df)
 
     # Not convinced this is statistically valid, but it's what ASPLOS does
-    df["Locatability"] = df["Locatable (V)"] / df["Scope (V)"]
-    availability_of_variables = df["Locatability"].mean()
+    availability_of_variables = present_df["Locatability"].mean()
 
     return {
       "Line Coverage": line_coverage,
@@ -146,7 +148,7 @@ def availability_of_variables(df):
     xlabel="Clang version",
     xticks=[5, 7, 9, 11],
     ylabel="Availability of variables relative to baseline",
-    ybound=(0, 1),
+    ybound=(0.5, 1),
   )
 
 def product_of_metrics(df):
