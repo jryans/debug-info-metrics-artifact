@@ -26,7 +26,18 @@ for tc in $(find -H testcases -type d -depth 1 | cut -c 11- | sort -n); do
         --range-start-first-defined-region \
         testcases/${tc}/bin/clang-${version}/opt-${level}.dSYM/Contents/Resources/DWARF/opt-${level} \
         > \
-        testcases/${tc}/bin/clang-${version}/opt-${level}.tsv
+        testcases/${tc}/bin/clang-${version}/opt-${level}-lines.tsv
+      debuginfo-quality \
+        --variables \
+        --tsv \
+        --only-locals \
+        --regions testcases/${tc}/src/clang/a.i.dbgcov \
+        --scope-regions \
+        --only-computation-regions \
+        --range-start-first-defined-region \
+        testcases/${tc}/bin/clang-${version}/opt-${level}.dSYM/Contents/Resources/DWARF/opt-${level} \
+        > \
+        testcases/${tc}/bin/clang-${version}/opt-${level}-variables.tsv
     done
   done
 done

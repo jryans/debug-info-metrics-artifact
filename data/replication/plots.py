@@ -47,7 +47,7 @@ def load_our_data():
       variant_testcases = []
       for tc in testcases:
         try:
-          variant_testcase = summarise(f"testcases/{tc}/bin/clang-{version}/opt-{level}.tsv")
+          variant_testcase = summarise(f"testcases/{tc}/bin/clang-{version}/opt-{level}-lines.tsv")
           variant_testcases.append(variant_testcase)
         except RuntimeError:
           continue
