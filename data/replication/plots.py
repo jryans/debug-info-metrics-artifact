@@ -130,7 +130,7 @@ def line_coverage(df):
     xlabel="Clang version",
     xticks=[5, 7, 9, 11],
     ylabel="Line coverage relative to baseline",
-    ybound=(0, 1),
+    ybound=(0, 1.002),
   )
 
 def availability_of_variables(df):
@@ -148,7 +148,7 @@ def availability_of_variables(df):
     xlabel="Clang version",
     xticks=[5, 7, 9, 11],
     ylabel="Availability of variables relative to baseline",
-    ybound=(0.5, 1),
+    ybound=(0.5, 1.002),
   )
 
 def product_of_metrics(df):
@@ -166,5 +166,5 @@ def product_of_metrics(df):
     xlabel="Clang version",
     xticks=[5, 7, 9, 11],
     ylabel="Product of metrics",
-    ybound=(0, 1),
+    ybound=(0, 1.002),
   )
