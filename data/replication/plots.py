@@ -168,3 +168,72 @@ def product_of_metrics(df):
     ylabel="Product of metrics",
     ybound=(0, 1.002),
   )
+
+def combined(df):
+  df = df.copy()
+
+  # Create figure with multiple axes
+  fig, axs = plt.subplots(
+    1, 3,
+    figsize=(7, 2.5),
+    layout="constrained",
+  )
+  [ax1, ax2, ax3] = axs
+
+  sns.lineplot(
+    df,
+    x="Version",
+    y="Line Coverage",
+    hue="Level",
+    style="Metric",
+    ax=ax1,
+  )
+  ax1.set(
+    title="Line coverage (Clang)",
+    xlabel="Clang version",
+    xticks=[5, 7, 9, 11],
+    ylabel="Line coverage relative to baseline",
+    ybound=(0, 1.002),
+  )
+  # Generate and then remove first legend
+  # Data added will power the figure-level legend below
+  ax1.get_legend().remove()
+
+  sns.lineplot(
+    df,
+    x="Version",
+    y="Availability of Variables",
+    hue="Level",
+    style="Metric",
+    legend=False,
+    ax=ax2,
+  )
+  ax2.set(
+    title="Availability of variables (Clang)",
+    xlabel="Clang version",
+    xticks=[5, 7, 9, 11],
+    ylabel="Availability relative to baseline",
+    ybound=(0.5, 1.002),
+  )
+
+  sns.lineplot(
+    df,
+    x="Version",
+    y="Product of Metrics",
+    hue="Level",
+    style="Metric",
+    legend=False,
+    ax=ax3,
+  )
+  ax3.set(
+    title="Product of metrics (Clang)",
+    xlabel="Clang version",
+    xticks=[5, 7, 9, 11],
+    ylabel="Product of metrics",
+    ybound=(0, 1.002),
+  )
+
+  fig.legend(
+    loc="center left",
+    bbox_to_anchor=(1.0, 0.5),
+  )
