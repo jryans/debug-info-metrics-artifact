@@ -217,11 +217,12 @@ def coverage_by_compiler_version(df):
     y="FCL / SSL",
     hue="Variant",
     kind="line",
+    height=3.5,
   )
   sns.move_legend(
     g,
-    "center left",
-    bbox_to_anchor=(0.125, 0.50),
+    "lower left",
+    bbox_to_anchor=(0.165, 0.155),
     frameon=True,
     shadow=True,
     title=None,
@@ -251,11 +252,12 @@ def coverage_by_optimisation_level(df):
     y="FCL / SSL",
     hue="Variant",
     kind="line",
+    height=3.5,
   )
   sns.move_legend(
     g,
-    "center left",
-    bbox_to_anchor=(0.125, 0.45),
+    "lower left",
+    bbox_to_anchor=(0.165, 0.155),
     frameon=True,
     shadow=True,
     title=None,
@@ -302,11 +304,12 @@ def coverage_with_ke_sorted_independently(df):
     hue="Variant",
     kind="line",
     palette=palette,
+    height=3.5,
   )
   sns.move_legend(
     g,
-    "center left",
-    bbox_to_anchor=(0.125, 0.45),
+    "lower left",
+    bbox_to_anchor=(0.165, 0.155),
     frameon=True,
     shadow=True,
     title=None,
@@ -327,7 +330,11 @@ def coverage_with_ke_sorted_consistently(df):
   variant_labels = df.index.unique("Variant").to_list()
 
   # Create figure with multiple axes
-  fig, axs = plt.subplots(1, 2, figsize=(10, 5))
+  fig, axs = plt.subplots(
+    1, 2,
+    figsize=(7.6, 3.0),
+    layout="constrained",
+  )
   [ax1, ax2] = axs
   fig.suptitle(f"Variable value source line coverage with knowledge extension ({friendly_name})")
 
@@ -411,11 +418,12 @@ def coverage_achievability(df):
     y="Cov Value",
     hue="Cov Type",
     kind="line",
+    height=3.5,
   )
   sns.move_legend(
     g,
-    "upper left",
-    bbox_to_anchor=(0.125, 0.8),
+    "lower left",
+    bbox_to_anchor=(0.160, 0.155),
     frameon=True,
     shadow=True,
     title=None,
@@ -427,8 +435,9 @@ def coverage_achievability(df):
   ax.fill_between(x, scope_y, defined_y, color="gray", alpha=0.5)
   ax.annotate(
     "Unachievable\n“coverage”",
-    xy=(0.875, 0.9),
+    xy=(0.840, 0.900),
     xycoords="axes fraction",
+    fontsize="small",
     horizontalalignment="center",
     bbox=dict(boxstyle="round", facecolor="m"),
   )
@@ -545,7 +554,11 @@ def coverage_comparison_ratios_o2_sorted_consistently_old_metric(df):
   )
 
   # Create figure with multiple axes
-  fig, axs = plt.subplots(1, 2, figsize=(10, 5))
+  fig, axs = plt.subplots(
+    1, 2,
+    figsize=(7.6, 3.0),
+    layout="constrained",
+  )
   [ax1, ax2] = axs
   fig.suptitle(f"Coverage metric comparison ({friendly_name}, Clang 15, O2)")
 
@@ -628,7 +641,11 @@ def coverage_comparison_ratios_o2_sorted_consistently_new_metric_same_denominato
   )
 
   # Create figure with multiple axes
-  fig, axs = plt.subplots(1, 2, figsize=(10, 5))
+  fig, axs = plt.subplots(
+    1, 2,
+    figsize=(7.6, 3.0),
+    layout="constrained",
+  )
   [ax1, ax2] = axs
   fig.suptitle(f"Coverage metric comparison ({friendly_name}, Clang 15, O2)")
 
@@ -717,7 +734,11 @@ def coverage_comparison_ratios_o2_sorted_consistently_new_metric_different_denom
   )
 
   # Create figure with multiple axes
-  fig, axs = plt.subplots(1, 2, figsize=(10, 5))
+  fig, axs = plt.subplots(
+    1, 2,
+    figsize=(7.6, 3.0),
+    layout="constrained",
+  )
   [ax1, ax2] = axs
   fig.suptitle(f"Coverage metric comparison ({friendly_name}, Clang 15, O2)")
 
@@ -800,7 +821,11 @@ def coverage_comparison_ratios_o2_sorted_consistently_new_metric_different_denom
   )
 
   # Create figure with multiple axes
-  fig, axs = plt.subplots(1, 2, figsize=(10, 5))
+  fig, axs = plt.subplots(
+    1, 2,
+    figsize=(7.6, 3.0),
+    layout="constrained",
+  )
   [ax1, ax2] = axs
   fig.suptitle(f"Coverage metric comparison ({friendly_name}, Clang 15, O2)")
 
@@ -883,7 +908,11 @@ def coverage_comparison_ratios_o2_sorted_consistently_new_metric_different_denom
   )
 
   # Create figure with multiple axes
-  fig, axs = plt.subplots(1, 2, figsize=(10, 5))
+  fig, axs = plt.subplots(
+    1, 2,
+    figsize=(7.6, 3.0),
+    layout="constrained",
+  )
   [ax1, ax2] = axs
   fig.suptitle(f"Coverage metric comparison ({friendly_name}, Clang 15, O2)")
 
