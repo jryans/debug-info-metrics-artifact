@@ -3,6 +3,8 @@ digraph DefUse
 
 InScopeUndefined -> LiveDef      [label="initialize"];
 
+InScopeUndefined -> DefNoLongerUsed [label="unused initialization"];
+
 LiveDef -> DefNoLongerUsed      [label="last use of def"];
 
 DefNoLongerUsed -> LiveDef      [label="new def"];
