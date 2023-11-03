@@ -175,7 +175,7 @@ def combined(df):
   # Create figure with multiple axes
   fig, axs = plt.subplots(
     1, 3,
-    figsize=(7, 2.5),
+    figsize=(6, 2.1),
     layout="constrained",
   )
   [ax1, ax2, ax3] = axs
