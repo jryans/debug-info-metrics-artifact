@@ -55,7 +55,7 @@ git clean -f
 ## Build for O0
 make \
   CC=wllvm \
-  CFLAGS="${CC_COMMON_OPTS} ${CC_O0_OPTS}"
+  CFLAGS="${CC_COMMON_OPTS} ${CC_CLANG_OPTS} ${CC_O0_OPTS}"
 
 ## Extract bitcode for O0
 extract-bc ${TARGET_PATH}
@@ -102,7 +102,7 @@ for i in ${!levels[*]}; do
   cc_level_opts="CC_${level}_OPTS"
   make \
     CC="$(llvm release-clang-lldb-${version}.0.0 clang)" \
-    CFLAGS="${CC_COMMON_OPTS} ${!cc_level_opts}"
+    CFLAGS="${CC_COMMON_OPTS} ${CC_CLANG_OPTS} ${!cc_level_opts}"
 
   ## Gather debug info
   dsymutil --flat "${TARGET_PATH}"
