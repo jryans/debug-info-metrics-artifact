@@ -21,86 +21,65 @@ def load_data():
   assert target_name
   assert friendly_name
 
+  dfs = []
+
   def read_run(file, variant):
     df = pd.read_table(f"{data_path_prefix}{file}")
+
     # Clean up column names
     df.columns = df.columns.str.strip()
     # Sort by name to aid matching across datasets
     df = df.sort_values("Name", ignore_index=True)
     # Summarise across inlined call sites with arithmetic mean
     df = df.groupby("Name", as_index=False).mean(numeric_only=True)
-    return df
 
-  o0_15_df = read_run(f"O0-15/{target_name}.tsv", "Clang 15, O0")
-  o0_15_m2r_df = read_run(f"O0-15-mem2reg/{target_name}.tsv", "Clang 15, O0 + mem2reg")
-  o0_15_m2r_efb_df = read_run(f"O0-15-mem2reg/{target_name}-efb.tsv", "Clang 15, O0 + mem2reg + KE")
-  o2_12_df = read_run(f"O2-12/{target_name}.tsv", "Clang 12, O2")
-  o2_13_df = read_run(f"O2-13/{target_name}.tsv", "Clang 13, O2")
-  o2_14_df = read_run(f"O2-14/{target_name}.tsv", "Clang 14, O2")
-  o1_15_df = read_run(f"O1-15/{target_name}.tsv", "Clang 15, O1")
-  o1_15_efb_df = read_run(f"O1-15/{target_name}-efb.tsv", "Clang 15, O1 + KE")
-  o2_15_df = read_run(f"O2-15/{target_name}.tsv", "Clang 15, O2")
-  o2_15_efb_df = read_run(f"O2-15/{target_name}-efb.tsv", "Clang 15, O2 + KE")
-  o3_15_df = read_run(f"O3-15/{target_name}.tsv", "Clang 15, O3")
-  o3_15_efb_df = read_run(f"O3-15/{target_name}-efb.tsv", "Clang 15, O3 + KE")
+    df.variant = variant
+    dfs.append(df)
+
+  # Order is important here!
+  # Some data transformations rely on
+  # `iloc[1]` to access the baseline,
+  # `diff` to access KE vs. not, etc.
+  # Re-check all transformations when changing the order.
+  read_run(f"O0-15/{target_name}.tsv", "Clang 15, O0")
+  read_run(f"O0-15-mem2reg/{target_name}.tsv", "Clang 15, O0 + mem2reg")
+  read_run(f"O0-15-mem2reg/{target_name}-efb.tsv", "Clang 15, O0 + mem2reg + KE")
+  read_run(f"O2-12/{target_name}.tsv", "Clang 12, O2")
+  read_run(f"O2-13/{target_name}.tsv", "Clang 13, O2")
+  read_run(f"O2-14/{target_name}.tsv", "Clang 14, O2")
+  read_run(f"O1-15/{target_name}.tsv", "Clang 15, O1")
+  read_run(f"O1-15/{target_name}-efb.tsv", "Clang 15, O1 + KE")
+  read_run(f"O2-15/{target_name}.tsv", "Clang 15, O2")
+  read_run(f"O2-15/{target_name}-efb.tsv", "Clang 15, O2 + KE")
+  read_run(f"O3-15/{target_name}.tsv", "Clang 15, O3")
+  read_run(f"O3-15/{target_name}-efb.tsv", "Clang 15, O3 + KE")
 
   # Check names present in each compilation for differences
   print("# Names")
-  common_names = (
-    set(o0_15_df["Name"]) &
-    set(o0_15_m2r_df["Name"]) &
-    set(o0_15_m2r_efb_df["Name"]) &
-    set(o2_12_df["Name"]) &
-    set(o2_13_df["Name"]) &
-    set(o2_14_df["Name"]) &
-    set(o1_15_df["Name"]) &
-    set(o1_15_efb_df["Name"]) &
-    set(o2_15_df["Name"]) &
-    set(o2_15_efb_df["Name"]) &
-    set(o3_15_df["Name"]) &
-    set(o3_15_efb_df["Name"])
-  )
+  common_names = set(dfs[0]["Name"])
+  for df in dfs:
+    common_names = common_names & set(df["Name"])
   print(f"Common names: {len(common_names)}")
-  all_names = (
-    set(o0_15_df["Name"]) |
-    set(o0_15_m2r_df["Name"]) |
-    set(o0_15_m2r_efb_df["Name"]) |
-    set(o2_12_df["Name"]) |
-    set(o2_13_df["Name"]) |
-    set(o2_14_df["Name"]) |
-    set(o1_15_df["Name"]) |
-    set(o1_15_efb_df["Name"]) |
-    set(o2_15_df["Name"]) |
-    set(o2_15_efb_df["Name"]) |
-    set(o3_15_df["Name"]) |
-    set(o3_15_efb_df["Name"])
-  )
+  all_names = set()
+  for df in dfs:
+    all_names = all_names | set(df["Name"])
   all_names_df = pd.DataFrame({ "Name": list(all_names) })
   print(f"All names: {len(all_names)}")
   print()
 
-  def name_diffs(df, variant):
-    print(f"## {variant}")
+  def name_diffs(df):
+    print(f"## {df.variant}")
     missing_all_diff = len(all_names_df[~all_names_df["Name"].isin(df["Name"])])
     print(f"{missing_all_diff} names from other compilations missing from this compilation")
     common_diff = len(df[~df["Name"].isin(common_names)])
     print(f"{common_diff} names missing from one or more other compilations")
     print()
 
-  name_diffs(o0_15_df, "Clang 15, O0")
-  name_diffs(o0_15_m2r_df, "Clang 15, O0 + mem2reg")
-  name_diffs(o0_15_m2r_efb_df, "Clang 15, O0 + mem2reg + KE")
-  name_diffs(o2_12_df, "Clang 12, O2")
-  name_diffs(o2_13_df, "Clang 13, O2")
-  name_diffs(o2_14_df, "Clang 14, O2")
-  name_diffs(o1_15_df, "Clang 15, O1")
-  name_diffs(o1_15_efb_df, "Clang 15, O1 + KE")
-  name_diffs(o2_15_df, "Clang 15, O2")
-  name_diffs(o2_15_efb_df, "Clang 15, O2 + KE")
-  name_diffs(o3_15_df, "Clang 15, O3")
-  name_diffs(o3_15_efb_df, "Clang 15, O3 + KE")
+  for df in dfs:
+    name_diffs(df)
 
-  def add_missing_rows(df, variant):
+  def add_missing_rows(df):
+    variant = df.variant
     # Create additional dataset with missing rows
     missing_df = all_names_df[~all_names_df["Name"].isin(df["Name"])].copy()
     missing_df["Cov (B)"] = 0
@@ -120,66 +99,31 @@ def load_data():
       ignore_index=True,
     )
     assert len(df) == len(all_names_df), "Names still missing"
-    return df.sort_values("Name", ignore_index=True)
+    df = df.sort_values("Name", ignore_index=True)
+    df.variant = variant
+    return df
 
   # Add any missing rows so that all compilations contain the union of all names
-  o0_15_df = add_missing_rows(o0_15_df, "Clang 15, O0")
-  o0_15_m2r_df = add_missing_rows(o0_15_m2r_df, "Clang 15, O0 + mem2reg")
-  o0_15_m2r_efb_df = add_missing_rows(o0_15_m2r_efb_df, "Clang 15, O0 + mem2reg + KE")
-  o2_12_df = add_missing_rows(o2_12_df, "Clang 12, O2")
-  o2_13_df = add_missing_rows(o2_13_df, "Clang 13, O2")
-  o2_14_df = add_missing_rows(o2_14_df, "Clang 14, O2")
-  o1_15_df = add_missing_rows(o1_15_df, "Clang 15, O1")
-  o1_15_efb_df = add_missing_rows(o1_15_efb_df, "Clang 15, O1 + KE")
-  o2_15_df = add_missing_rows(o2_15_df, "Clang 15, O2")
-  o2_15_efb_df = add_missing_rows(o2_15_efb_df, "Clang 15, O2 + KE")
-  o3_15_df = add_missing_rows(o3_15_df, "Clang 15, O3")
-  o3_15_efb_df = add_missing_rows(o3_15_efb_df, "Clang 15, O3 + KE")
+  for (i, df) in enumerate(dfs):
+    dfs[i] = add_missing_rows(df)
 
   # Manufacture virtual data frame representing full coverage
-  full_df = o0_15_df.copy()
+  full_df = dfs[0].copy()
   full_df["Cov (B)"] = full_df["Scope (B)"]
   full_df["Cov (L)"] = full_df["Scope (L)"]
   full_df["Flt Cov (L)"] = full_df["Src Scope (L)"]
   full_df["Adj Cov (L)"] = full_df["Src Scope (L)"]
+  full_df.variant = "Defined region"
+  dfs.insert(0, full_df)
 
-  # Order is important here!
-  # Some data transformations rely on
-  # `iloc[1]` to access the baseline,
-  # `diff` to access KE vs. not, etc.
-  # Re-check all transformations when changing the order.
-  compilations_df = pd.concat([
-    full_df,
-    o0_15_df,
-    o0_15_m2r_df,
-    o0_15_m2r_efb_df,
-    o2_12_df,
-    o2_13_df,
-    o2_14_df,
-    o1_15_df,
-    o1_15_efb_df,
-    o2_15_df,
-    o2_15_efb_df,
-    o3_15_df,
-    o3_15_efb_df,
-  ], keys=[
-    "Defined region",
-    "Clang 15, O0",
-    "Clang 15, O0 + mem2reg",
-    "Clang 15, O0 + mem2reg + KE",
-    "Clang 12, O2",
-    "Clang 13, O2",
-    "Clang 14, O2",
-    "Clang 15, O1",
-    "Clang 15, O1 + KE",
-    "Clang 15, O2",
-    "Clang 15, O2 + KE",
-    "Clang 15, O3",
-    "Clang 15, O3 + KE",
-  ], names=[
-    "Variant",
-    "Row",
-  ])
+  compilations_df = pd.concat(
+    dfs,
+    keys=map(lambda df: df.variant, dfs),
+    names=[
+      "Variant",
+      "Row",
+    ],
+  )
 
   return compilations_df
 
