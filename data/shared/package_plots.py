@@ -1,3 +1,5 @@
+import warnings
+
 import numpy as np
 import pandas as pd
 
@@ -10,6 +12,12 @@ import seaborn.objects as so
 target_name = None
 friendly_name = None
 data_path_prefix = ""
+
+# Ignore warning about `variant` attributes below
+warnings.filterwarnings(
+  "ignore",
+  "Pandas doesn't allow columns to be created via a new attribute name",
+)
 
 def configure(target, friendly, path_prefix=""):
   global target_name, friendly_name, data_path_prefix
