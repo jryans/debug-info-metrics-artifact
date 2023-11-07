@@ -13,10 +13,13 @@ llvm() {
 CC_SYSROOT_OPTS="--sysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk"
 CC_COMMON_OPTS="${CC_SYSROOT_OPTS} -g"
 CC_CLANG_OPTS="-fno-discard-value-names -Xclang -disable-O0-optnone"
+CC_GCC_OPTS="-gdwarf-4"
 CC_O0_OPTS=""
 CC_O1_OPTS="-O1"
 CC_O2_OPTS="-O2"
 CC_O3_OPTS="-O3"
+CC_Og_OPTS="-Og"
+CC_LV_OPTS="${CC_Og_OPTS} -gvariable-location-views"
 
 DBGCOV_PATH="${HOME}/Projects/dbgcov/bin"
 DBGCOV_CC="gcc-13"
