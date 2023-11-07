@@ -41,29 +41,29 @@ def load_data():
   # `iloc[1]` to access the baseline,
   # `diff` to access KE vs. not, etc.
   # Re-check all transformations when changing the order.
-  read_run(f"clang/15/O0/{target_name}.tsv", "Clang 15, O0")
-  read_run(f"clang/15/O0-mem2reg/{target_name}.tsv", "Clang 15, O0 + mem2reg")
-  read_run(f"clang/15/O0-mem2reg/{target_name}-efb.tsv", "Clang 15, O0 + mem2reg + KE")
-  read_run(f"clang/12/O2/{target_name}.tsv", "Clang 12, O2")
-  read_run(f"clang/13/O2/{target_name}.tsv", "Clang 13, O2")
-  read_run(f"clang/14/O2/{target_name}.tsv", "Clang 14, O2")
-  read_run(f"clang/15/O1/{target_name}.tsv", "Clang 15, O1")
-  read_run(f"clang/15/O1/{target_name}-efb.tsv", "Clang 15, O1 + KE")
-  read_run(f"clang/15/O2/{target_name}.tsv", "Clang 15, O2")
-  read_run(f"clang/15/O2/{target_name}-efb.tsv", "Clang 15, O2 + KE")
-  read_run(f"clang/15/O3/{target_name}.tsv", "Clang 15, O3")
-  read_run(f"clang/15/O3/{target_name}-efb.tsv", "Clang 15, O3 + KE")
-  read_run(f"gcc/10/Og/{target_name}.tsv", "GCC 10, Og")
-  read_run(f"gcc/10/O2/{target_name}.tsv", "GCC 10, O2")
-  read_run(f"gcc/11/Og/{target_name}.tsv", "GCC 11, Og")
-  read_run(f"gcc/11/O2/{target_name}.tsv", "GCC 11, O2")
-  read_run(f"gcc/12/Og/{target_name}.tsv", "GCC 12, Og")
-  read_run(f"gcc/12/O2/{target_name}.tsv", "GCC 12, O2")
-  read_run(f"gcc/13/O0/{target_name}.tsv", "GCC 13, O0")
-  read_run(f"gcc/13/Og/{target_name}.tsv", "GCC 13, Og")
-  read_run(f"gcc/13/O1/{target_name}.tsv", "GCC 13, O1")
-  read_run(f"gcc/13/O2/{target_name}.tsv", "GCC 13, O2")
-  read_run(f"gcc/13/O3/{target_name}.tsv", "GCC 13, O3")
+  read_run(f"clang/15/O0/{target_name}.tsv", ("Clang", "15", "O0"))
+  read_run(f"clang/15/O0-mem2reg/{target_name}.tsv", ("Clang", "15", "O0 + mem2reg"))
+  read_run(f"clang/15/O0-mem2reg/{target_name}-efb.tsv", ("Clang", "15", "O0 + mem2reg + KE"))
+  read_run(f"clang/12/O2/{target_name}.tsv", ("Clang", "12", "O2"))
+  read_run(f"clang/13/O2/{target_name}.tsv", ("Clang", "13", "O2"))
+  read_run(f"clang/14/O2/{target_name}.tsv", ("Clang", "14", "O2"))
+  read_run(f"clang/15/O1/{target_name}.tsv", ("Clang", "15", "O1"))
+  read_run(f"clang/15/O1/{target_name}-efb.tsv", ("Clang", "15", "O1 + KE"))
+  read_run(f"clang/15/O2/{target_name}.tsv", ("Clang", "15", "O2"))
+  read_run(f"clang/15/O2/{target_name}-efb.tsv", ("Clang", "15", "O2 + KE"))
+  read_run(f"clang/15/O3/{target_name}.tsv", ("Clang", "15", "O3"))
+  read_run(f"clang/15/O3/{target_name}-efb.tsv", ("Clang", "15", "O3 + KE"))
+  read_run(f"gcc/10/Og/{target_name}.tsv", ("GCC", "10", "Og"))
+  read_run(f"gcc/10/O2/{target_name}.tsv", ("GCC", "10", "O2"))
+  read_run(f"gcc/11/Og/{target_name}.tsv", ("GCC", "11", "Og"))
+  read_run(f"gcc/11/O2/{target_name}.tsv", ("GCC", "11", "O2"))
+  read_run(f"gcc/12/Og/{target_name}.tsv", ("GCC", "12", "Og"))
+  read_run(f"gcc/12/O2/{target_name}.tsv", ("GCC", "12", "O2"))
+  read_run(f"gcc/13/O0/{target_name}.tsv", ("GCC", "13", "O0"))
+  read_run(f"gcc/13/Og/{target_name}.tsv", ("GCC", "13", "Og"))
+  read_run(f"gcc/13/O1/{target_name}.tsv", ("GCC", "13", "O1"))
+  read_run(f"gcc/13/O2/{target_name}.tsv", ("GCC", "13", "O2"))
+  read_run(f"gcc/13/O3/{target_name}.tsv", ("GCC", "13", "O3"))
 
   # Check names present in each compilation for differences
   print("# Names")
@@ -124,13 +124,25 @@ def load_data():
   full_df["Cov (L)"] = full_df["Scope (L)"]
   full_df["Flt Cov (L)"] = full_df["Src Scope (L)"]
   full_df["Adj Cov (L)"] = full_df["Src Scope (L)"]
-  full_df.variant = "Defined region"
+  full_df.variant = ("Source analysis", "", "Defined region", "Defined region")
   dfs.insert(0, full_df)
+
+  def df_keys(df):
+    keys = df.variant
+    # Defined region already has a variant label
+    if len(keys) == 4:
+      return keys
+    (family, version, level) = keys
+    variant = f"{family} {version}, {level}"
+    return (family, version, level, variant)
 
   compilations_df = pd.concat(
     dfs,
-    keys=map(lambda df: df.variant, dfs),
+    keys=map(df_keys, dfs),
     names=[
+      "Family",
+      "Version",
+      "Level",
       "Variant",
       "Row",
     ],
@@ -162,22 +174,33 @@ def coverage_by_compiler_version(df):
   df = df[
     variants.str.contains("Defined") |
     (
-      variants.str.contains("O2") &
+      (
+        variants.str.contains("Clang 12") |
+        variants.str.contains("Clang 15") |
+        variants.str.contains("GCC 10") |
+        variants.str.contains("GCC 13")
+      ) &
+      variants.str.contains("O[12g]") &
       ~(variants.str.contains("KE"))
     )
   ]
+  families = df.index.get_level_values("Family")
+  versions = df.index.get_level_values("Version")
+  df["Tool"] = families + " " + versions
   g = sns.relplot(
     df,
     x="Order",
     y="FCL / SSL",
-    hue="Variant",
+    hue="Tool",
+    style="Level",
     kind="line",
-    height=3.5,
+    height=4,
   )
   sns.move_legend(
     g,
     "lower left",
-    bbox_to_anchor=(0.165, 0.155),
+    bbox_to_anchor=(0.145, 0.135),
+    fontsize="small",
     frameon=True,
     shadow=True,
     title=None,
@@ -197,22 +220,30 @@ def coverage_by_optimisation_level(df):
   df = df[
     variants.str.contains("Defined") |
     (
-      variants.str.contains("Clang 15") &
+      (
+        variants.str.contains("Clang 15") |
+        variants.str.contains("GCC 13")
+      ) &
       ~(variants.str.contains("KE"))
     )
   ]
+  families = df.index.get_level_values("Family")
+  versions = df.index.get_level_values("Version")
+  df["Tool"] = families + " " + versions
   g = sns.relplot(
     df,
     x="Order",
     y="FCL / SSL",
-    hue="Variant",
+    hue="Level",
     kind="line",
-    height=3.5,
+    style="Tool",
+    height=4,
   )
   sns.move_legend(
     g,
     "lower left",
-    bbox_to_anchor=(0.165, 0.155),
+    bbox_to_anchor=(0.145, 0.135),
+    fontsize="small",
     frameon=True,
     shadow=True,
     title=None,
