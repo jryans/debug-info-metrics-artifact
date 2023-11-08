@@ -107,8 +107,8 @@ def load_data():
     our_df,
     asplos_df,
   ], keys=[
-    "Ours",
-    "ASPLOS",
+    "This paper",
+    "Assaiante et al.",
   ], names=[
     "Metric",
   ])
@@ -128,6 +128,7 @@ def line_coverage(df):
   g.set(
     title="Line coverage (Clang)",
     xlabel="Clang version",
+    xbound=(5, 11),
     xticks=[5, 7, 9, 11],
     ylabel="Line coverage relative to baseline",
     ybound=(0, 1.002),
@@ -146,6 +147,7 @@ def availability_of_variables(df):
   g.set(
     title="Availability of variables (Clang)",
     xlabel="Clang version",
+    xbound=(5, 11),
     xticks=[5, 7, 9, 11],
     ylabel="Availability of variables relative to baseline",
     ybound=(0.5, 1.002),
@@ -164,6 +166,7 @@ def product_of_metrics(df):
   g.set(
     title="Product of metrics (Clang)",
     xlabel="Clang version",
+    xbound=(5, 11),
     xticks=[5, 7, 9, 11],
     ylabel="Product of metrics",
     ybound=(0, 1.002),
@@ -191,6 +194,7 @@ def combined(df):
   ax1.set(
     title="Line coverage (Clang)",
     xlabel="Clang version",
+    xbound=(5, 11),
     xticks=[5, 7, 9, 11],
     ylabel="Line coverage relative to baseline",
     ybound=(0, 1.002),
@@ -211,6 +215,7 @@ def combined(df):
   ax2.set(
     title="Availability of variables (Clang)",
     xlabel="Clang version",
+    xbound=(5, 11),
     xticks=[5, 7, 9, 11],
     ylabel="Availability relative to baseline",
     ybound=(0.5, 1.002),
@@ -228,6 +233,7 @@ def combined(df):
   ax3.set(
     title="Product of metrics (Clang)",
     xlabel="Clang version",
+    xbound=(5, 11),
     xticks=[5, 7, 9, 11],
     ylabel="Product of metrics",
     ybound=(0, 1.002),
@@ -236,4 +242,5 @@ def combined(df):
   fig.legend(
     loc="center left",
     bbox_to_anchor=(1.0, 0.5),
+    fontsize="small",
   )
