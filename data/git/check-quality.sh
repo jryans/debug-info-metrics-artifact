@@ -68,8 +68,8 @@ debuginfo-quality \
   > clang/${version}/${level}/${TARGET_NAME}-efb.tsv
 
 # Clang O1+ using above as baseline
-  levels=(O2 O2 O2 O1 O2 O3)
-versions=(12 13 14 15 15 15)
+  levels=(O1 O2 O1 O2 O3)
+versions=(12 12 15 15 15)
 
 for i in ${!levels[*]}; do
   level=${levels[$i]}
@@ -104,8 +104,8 @@ done
 
 # GCC
 
-  levels=(Og O2 Og O2 Og O2 O0 Og O1 O2 O3)
-versions=(10 10 11 11 12 12 13 13 13 13 13)
+  levels=(Og O1 O2 O0 Og O1 O2 O3)
+versions=(10 10 10 13 13 13 13 13)
 
 for i in ${!levels[*]}; do
   level=${levels[$i]}
