@@ -1,8 +1,0 @@
-Name	Cov (B)     	Scope (B)   	CB / SB     	Cov (L)     	Scope (L)   	CL / SL     
-
-clang versio,clang versio@0x0:0x43	           5	          74	     0.06757	           1	           4	     0.25000
-clang versio,clang versio@0x0:0x52	           5	          74	     0.06757	           1	           4	     0.25000
-
-params	           5	          74	     0.06757	           1	           4	     0.25000
-vars	           5	          74	     0.06757	           1	           4	     0.25000
-all	          10	         148	     0.06757	           2	           8	     0.25000

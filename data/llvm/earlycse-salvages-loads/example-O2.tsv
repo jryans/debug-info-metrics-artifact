@@ -1,0 +1,8 @@
+Name	Instance	Cov (B)     	Scope (B)   	Cov (L)     	Scope (L)   	Flt Cov (L) 	Src Scope (L)
+
+foo, bar, decl example.c:1	example.c	           9	           9	           3	           3	           3	           7
+foo, arg, decl example.c:1	example.c	           0	           9	           0	           3	           0	           7
+foo, more, decl example.c:1	example.c	           9	           9	           3	           3	           3	           7
+foo, redundant, decl example.c:2	example.c	           9	           9	           3	           3	           2	           5
+foo, loaded, decl example.c:3	example.c	           9	           9	           3	           3	           2	           4
+

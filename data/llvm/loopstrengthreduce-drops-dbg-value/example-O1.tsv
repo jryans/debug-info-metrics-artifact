@@ -1,0 +1,5 @@
+Name	Instance	Cov (B)     	Scope (B)   	Cov (L)     	Scope (L)   	Flt Cov (L) 	Src Scope (L)
+
+foo, blah, decl example.c:1	example.c	          64	          74	           3	           4	           3	           6
+foo, bob, decl example.c:2	example.c	           5	          74	           1	           4	           0	           4
+
