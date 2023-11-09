@@ -11,7 +11,7 @@ SCRIPT_DIR=$(dirname "${BASH_SOURCE[0]}")
 source "${SCRIPT_DIR}/../vars.sh"
 
 # Source analysis
-echo "## Building testcases (source analysis)"
+echo "## Building (source analysis)"
 
 ## Build via `dbgcov` to report source code regions of various kinds
 export PATH="${DBGCOV_PATH}:${PATH}"

@@ -15,7 +15,7 @@ versions=(5 7 9 11)
 for tc in $(find -H testcases -type d -depth 1 | cut -c 11- | sort -n); do
   for version in ${versions[*]}; do
     for level in ${levels[*]}; do
-      echo "## Checking debug quality of testcases (${tc}, ${version}, ${level})"
+      echo "## Checking debug quality (${tc}, ${version}, ${level})"
       debuginfo-quality \
         --lines \
         --tsv \
