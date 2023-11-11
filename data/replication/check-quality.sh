@@ -16,28 +16,59 @@ for tc in $(find -H testcases -type d -depth 1 | cut -c 11- | sort -n); do
   for version in ${versions[*]}; do
     for level in ${levels[*]}; do
       echo "## Checking debug quality (${tc}, ${version}, ${level})"
-      debuginfo-quality \
-        --lines \
-        --tsv \
-        --only-locals \
-        --regions testcases/${tc}/src/clang/a.i.dbgcov \
-        --scope-regions \
-        --only-computation-regions \
-        --range-start-first-defined-region \
-        testcases/${tc}/bin/clang-${version}/opt-${level}.dSYM/Contents/Resources/DWARF/opt-${level} \
-        > \
-        testcases/${tc}/bin/clang-${version}/opt-${level}-lines.tsv
-      debuginfo-quality \
-        --variables \
-        --tsv \
-        --only-locals \
-        --regions testcases/${tc}/src/clang/a.i.dbgcov \
-        --scope-regions \
-        --only-computation-regions \
-        --range-start-first-defined-region \
-        testcases/${tc}/bin/clang-${version}/opt-${level}.dSYM/Contents/Resources/DWARF/opt-${level} \
-        > \
-        testcases/${tc}/bin/clang-${version}/opt-${level}-variables.tsv
+
+      # Only use cachegrind for levels > 0
+      if [ ${level} == "0" ]; then
+        debuginfo-quality \
+          --lines \
+          --tsv \
+          --only-locals \
+          --regions testcases/${tc}/src/clang/a.i.dbgcov \
+          --scope-regions \
+          --only-computation-regions \
+          --range-start-first-defined-region \
+          testcases/${tc}/bin/clang-${version}/opt-${level}.dSYM/Contents/Resources/DWARF/opt-${level} \
+          > \
+          testcases/${tc}/bin/clang-${version}/opt-${level}-lines.tsv
+        debuginfo-quality \
+          --variables \
+          --tsv \
+          --only-locals \
+          --regions testcases/${tc}/src/clang/a.i.dbgcov \
+          --scope-regions \
+          --only-computation-regions \
+          --range-start-first-defined-region \
+          testcases/${tc}/bin/clang-${version}/opt-${level}.dSYM/Contents/Resources/DWARF/opt-${level} \
+          > \
+          testcases/${tc}/bin/clang-${version}/opt-${level}-variables.tsv
+      else
+        debuginfo-quality \
+          --lines \
+          --tsv \
+          --only-locals \
+          --regions testcases/${tc}/src/clang/a.i.dbgcov \
+          --scope-regions \
+          --only-computation-regions \
+          --range-start-first-defined-region \
+          --cachegrind testcases/${tc}/bin/clang-${version}/opt-0.cg \
+          --only-cachegrind-regions \
+          testcases/${tc}/bin/clang-${version}/opt-${level}.dSYM/Contents/Resources/DWARF/opt-${level} \
+          > \
+          testcases/${tc}/bin/clang-${version}/opt-${level}-lines.tsv
+        debuginfo-quality \
+          --variables \
+          --tsv \
+          --only-locals \
+          --regions testcases/${tc}/src/clang/a.i.dbgcov \
+          --scope-regions \
+          --only-computation-regions \
+          --range-start-first-defined-region \
+          --cachegrind testcases/${tc}/bin/clang-${version}/opt-0.cg \
+          --only-cachegrind-regions \
+          testcases/${tc}/bin/clang-${version}/opt-${level}.dSYM/Contents/Resources/DWARF/opt-${level} \
+          > \
+          testcases/${tc}/bin/clang-${version}/opt-${level}-variables.tsv
+      fi
     done
   done
 done

@@ -19,11 +19,14 @@ def load_our_data():
 
     df["Locatability"] = df["Locatable (V)"] / df["Scope (V)"]
 
-    present_df = df[df["Present"] == 1]
-    line_coverage = len(present_df) / len(df)
+    present_reachable_df = df[
+      (df["Present"] == 1) &
+      (df["Reachable"] == 1)
+    ]
+    line_coverage = len(present_reachable_df) / len(df)
 
     # Not convinced this is statistically valid, but it's what ASPLOS does
-    availability_of_variables = present_df["Locatability"].mean()
+    availability_of_variables = present_reachable_df["Locatability"].mean()
 
     return {
       "Line Coverage": line_coverage,
