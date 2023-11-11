@@ -29,6 +29,10 @@ def load_our_data():
     # Not convinced this is statistically valid, but it's what ASPLOS does
     availability_of_variables = present_reachable_df["Locatability"].mean()
 
+    # print(file)
+    # print(f"lc: {len(present_reachable_df)} / {len(df)} = {line_coverage}")
+    # print(f"av: {availability_of_variables}")
+
     return {
       "Line Coverage": line_coverage,
       "Availability of Variables": availability_of_variables,
@@ -40,9 +44,10 @@ def load_our_data():
   testcases = []
   for tc in os.listdir("testcases"):
     try:
-      testcases.append(int(tc))
+      tc = int(tc)
     except ValueError:
       continue
+    testcases.append(tc)
   testcases.sort()
 
   rows = []
