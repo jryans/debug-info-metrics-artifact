@@ -14,6 +14,7 @@ def load_our_data():
     df = pd.read_table(file)
     # Some files are expected to be empty (whole program optimised away)
     if len(df) == 0:
+      print(f"Skipping {file}, no data found")
       raise RuntimeError("No data")
     df.columns = df.columns.str.strip()
 
