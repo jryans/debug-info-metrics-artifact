@@ -122,20 +122,8 @@ def load_data():
   for (i, df) in enumerate(dfs):
     dfs[i] = add_missing_rows(df)
 
-  # Manufacture virtual data frame representing full coverage
-  full_df = dfs[0].copy()
-  full_df["Cov (B)"] = full_df["Scope (B)"]
-  full_df["Cov (L)"] = full_df["Scope (L)"]
-  full_df["Flt Cov (L)"] = full_df["Src Scope (L)"]
-  full_df["Adj Cov (L)"] = full_df["Src Scope (L)"]
-  full_df.variant = ("Source analysis", "", "Defined region", "Defined region")
-  dfs.insert(0, full_df)
-
   def df_keys(df):
     keys = df.variant
-    # Defined region already has a variant label
-    if len(keys) == 4:
-      return keys
     (family, version, level) = keys
     variant = f"{family} {version}, {level}"
     return (family, version, level, variant)
@@ -277,14 +265,13 @@ def coverage_with_ke_sorted_independently(df):
     c = colorsys.rgb_to_hls(*color)
     return colorsys.hls_to_rgb(c[0], max(0, min(1, amount * c[1])), c[2])
 
-  base_palette = sns.color_palette("colorblind", n_colors=3)
+  base_palette = sns.color_palette("colorblind", n_colors=2)
   palette = [
-    base_palette[0],                 # Defined region
-    base_palette[1],                 # Clang 15, O0
-    lightness(base_palette[1], 2/3), # Clang 15, O0 + mem2reg
-    lightness(base_palette[1], 1/3), # Clang 15, O0 + mem2reg + KE
-    base_palette[2],                 # Clang 15, O1
-    lightness(base_palette[2], 1/3), # Clang 15, O1 + KE
+    base_palette[0],                 # Clang 15, O0
+    lightness(base_palette[0], 2/3), # Clang 15, O0 + mem2reg
+    lightness(base_palette[0], 1/3), # Clang 15, O0 + mem2reg + KE
+    base_palette[1],                 # Clang 15, O1
+    lightness(base_palette[1], 1/3), # Clang 15, O1 + KE
   ]
 
   g = sns.relplot(
