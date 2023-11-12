@@ -49,25 +49,25 @@ def load_data():
   # `iloc[1]` to access the baseline,
   # `diff` to access KE vs. not, etc.
   # Re-check all transformations when changing the order.
-  read_run(f"clang/15/O0/{target_name}.tsv", ("Clang", "15", "O0"))
-  read_run(f"clang/15/O0-mem2reg/{target_name}.tsv", ("Clang", "15", "O0 + mem2reg"))
-  read_run(f"clang/15/O0-mem2reg/{target_name}-efb.tsv", ("Clang", "15", "O0 + mem2reg + KE"))
-  read_run(f"clang/12/O1/{target_name}.tsv", ("Clang", "12", "O1"))
-  read_run(f"clang/12/O2/{target_name}.tsv", ("Clang", "12", "O2"))
-  read_run(f"clang/15/O1/{target_name}.tsv", ("Clang", "15", "O1"))
-  read_run(f"clang/15/O1/{target_name}-efb.tsv", ("Clang", "15", "O1 + KE"))
-  read_run(f"clang/15/O2/{target_name}.tsv", ("Clang", "15", "O2"))
-  read_run(f"clang/15/O2/{target_name}-efb.tsv", ("Clang", "15", "O2 + KE"))
-  read_run(f"clang/15/O3/{target_name}.tsv", ("Clang", "15", "O3"))
-  read_run(f"clang/15/O3/{target_name}-efb.tsv", ("Clang", "15", "O3 + KE"))
-  read_run(f"gcc/10/Og/{target_name}.tsv", ("GCC", "10", "Og"))
-  read_run(f"gcc/10/O1/{target_name}.tsv", ("GCC", "10", "O1"))
-  read_run(f"gcc/10/O2/{target_name}.tsv", ("GCC", "10", "O2"))
-  read_run(f"gcc/13/O0/{target_name}.tsv", ("GCC", "13", "O0"))
-  read_run(f"gcc/13/Og/{target_name}.tsv", ("GCC", "13", "Og"))
-  read_run(f"gcc/13/O1/{target_name}.tsv", ("GCC", "13", "O1"))
-  read_run(f"gcc/13/O2/{target_name}.tsv", ("GCC", "13", "O2"))
-  read_run(f"gcc/13/O3/{target_name}.tsv", ("GCC", "13", "O3"))
+  read_run(f"clang/15/O0/{target_name}.tsv", ("Clang", "15", "O0", "No KE"))
+  read_run(f"clang/15/O0-mem2reg/{target_name}.tsv", ("Clang", "15", "O0 + mem2reg", "No KE"))
+  read_run(f"clang/15/O0-mem2reg/{target_name}-efb.tsv", ("Clang", "15", "O0 + mem2reg", "Has KE"))
+  read_run(f"clang/12/O1/{target_name}.tsv", ("Clang", "12", "O1", "No KE"))
+  read_run(f"clang/12/O2/{target_name}.tsv", ("Clang", "12", "O2", "No KE"))
+  read_run(f"clang/15/O1/{target_name}.tsv", ("Clang", "15", "O1", "No KE"))
+  read_run(f"clang/15/O1/{target_name}-efb.tsv", ("Clang", "15", "O1", "Has KE"))
+  read_run(f"clang/15/O2/{target_name}.tsv", ("Clang", "15", "O2", "No KE"))
+  read_run(f"clang/15/O2/{target_name}-efb.tsv", ("Clang", "15", "O2", "Has KE"))
+  read_run(f"clang/15/O3/{target_name}.tsv", ("Clang", "15", "O3", "No KE"))
+  read_run(f"clang/15/O3/{target_name}-efb.tsv", ("Clang", "15", "O3", "Has KE"))
+  read_run(f"gcc/10/Og/{target_name}.tsv", ("GCC", "10", "Og", "No KE"))
+  read_run(f"gcc/10/O1/{target_name}.tsv", ("GCC", "10", "O1", "No KE"))
+  read_run(f"gcc/10/O2/{target_name}.tsv", ("GCC", "10", "O2", "No KE"))
+  read_run(f"gcc/13/O0/{target_name}.tsv", ("GCC", "13", "O0", "No KE"))
+  read_run(f"gcc/13/Og/{target_name}.tsv", ("GCC", "13", "Og", "No KE"))
+  read_run(f"gcc/13/O1/{target_name}.tsv", ("GCC", "13", "O1", "No KE"))
+  read_run(f"gcc/13/O2/{target_name}.tsv", ("GCC", "13", "O2", "No KE"))
+  read_run(f"gcc/13/O3/{target_name}.tsv", ("GCC", "13", "O3", "No KE"))
 
   # Check names present in each compilation for differences
   print("# Names")
@@ -124,9 +124,11 @@ def load_data():
 
   def df_keys(df):
     keys = df.variant
-    (family, version, level) = keys
+    (family, version, level, ke) = keys
     variant = f"{family} {version}, {level}"
-    return (family, version, level, variant)
+    if ke == "Has KE":
+      variant += " + KE"
+    return (family, version, level, ke, variant)
 
   compilations_df = pd.concat(
     dfs,
@@ -135,6 +137,7 @@ def load_data():
       "Family",
       "Version",
       "Level",
+      "KE",
       "Variant",
       "Row",
     ],
@@ -259,28 +262,13 @@ def coverage_with_ke_sorted_independently(df):
       variants.str.contains("Clang 15")
     )
   ]
-
-  def lightness(color, amount):
-    import colorsys
-    c = colorsys.rgb_to_hls(*color)
-    return colorsys.hls_to_rgb(c[0], max(0, min(1, amount * c[1])), c[2])
-
-  base_palette = sns.color_palette("colorblind", n_colors=2)
-  palette = [
-    base_palette[0],                 # Clang 15, O0
-    lightness(base_palette[0], 2/3), # Clang 15, O0 + mem2reg
-    lightness(base_palette[0], 1/3), # Clang 15, O0 + mem2reg + KE
-    base_palette[1],                 # Clang 15, O1
-    lightness(base_palette[1], 1/3), # Clang 15, O1 + KE
-  ]
-
   g = sns.relplot(
     df,
     x="Order",
     y="FCL / SSL",
-    hue="Variant",
+    hue="Level",
+    style="KE",
     kind="line",
-    palette=palette,
     height=3.5,
   )
   sns.move_legend(
@@ -292,7 +280,7 @@ def coverage_with_ke_sorted_independently(df):
     title=None,
   )
   g.set(
-    title=f"Variable value source line coverage ({friendly_name})",
+    title=f"Variable value source line coverage ({friendly_name}, Clang 15)",
     xlabel="Variable index (sorted by coverage)",
     xbound=(0, df["Order"].max()),
     ylabel="Covered source lines normalised to defined region",
