@@ -9,6 +9,8 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import seaborn.objects as so
 
+idx = pd.IndexSlice
+
 target_name = None
 friendly_name = None
 data_path_prefix = ""
@@ -306,7 +308,7 @@ def coverage_with_ke_sorted_consistently(df):
   df["Order"] = df.sort_values(by="FCL / SSL", ascending=False).groupby("Variant").cumcount()
   df["Order"] = df.groupby("Name")["Order"].transform("first")
   sns.lineplot(
-    df.loc[variant_labels[0]],
+    df.loc[idx[:, :, :, :, variant_labels[0]]],
     x="Order",
     y="FCL / SSL",
     hue="Variant Label",
@@ -317,7 +319,7 @@ def coverage_with_ke_sorted_consistently(df):
     ax=ax1,
   )
   sns.scatterplot(
-    df.loc[variant_labels[1]],
+    df.loc[idx[:, :, :, :, variant_labels[1]]],
     x="Order",
     y="FCL / SSL",
     hue="Variant Label",
@@ -336,7 +338,7 @@ def coverage_with_ke_sorted_consistently(df):
   df["Order"] = df.sort_values(by="FCL / SSL", ascending=False).groupby("Variant").cumcount()
   df["Order"] = df.groupby("Name")["Order"].transform("last")
   sns.scatterplot(
-    df.loc[variant_labels[0]],
+    df.loc[idx[:, :, :, :, variant_labels[0]]],
     x="Order",
     y="FCL / SSL",
     hue="Variant Label",
@@ -347,7 +349,7 @@ def coverage_with_ke_sorted_consistently(df):
     ax=ax2,
   )
   sns.lineplot(
-    df.loc[variant_labels[1]],
+    df.loc[idx[:, :, :, :, variant_labels[1]]],
     x="Order",
     y="FCL / SSL",
     hue="Variant Label",
@@ -365,7 +367,7 @@ def coverage_with_ke_sorted_consistently(df):
 
 def coverage_achievability(df):
   df = df.copy()
-  df = df.loc["Clang 15, O0 + mem2reg"]
+  df = df.loc[idx[:, :, :, :, "Clang 15, O0 + mem2reg"]]
   # Revive `Variant` column to assist `melt` below
   df["Variant"] = "Clang 15, O0 + mem2reg"
   df["Defined source lines (our approach)"] = df["Src Scope (L)"] / df["Scope (L)"]
@@ -416,7 +418,7 @@ def coverage_achievability(df):
 
 def coverage_comparison_ratios_o0_sorted_independently(df):
   df = df.copy()
-  df = df.loc["Clang 15, O0 + mem2reg"]
+  df = df.loc[idx[:, :, :, :, "Clang 15, O0 + mem2reg"]]
   # Revive `Variant` column to assist `melt` below
   df["Variant"] = "Clang 15, O0 + mem2reg"
   df["Filtered covered / defined source lines (our approach)"] = df["FCL / SSL"]
@@ -456,7 +458,7 @@ def coverage_comparison_ratios_o0_sorted_independently(df):
 
 def coverage_comparison_ratios_o2_sorted_independently(df):
   df = df.copy()
-  df = df.loc["Clang 15, O2"]
+  df = df.loc[idx[:, :, :, :, "Clang 15, O2"]]
   # Revive `Variant` column to assist `melt` below
   df["Variant"] = "Clang 15, O2"
   df["Filtered covered / defined source lines (our approach)"] = df["FCL / SSL"]
@@ -496,7 +498,7 @@ def coverage_comparison_ratios_o2_sorted_independently(df):
 
 def coverage_comparison_ratios_o2_sorted_consistently_old_metric(df):
   df = df.copy()
-  df = df.loc["Clang 15, O2"]
+  df = df.loc[idx[:, :, :, :, "Clang 15, O2"]]
   # Revive `Variant` column to assist `melt` below
   df["Variant"] = "Clang 15, O2"
   df["Adjusted covered / defined source lines (our approach)"] = df["ACL / BCL"]
@@ -589,7 +591,7 @@ def coverage_comparison_ratios_o2_sorted_consistently_old_metric(df):
 
 def coverage_comparison_ratios_o2_sorted_consistently_new_metric_same_denominators(df):
   df = df.copy()
-  df = df.loc["Clang 15, O2"]
+  df = df.loc[idx[:, :, :, :, "Clang 15, O2"]]
   # Revive `Variant` column to assist `melt` below
   df["Variant"] = "Clang 15, O2"
   df["Filtered covered / defined source lines (our approach)"] = df["FCL / SSL"]
@@ -676,7 +678,7 @@ def coverage_comparison_ratios_o2_sorted_consistently_new_metric_same_denominato
 
 def coverage_comparison_ratios_o2_sorted_consistently_new_metric_different_denominators_max_scope(df):
   df = df.copy()
-  df = df.loc["Clang 15, O2"]
+  df = df.loc[idx[:, :, :, :, "Clang 15, O2"]]
   # Revive `Variant` column to assist `melt` below
   df["Variant"] = "Clang 15, O2"
   df["Filtered covered / defined source lines (our approach)"] = df["FCL / SSL"]
@@ -769,7 +771,7 @@ def coverage_comparison_ratios_o2_sorted_consistently_new_metric_different_denom
 
 def coverage_comparison_ratios_o2_sorted_consistently_new_metric_different_denominators_own_scope(df):
   df = df.copy()
-  df = df.loc["Clang 15, O2"]
+  df = df.loc[idx[:, :, :, :, "Clang 15, O2"]]
   # Revive `Variant` column to assist `melt` below
   df["Variant"] = "Clang 15, O2"
   df["Filtered covered / defined source lines (our approach)"] = df["FCL / SSL"]
@@ -856,7 +858,7 @@ def coverage_comparison_ratios_o2_sorted_consistently_new_metric_different_denom
 
 def coverage_comparison_ratios_o2_sorted_consistently_new_metric_different_denominators_bytes(df):
   df = df.copy()
-  df = df.loc["Clang 15, O2"]
+  df = df.loc[idx[:, :, :, :, "Clang 15, O2"]]
   # Revive `Variant` column to assist `melt` below
   df["Variant"] = "Clang 15, O2"
   df["Filtered covered / defined source lines (our approach)"] = df["FCL / SSL"]
@@ -943,7 +945,7 @@ def coverage_comparison_ratios_o2_sorted_consistently_new_metric_different_denom
 
 def coverage_comparison_ratios_o2_distribution(df):
   df = df.copy()
-  df = df.loc["Clang 15, O2"]
+  df = df.loc[idx[:, :, :, :, "Clang 15, O2"]]
   # Revive `Variant` column to assist `melt` below
   df["Variant"] = "Clang 15, O2"
   df["Filtered covered / defined source lines (our approach)"] = df["FCL / SSL"]
