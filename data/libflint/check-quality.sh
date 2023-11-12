@@ -68,8 +68,8 @@ debuginfo-quality \
   > ${level}-${version}/${TARGET_NAME}-efb.tsv
 
 # O1+ using above as baseline
-  levels=(O2 O2 O2 O1 O2 O3)
-versions=(12 13 14 15 15 15)
+  levels=(O2)
+versions=(15)
 
 for i in ${!levels[*]}; do
   level=${levels[$i]}
