@@ -877,11 +877,11 @@ def coverage_comparison_ratios_o2_sorted_consistently_new_metric_different_denom
   # Create figure with multiple axes
   fig, axs = plt.subplots(
     1, 2,
-    figsize=(7.6, 3.0),
+    figsize=(7.6, 2.0),
     layout="constrained",
   )
   [ax1, ax2] = axs
-  fig.suptitle(f"Coverage metric comparison ({friendly_name}, Clang 15, O2)")
+  # fig.suptitle(f"Coverage metric comparison ({friendly_name}, Clang 15, O2)")
 
   df["Order"] = df.sort_values(by="Cov Value", ascending=False).groupby("Cov Type").cumcount()
   df["Order"] = df.groupby("Name")["Order"].transform("first")
@@ -910,7 +910,7 @@ def coverage_comparison_ratios_o2_sorted_consistently_new_metric_different_denom
   ax1.legend(title=False)
   ax1.set_xlabel("Variable index (sorted by coverage)")
   ax1.set_xbound(0, df["Order"].max())
-  ax1.set_ylabel("Coverage ratio (multiple metrics)")
+  ax1.set_ylabel("Coverage ratio")
   ax1.set_ybound(0, 1.002)
 
   df["Order"] = df.sort_values(by="Cov Value", ascending=False).groupby("Cov Type").cumcount()
@@ -940,7 +940,7 @@ def coverage_comparison_ratios_o2_sorted_consistently_new_metric_different_denom
   ax2.legend(title=False)
   ax2.set_xlabel("Variable index (sorted by coverage)")
   ax2.set_xbound(0, df["Order"].max())
-  ax2.set_ylabel("Coverage ratio (multiple metrics)")
+  ax2.set_ylabel("Coverage ratio")
   ax2.set_ybound(0, 1.002)
 
 def coverage_comparison_ratios_o2_distribution(df):
