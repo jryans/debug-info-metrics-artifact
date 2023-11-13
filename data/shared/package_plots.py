@@ -234,12 +234,12 @@ def coverage_by_optimisation_level(df):
     hue="Level",
     kind="line",
     style="Tool",
-    height=4,
+    height=3.5,
   )
   sns.move_legend(
     g,
     "lower left",
-    bbox_to_anchor=(0.145, 0.135),
+    bbox_to_anchor=(0.165, 0.155),
     fontsize="small",
     frameon=True,
     shadow=True,
