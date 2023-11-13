@@ -369,11 +369,11 @@ def coverage_with_ke_sorted_consistently(df):
 
 def coverage_achievability(df):
   df = df.copy()
-  df = df.loc[idx[:, :, :, :, "Clang 15, O0 + mem2reg"]]
+  df = df.loc[idx[:, :, :, :, "Clang 15, O0"]]
   # Avoid misleading values by removing the few variables with no DWARF scope lines
   df = df[df["Scope (L)"] > 0]
   # Revive `Variant` column to assist `melt` below
-  df["Variant"] = "Clang 15, O0 + mem2reg"
+  df["Variant"] = "Clang 15, O0"
   df["Defined source lines (our approach)"] = df["Src Scope (L)"] / df["Scope (L)"]
   df["Scope source lines (other tools)"] = 1.0
   df = df.melt(
