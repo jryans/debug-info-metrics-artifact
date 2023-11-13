@@ -389,12 +389,13 @@ def coverage_achievability(df):
     y="Cov Value",
     hue="Cov Type",
     kind="line",
-    height=3.5,
+    height=2.5,
+    aspect=3.5 / 2.5,
   )
   sns.move_legend(
     g,
     "lower left",
-    bbox_to_anchor=(0.160, 0.155),
+    bbox_to_anchor=(0.1575, 0.215),
     frameon=True,
     shadow=True,
     title=None,
@@ -406,7 +407,7 @@ def coverage_achievability(df):
   ax.fill_between(x, scope_y, defined_y, color="gray", alpha=0.5)
   ax.annotate(
     "Unachievable\n“coverage”",
-    xy=(0.840, 0.900),
+    xy=(0.850, 0.850),
     xycoords="axes fraction",
     fontsize="small",
     horizontalalignment="center",
