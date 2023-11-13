@@ -271,12 +271,14 @@ def coverage_with_ke_sorted_independently(df):
     hue="Level",
     style="KE",
     kind="line",
-    height=3.5,
+    height=2.5,
+    aspect=3.5 / 2.5,
   )
   sns.move_legend(
     g,
     "lower left",
-    bbox_to_anchor=(0.165, 0.155),
+    bbox_to_anchor=(0.165, 0.215),
+    fontsize="small",
     frameon=True,
     shadow=True,
     title=None,
@@ -285,7 +287,7 @@ def coverage_with_ke_sorted_independently(df):
     title=f"Variable value source line coverage ({friendly_name}, Clang 15)",
     xlabel="Variable index (sorted by coverage)",
     xbound=(0, df["Order"].max()),
-    ylabel="Covered source lines normalised to defined region",
+    ylabel="Covered source lines\nnormalised to defined region",
     ybound=(0, 1.002),
   )
 
