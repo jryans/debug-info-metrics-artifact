@@ -133,12 +133,14 @@ def coverage_by_package_o2(df):
     y="FCL / SSL",
     hue="Package",
     kind="line",
-    height=3.5,
+    height=2.5,
+    aspect=3.5 / 2.5,
   )
   sns.move_legend(
     g,
     "lower left",
-    bbox_to_anchor=(0.165, 0.155),
+    bbox_to_anchor=(0.1675, 0.2225),
+    fontsize="x-small",
     frameon=True,
     shadow=True,
     title=None,
@@ -147,6 +149,6 @@ def coverage_by_package_o2(df):
     title="Variable value source line coverage\n(Clang 15, O2, multiple packages)",
     xlabel="Variable normalised index (sorted by coverage)",
     xbound=(0, 1),
-    ylabel="Covered source lines normalised to defined region",
+    ylabel="Covered source lines\nnormalised to defined region",
     ybound=(0, 1.002),
   )
