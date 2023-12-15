@@ -62,6 +62,11 @@ def load_data():
   read_run(f"clang/15/O2/{target_name}-efb.tsv", ("Clang", "15", "O2", "Has KE"))
   read_run(f"clang/15/O3/{target_name}.tsv", ("Clang", "15", "O3", "No KE"))
   read_run(f"clang/15/O3/{target_name}-efb.tsv", ("Clang", "15", "O3", "Has KE"))
+  if target_name == "git":
+    read_run(f"clang/16/O1/{target_name}.tsv", ("Clang", "16", "O1", "No KE"))
+    read_run(f"clang/16/O2/{target_name}.tsv", ("Clang", "16", "O2", "No KE"))
+    read_run(f"clang/17/O1/{target_name}.tsv", ("Clang", "17", "O1", "No KE"))
+    read_run(f"clang/17/O2/{target_name}.tsv", ("Clang", "17", "O2", "No KE"))
   read_run(f"gcc/10/Og/{target_name}.tsv", ("GCC", "10", "Og", "No KE"))
   read_run(f"gcc/10/O1/{target_name}.tsv", ("GCC", "10", "O1", "No KE"))
   read_run(f"gcc/10/O2/{target_name}.tsv", ("GCC", "10", "O2", "No KE"))
@@ -174,6 +179,7 @@ def coverage_by_compiler_version(df):
       (
         variants.str.contains("Clang 12") |
         variants.str.contains("Clang 15") |
+        variants.str.contains("Clang 17") |
         variants.str.contains("GCC 10") |
         variants.str.contains("GCC 13")
       ) &

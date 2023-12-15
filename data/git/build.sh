@@ -84,8 +84,8 @@ $(llvm release-clang-lldb-${version}.0.0 llc) \
 
 # Clang O1+
 
-  levels=(O1 O2 O1 O2 O1 O2 O1 O2 O3)
-versions=(12 12 13 13 14 14 15 15 15)
+  levels=(O1 O2 O1 O2 O1 O2 O1 O2 O3 O1 O2 O1 O2)
+versions=(12 12 13 13 14 14 15 15 15 16 16 17 17)
 
 for i in ${!levels[*]}; do
   level=${levels[$i]}

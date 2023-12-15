@@ -68,8 +68,8 @@ debuginfo-quality \
   > clang/${version}/${level}/${TARGET_NAME}-efb.tsv
 
 # Clang O1+ using above as baseline
-  levels=(O1 O2 O1 O2 O1 O2 O1 O2 O3)
-versions=(12 12 13 13 14 14 15 15 15)
+  levels=(O1 O2 O1 O2 O1 O2 O1 O2 O3 O1 O2 O1 O2)
+versions=(12 12 13 13 14 14 15 15 15 16 16 17 17)
 
 for i in ${!levels[*]}; do
   level=${levels[$i]}
