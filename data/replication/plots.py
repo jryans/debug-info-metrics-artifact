@@ -184,6 +184,9 @@ def product_of_metrics(df):
 def combined(df):
   df = df.copy()
 
+  df.index.set_names("Metric (style)", level=0, inplace=True)
+  df.rename(columns={"Level": "Level (hue)"}, inplace=True)
+
   # Create figure with multiple axes
   fig, axs = plt.subplots(
     1, 3,
@@ -196,8 +199,8 @@ def combined(df):
     df,
     x="Version",
     y="Line Coverage",
-    hue="Level",
-    style="Metric",
+    hue="Level (hue)",
+    style="Metric (style)",
     ax=ax1,
   )
   ax1.set(
@@ -216,8 +219,8 @@ def combined(df):
     df,
     x="Version",
     y="Availability of Variables",
-    hue="Level",
-    style="Metric",
+    hue="Level (hue)",
+    style="Metric (style)",
     legend=False,
     ax=ax2,
   )
@@ -234,8 +237,8 @@ def combined(df):
     df,
     x="Version",
     y="Product of Metrics",
-    hue="Level",
-    style="Metric",
+    hue="Level (hue)",
+    style="Metric (style)",
     legend=False,
     ax=ax3,
   )

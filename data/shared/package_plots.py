@@ -261,6 +261,8 @@ def coverage_by_optimisation_level(df):
 
 def coverage_with_ke_sorted_independently(df):
   df = df.copy()
+  df.index.set_names("Level (hue)", level=2, inplace=True)
+  df.index.set_names("KE (style)", level=3, inplace=True)
   df["Order"] = df.sort_values(by="FCL / SSL", ascending=False).groupby("Variant").cumcount()
   variants = df.index.get_level_values("Variant")
   df = df[
@@ -274,8 +276,8 @@ def coverage_with_ke_sorted_independently(df):
     df,
     x="Order",
     y="FCL / SSL",
-    hue="Level",
-    style="KE",
+    hue="Level (hue)",
+    style="KE (style)",
     kind="line",
     height=2.5,
     aspect=3.5 / 2.5,
