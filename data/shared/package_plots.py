@@ -422,11 +422,11 @@ def coverage_achievability(df):
     bbox=dict(boxstyle="round", facecolor="m"),
   )
   g.set(
-    title=f"Coverage achievability ({friendly_name}, Clang 15)",
+    title=f"Coverage achievability ({friendly_name})",
     xlabel="Variable index (sorted by coverage)",
     xbound=(0, df["Order"].max()),
     ylabel="Portion of scope source lines",
-    ybound=(0, 1.002),
+    ybound=(0, 1.005),
   )
 
 def coverage_comparison_ratios_o0_sorted_independently(df):
