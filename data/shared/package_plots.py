@@ -419,7 +419,7 @@ def coverage_achievability(df):
     xycoords="axes fraction",
     fontsize="small",
     horizontalalignment="center",
-    bbox=dict(boxstyle="round", facecolor="m"),
+    bbox=dict(boxstyle="round", facecolor="#DDAA33"),
   )
   g.set(
     title=f"Coverage achievability ({friendly_name})",
