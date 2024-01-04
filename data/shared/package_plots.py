@@ -956,6 +956,16 @@ def coverage_comparison_ratios_o2_sorted_consistently_new_metric_different_denom
   ax2.set_ylabel("Coverage ratio")
   ax2.set_ybound(0, 1.002)
 
+def coverage_comparison_ratios_o2_correlation_new_metric_different_denominators_bytes(df):
+  df = df.copy()
+  df = df.loc[idx[:, :, :, :, "Clang 15, O2"]]
+  # Revive `Variant` column to assist `melt` below
+  df["Variant"] = "Clang 15, O2"
+  df["Filtered covered / defined source lines (our approach)"] = df["FCL / SSL"]
+  df["Raw covered / scope source bytes (other tools)"] = df["CB / SB"]
+
+  return df["Filtered covered / defined source lines (our approach)"].corr(df["Raw covered / scope source bytes (other tools)"])
+
 def coverage_comparison_ratios_o2_distribution(df):
   df = df.copy()
   df = df.loc[idx[:, :, :, :, "Clang 15, O2"]]
