@@ -6,6 +6,8 @@ Accurate Coverage Metrics for Compiler-Generated Debugging Information
 
 by J. Ryan Stinnett and Stephen Kell.
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10568392.svg)](https://doi.org/10.5281/zenodo.10568392)
+
 ## Usage
 
 The `data` directory includes various scripts and notebooks used to produce the
