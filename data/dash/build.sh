@@ -43,11 +43,11 @@ mkdir -p "${SCRIPT_DIR}/source-analysis"
   > "${SCRIPT_DIR}/source-analysis/${TARGET_NAME}.dbgcov" \
 )
 
-# O0
+# Clang O0
 
 level="O0"
 version="15"
-echo "## Building \`${TARGET_NAME}\` (${level}-${version})"
+echo "## Building \`${TARGET_NAME}\` (Clang ${version}, ${level})"
 
 make clean
 git clean -f
@@ -59,33 +59,33 @@ make \
 
 ## Extract bitcode for O0
 extract-bc ${TARGET_PATH}
-mkdir -p "${SCRIPT_DIR}/${level}-${version}"
+mkdir -p "${SCRIPT_DIR}/clang/${version}/${level}"
 cp \
   ${TARGET_PATH}.bc \
-  "${SCRIPT_DIR}/${level}-${version}/${TARGET_NAME}.bc"
+  "${SCRIPT_DIR}/clang/${version}/${level}/${TARGET_NAME}.bc"
 
 ## Compile O0 bitcode to object file
 $(llvm release-clang-lldb-${version}.0.0 llc) \
   -${level} \
-  -o "${SCRIPT_DIR}/${level}-${version}/${TARGET_NAME}.o" \
+  -o "${SCRIPT_DIR}/clang/${version}/${level}/${TARGET_NAME}.o" \
   --filetype obj \
-  "${SCRIPT_DIR}/${level}-${version}/${TARGET_NAME}.bc"
+  "${SCRIPT_DIR}/clang/${version}/${level}/${TARGET_NAME}.bc"
 
 ## Apply mem2reg only
-mkdir -p "${SCRIPT_DIR}/${level}-${version}-mem2reg"
+mkdir -p "${SCRIPT_DIR}/clang/${version}/${level}-mem2reg"
 $(llvm release-clang-lldb-${version}.0.0 opt) \
-  -o "${SCRIPT_DIR}/${level}-${version}-mem2reg/${TARGET_NAME}.bc" \
+  -o "${SCRIPT_DIR}/clang/${version}/${level}-mem2reg/${TARGET_NAME}.bc" \
   --mem2reg \
-  "${SCRIPT_DIR}/${level}-${version}/${TARGET_NAME}.bc"
+  "${SCRIPT_DIR}/clang/${version}/${level}/${TARGET_NAME}.bc"
 
 ## Compile O0 plus mem2reg bitcode to object file
 $(llvm release-clang-lldb-${version}.0.0 llc) \
   -${level} \
-  -o "${SCRIPT_DIR}/${level}-${version}-mem2reg/${TARGET_NAME}.o" \
+  -o "${SCRIPT_DIR}/clang/${version}/${level}-mem2reg/${TARGET_NAME}.o" \
   --filetype obj \
-  "${SCRIPT_DIR}/${level}-${version}-mem2reg/${TARGET_NAME}.bc"
+  "${SCRIPT_DIR}/clang/${version}/${level}-mem2reg/${TARGET_NAME}.bc"
 
-# O1+
+# Clang O1+
 
   levels=(O2 O2 O2 O1 O2 O3)
 versions=(12 13 14 15 15 15)
@@ -93,7 +93,7 @@ versions=(12 13 14 15 15 15)
 for i in ${!levels[*]}; do
   level=${levels[$i]}
   version=${versions[$i]}
-  echo "## Building \`${TARGET_NAME}\` (${level}-${version})"
+  echo "## Building \`${TARGET_NAME}\` (Clang ${version}, ${level})"
 
   make clean
   git clean -f
@@ -106,10 +106,10 @@ for i in ${!levels[*]}; do
 
   ## Gather debug info
   dsymutil --flat "${TARGET_PATH}"
-  mkdir -p "${SCRIPT_DIR}/${level}-${version}"
+  mkdir -p "${SCRIPT_DIR}/clang/${version}/${level}"
   cp \
     "${TARGET_PATH}.dwarf" \
-    "${SCRIPT_DIR}/${level}-${version}/${TARGET_NAME}.dwarf"
+    "${SCRIPT_DIR}/clang/${version}/${level}/${TARGET_NAME}.dwarf"
 done
 
 # Cleanup

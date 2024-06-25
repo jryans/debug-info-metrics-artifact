@@ -23,10 +23,7 @@ def load_data(target_name, data_path_prefix):
     df.variant = variant
     dfs.append(df)
 
-  if target_name == "git":
-    read_run(f"clang/15/O2/{target_name}.tsv", ("Clang", "15", "O2", "No KE"))
-  else:
-    read_run(f"O2-15/{target_name}.tsv", ("Clang", "15", "O2", "No KE"))
+  read_run(f"clang/15/O2/{target_name}.tsv", ("Clang", "15", "O2", "No KE"))
 
   # Check names present in each compilation for differences
   print("# Names")
