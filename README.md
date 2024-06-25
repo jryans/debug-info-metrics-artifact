@@ -40,6 +40,7 @@ following projects and commits were used:
 | Git     | bd5df96b7916c1e8a9300ab477aec047b3901cd4 |
 | libbz2  | 323678a0d655eb3720618dd7f0dd403eef5e6999 |
 | FLINT   | c08c06bf202d1b154742eecc183b8a3d13cddf62 |
+| libpng  | e4a31f024b6158aaaf55a43502f574d5f5d1c894 |
 | tar     | cf16a2394572301496b618a857e71371020af643 |
 
 Most published figures focus on the Git codebase, so consider starting there.
