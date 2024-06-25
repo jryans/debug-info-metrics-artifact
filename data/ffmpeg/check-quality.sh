@@ -11,7 +11,7 @@ fi
 
 TARGET_NAME="ffmpeg"
 
-# Clang O0 (baseline can't be used here)
+# Clang O0
 level="O0"
 version="15"
 echo "## Checking debug quality of \`${TARGET_NAME}\` (Clang ${version}, ${level})"
@@ -37,15 +37,13 @@ debuginfo-quality \
   clang/${version}/${level}/${TARGET_NAME}.o \
   > clang/${version}/${level}/${TARGET_NAME}-efb.tsv
 
-# Clang O0 + mem2reg baseline
+# Clang O0 + mem2reg
 level="O0-mem2reg"
 version="15"
 echo "## Checking debug quality of \`${TARGET_NAME}\` (Clang ${version}, ${level})"
 debuginfo-quality \
   --variables \
   --tsv \
-  --baseline clang/15/O0-mem2reg/${TARGET_NAME}.o \
-  --range-start-baseline \
   --regions source-analysis/${TARGET_NAME}.dbgcov \
   --scope-regions \
   --only-computation-regions \
@@ -57,8 +55,6 @@ debuginfo-quality \
 debuginfo-quality \
   --variables \
   --tsv \
-  --baseline clang/15/O0-mem2reg/${TARGET_NAME}.o \
-  --range-start-baseline \
   --extend-from-baseline \
   --regions source-analysis/${TARGET_NAME}.dbgcov \
   --scope-regions \
@@ -67,7 +63,7 @@ debuginfo-quality \
   clang/${version}/${level}/${TARGET_NAME}.o \
   > clang/${version}/${level}/${TARGET_NAME}-efb.tsv
 
-# Clang O1+ using above as baseline
+# Clang O1+
   levels=(O2 O2 O2 O1 O2 O3)
 versions=(12 13 14 15 15 15)
 
@@ -78,8 +74,6 @@ for i in ${!levels[*]}; do
   debuginfo-quality \
     --variables \
     --tsv \
-    --baseline clang/15/O0-mem2reg/${TARGET_NAME}.o \
-    --range-start-baseline \
     --regions source-analysis/${TARGET_NAME}.dbgcov \
     --scope-regions \
     --only-computation-regions \
@@ -91,8 +85,6 @@ for i in ${!levels[*]}; do
   debuginfo-quality \
     --variables \
     --tsv \
-    --baseline clang/15/O0-mem2reg/${TARGET_NAME}.o \
-    --range-start-baseline \
     --extend-from-baseline \
     --regions source-analysis/${TARGET_NAME}.dbgcov \
     --scope-regions \

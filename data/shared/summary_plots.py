@@ -57,7 +57,6 @@ def load_data(target_name, data_path_prefix):
     missing_df["Scope (B)"] = 1
     missing_df["Cov (L)"] = 0
     missing_df["Scope (L)"] = 1
-    missing_df["Adj Cov (L)"] = 0
     missing_df["Flt Cov (L)"] = 0
     missing_df["Src Scope (L)"] = 1
     print(f"Adding {len(missing_df)} missing names to {variant}")
@@ -101,13 +100,8 @@ def normalise(df):
   # Compute various coverage ratios
   df["CB / SB"] = df["Cov (B)"] / df["Scope (B)"]
   df["CL / SL"] = df["Cov (L)"] / df["Scope (L)"]
-  # df["ACL / SL"] = df["Adj Cov (L)"] / df["Scope (L)"]
   df["CL / SSL"] = df["Cov (L)"] / df["Src Scope (L)"]
   df["FCL / SSL"] = df["Flt Cov (L)"] / df["Src Scope (L)"]
-  # Line table may differ between runs, giving different scope line counts
-  # Use the largest scope line count from any run to recompute ratio
-  df["Max Scope (L)"] = df.groupby("Name")["Scope (L)"].transform("max")
-  df["CL / MSL"] = df["Cov (L)"] / df["Max Scope (L)"]
 
 def coverage_by_package_o2(df):
   df = df.copy()

@@ -48,7 +48,6 @@ def load_data():
 
   # Order is important here!
   # Some data transformations rely on
-  # `iloc[1]` to access the baseline,
   # `diff` to access KE vs. not, etc.
   # Re-check all transformations when changing the order.
   read_run(f"clang/15/O0/{target_name}.tsv", ("Clang", "15", "O0", "No KE"))
@@ -109,7 +108,6 @@ def load_data():
     missing_df["Scope (B)"] = 1
     missing_df["Cov (L)"] = 0
     missing_df["Scope (L)"] = 1
-    missing_df["Adj Cov (L)"] = 0
     missing_df["Flt Cov (L)"] = 0
     missing_df["Src Scope (L)"] = 1
     print(f"Adding {len(missing_df)} missing names to {variant}")
@@ -157,18 +155,8 @@ def normalise(df):
   # Compute various coverage ratios
   df["CB / SB"] = df["Cov (B)"] / df["Scope (B)"]
   df["CL / SL"] = df["Cov (L)"] / df["Scope (L)"]
-  # df["ACL / SL"] = df["Adj Cov (L)"] / df["Scope (L)"]
   df["CL / SSL"] = df["Cov (L)"] / df["Src Scope (L)"]
   df["FCL / SSL"] = df["Flt Cov (L)"] / df["Src Scope (L)"]
-  # Line table may differ between runs, giving different scope line counts
-  # Use the largest scope line count from any run to recompute ratio
-  df["Max Scope (L)"] = df.groupby("Name")["Scope (L)"].transform("max")
-  df["CL / MSL"] = df["Cov (L)"] / df["Max Scope (L)"]
-  # Normalise values to baseline (Clang 15, O0 + mem2reg)
-  # Chooses the correct row for `mem2reg` even in the presence of NaN
-  df["Baseline Cov (L)"] = df.groupby("Name")["Adj Cov (L)"].transform(lambda x: x.iloc[2])
-  with np.errstate(all="ignore"):
-    df["ACL / BCL"] = df["Adj Cov (L)"] / df["Baseline Cov (L)"]
 
 def coverage_by_compiler_version(df):
   df = df.copy()
@@ -510,99 +498,6 @@ def coverage_comparison_ratios_o2_sorted_independently(df):
     ybound=(0, 1.002),
   )
 
-def coverage_comparison_ratios_o2_sorted_consistently_old_metric(df):
-  df = df.copy()
-  df = df.loc[idx[:, :, :, :, "Clang 15, O2"]]
-  # Revive `Variant` column to assist `melt` below
-  df["Variant"] = "Clang 15, O2"
-  df["Adjusted covered / defined source lines (our approach)"] = df["ACL / BCL"]
-  # Using max scope in the denominator here to ensure it matches the baseline for
-  # variables that cover the full scope. The baseline (O0-mem2reg) tends to
-  # include a few extra lines than optimised versions, so max scope is more fair
-  # comparison than the original scope from an optimised dataset.
-  # Once we integrate source analysis to determine allowable lines, we may be able
-  # to avoid the max here.
-  df["Raw covered / max scope source lines (other tools)"] = df["CL / MSL"]
-  coverage_types = [
-    "Adjusted covered / defined source lines (our approach)",
-    "Raw covered / max scope source lines (other tools)",
-  ]
-  df = df.melt(
-    id_vars=["Name", "Variant"],
-    value_vars=coverage_types,
-    var_name="Cov Type",
-    value_name="Cov Value",
-  )
-
-  # Create figure with multiple axes
-  fig, axs = plt.subplots(
-    1, 2,
-    figsize=(7.6, 3.0),
-    layout="constrained",
-  )
-  [ax1, ax2] = axs
-  fig.suptitle(f"Coverage metric comparison ({friendly_name}, Clang 15, O2)")
-
-  df["Order"] = df.sort_values(by="Cov Value", ascending=False).groupby("Cov Type").cumcount()
-  df["Order"] = df.groupby("Name")["Order"].transform("first")
-  sns.lineplot(
-    df[df["Cov Type"] == "Adjusted covered / defined source lines (our approach)"],
-    x="Order",
-    y="Cov Value",
-    hue="Cov Type",
-    hue_order=[
-      coverage_types[0],
-      "_" + coverage_types[1], # Remove from legend
-    ],
-    ax=ax1,
-  )
-  sns.scatterplot(
-    df[df["Cov Type"] == "Raw covered / max scope source lines (other tools)"],
-    x="Order",
-    y="Cov Value",
-    hue="Cov Type",
-    hue_order=[
-      "_" + coverage_types[0], # Remove from legend
-      coverage_types[1],
-    ],
-    ax=ax1,
-  )
-  ax1.legend(title=False)
-  ax1.set_xlabel("Variable index (sorted by coverage)")
-  ax1.set_xbound(0, df["Order"].max())
-  ax1.set_ylabel("Coverage ratio (multiple metrics)")
-  ax1.set_ybound(0, 1.002)
-
-  df["Order"] = df.sort_values(by="Cov Value", ascending=False).groupby("Cov Type").cumcount()
-  df["Order"] = df.groupby("Name")["Order"].transform("last")
-  sns.scatterplot(
-    df[df["Cov Type"] == "Adjusted covered / defined source lines (our approach)"],
-    x="Order",
-    y="Cov Value",
-    hue="Cov Type",
-    hue_order=[
-      coverage_types[0],
-      "_" + coverage_types[1], # Remove from legend
-    ],
-    ax=ax2,
-  )
-  sns.lineplot(
-    df[df["Cov Type"] == "Raw covered / max scope source lines (other tools)"],
-    x="Order",
-    y="Cov Value",
-    hue="Cov Type",
-    hue_order=[
-      "_" + coverage_types[0], # Remove from legend
-      coverage_types[1],
-    ],
-    ax=ax2,
-  )
-  ax2.legend(title=False)
-  ax2.set_xlabel("Variable index (sorted by coverage)")
-  ax2.set_xbound(0, df["Order"].max())
-  ax2.set_ylabel("Coverage ratio (multiple metrics)")
-  ax2.set_ybound(0, 1.002)
-
 def coverage_comparison_ratios_o2_sorted_consistently_new_metric_same_denominators(df):
   df = df.copy()
   df = df.loc[idx[:, :, :, :, "Clang 15, O2"]]
@@ -675,99 +570,6 @@ def coverage_comparison_ratios_o2_sorted_consistently_new_metric_same_denominato
   )
   sns.lineplot(
     df[df["Cov Type"] == "Raw covered / scope source lines (other tools simulation)"],
-    x="Order",
-    y="Cov Value",
-    hue="Cov Type",
-    hue_order=[
-      "_" + coverage_types[0], # Remove from legend
-      coverage_types[1],
-    ],
-    ax=ax2,
-  )
-  ax2.legend(title=False)
-  ax2.set_xlabel("Variable index (sorted by coverage)")
-  ax2.set_xbound(0, df["Order"].max())
-  ax2.set_ylabel("Coverage ratio (multiple metrics)")
-  ax2.set_ybound(0, 1.002)
-
-def coverage_comparison_ratios_o2_sorted_consistently_new_metric_different_denominators_max_scope(df):
-  df = df.copy()
-  df = df.loc[idx[:, :, :, :, "Clang 15, O2"]]
-  # Revive `Variant` column to assist `melt` below
-  df["Variant"] = "Clang 15, O2"
-  df["Filtered covered / defined source lines (our approach)"] = df["FCL / SSL"]
-  # Using max scope in the denominator here to ensure it matches the baseline for
-  # variables that cover the full scope. The baseline (O0-mem2reg) tends to
-  # include a few extra lines than optimised versions, so max scope is more fair
-  # comparison than the original scope from an optimised dataset.
-  # Once we integrate source analysis to determine allowable lines, we may be able
-  # to avoid the max here.
-  df["Raw covered / max scope source lines (other tools simulation)"] = df["CL / MSL"]
-  coverage_types = [
-    "Filtered covered / defined source lines (our approach)",
-    "Raw covered / max scope source lines (other tools simulation)",
-  ]
-  df = df.melt(
-    id_vars=["Name", "Variant"],
-    value_vars=coverage_types,
-    var_name="Cov Type",
-    value_name="Cov Value",
-  )
-
-  # Create figure with multiple axes
-  fig, axs = plt.subplots(
-    1, 2,
-    figsize=(7.6, 3.0),
-    layout="constrained",
-  )
-  [ax1, ax2] = axs
-  fig.suptitle(f"Coverage metric comparison ({friendly_name}, Clang 15, O2)")
-
-  df["Order"] = df.sort_values(by="Cov Value", ascending=False).groupby("Cov Type").cumcount()
-  df["Order"] = df.groupby("Name")["Order"].transform("first")
-  sns.lineplot(
-    df[df["Cov Type"] == "Filtered covered / defined source lines (our approach)"],
-    x="Order",
-    y="Cov Value",
-    hue="Cov Type",
-    hue_order=[
-      coverage_types[0],
-      "_" + coverage_types[1], # Remove from legend
-    ],
-    ax=ax1,
-  )
-  sns.scatterplot(
-    df[df["Cov Type"] == "Raw covered / max scope source lines (other tools simulation)"],
-    x="Order",
-    y="Cov Value",
-    hue="Cov Type",
-    hue_order=[
-      "_" + coverage_types[0], # Remove from legend
-      coverage_types[1],
-    ],
-    ax=ax1,
-  )
-  ax1.legend(title=False)
-  ax1.set_xlabel("Variable index (sorted by coverage)")
-  ax1.set_xbound(0, df["Order"].max())
-  ax1.set_ylabel("Coverage ratio (multiple metrics)")
-  ax1.set_ybound(0, 1.002)
-
-  df["Order"] = df.sort_values(by="Cov Value", ascending=False).groupby("Cov Type").cumcount()
-  df["Order"] = df.groupby("Name")["Order"].transform("last")
-  sns.scatterplot(
-    df[df["Cov Type"] == "Filtered covered / defined source lines (our approach)"],
-    x="Order",
-    y="Cov Value",
-    hue="Cov Type",
-    hue_order=[
-      coverage_types[0],
-      "_" + coverage_types[1], # Remove from legend
-    ],
-    ax=ax2,
-  )
-  sns.lineplot(
-    df[df["Cov Type"] == "Raw covered / max scope source lines (other tools simulation)"],
     x="Order",
     y="Cov Value",
     hue="Cov Type",
