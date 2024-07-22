@@ -65,6 +65,10 @@ The following compiler versions are used:
 - GCC 12.3.0
 - GCC 13.1.0
 
+Our results were collected on macOS 13.6. Other platforms may give different
+results, as some compilers may enable different debug info features by default
+for each target platform.
+
 [paper]:
   https://doi.org/10.1145/3640537.3641578
 [dbgcov]:
